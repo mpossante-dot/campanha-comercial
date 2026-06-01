@@ -538,7 +538,7 @@ select option{background:var(--card2);}
 const SHEETS_URL = '';
 const SHEETS_ID = '2PACX-1vQpYefnEOFzjnISwu5COWrCir4Msn17sNcxy7zk6KVxSofblQQYPYkUl61IBxDBvK9LFKr3YJl6OJfa';
 const RANKING_CSV_DIRECT = `https://docs.google.com/spreadsheets/d/e/${SHEETS_ID}/pub?gid=0&single=true&output=csv`;
-const RANKING_CSV_PROXY = `https://corsproxy.io/?${encodeURIComponent(RANKING_CSV_DIRECT)}`;
+const RANKING_CSV_PROXY = `https://corsproxy.io/?${encodeURIComponent(RANKING_CSV_DIRECT)}&t=${Date.now()}`;
 const DAILY_Q_PER_DAY = 1;
 
 // ============ MONTHS ============
@@ -567,13 +567,14 @@ let nextId = 1;
 async function loadRankingFromSheets() {
   try {
     document.getElementById('rankingList').innerHTML = '<div style="text-align:center;padding:32px;color:var(--muted);font-size:13px;">⏳ A carregar ranking...</div>';
-    // Tenta direto primeiro, se falhar usa proxy CORS
+    // Usa proxy CORS (mais fiável no GitHub Pages)
     let csv;
     try {
-      const res = await fetch(RANKING_CSV_DIRECT + '&t=' + Date.now());
-      csv = await res.text();
-    } catch(e) {
       const res = await fetch(RANKING_CSV_PROXY);
+      csv = await res.text();
+      if (!csv || csv.includes('<!DOCTYPE')) throw new Error('Bad response');
+    } catch(e) {
+      const res = await fetch(RANKING_CSV_DIRECT + '&t=' + Date.now());
       csv = await res.text();
     }
     const lines = csv.trim().split('\n').slice(1);
