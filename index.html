@@ -301,7 +301,7 @@ select option{background:var(--card2);}
 <!-- QUIZ DIÁRIO -->
 <div id="page-daily" class="page">
   <div class="daily-hero">
-    <div class="daily-hero-label">⚡ Quiz do Dia · 3 Perguntas</div>
+    <div class="daily-hero-label">⚡ Quiz do Dia · 1 Pergunta</div>
     <h2>Desafio Diário</h2>
     <p>Uma pergunta por dia sobre o Seguro Auto. Acerta e ganhas +1 ponto bónus no ranking! 🔥</p>
   </div>
@@ -341,7 +341,7 @@ select option{background:var(--card2);}
     <div class="dq-progress-bar"><div class="dq-progress-fill" id="dqProgressFill" style="width:0%"></div></div>
     <div class="dq-counter">
       <div class="dq-counter-text">PERGUNTA DO DIA</div>
-      <div class="dq-score-live">⭐ <span id="dqScore">0</span> corretas</div>
+      <div class="dq-score-live">⭐ <span id="dqScore">0</span> correta</div>
     </div>
     <div class="dq-card">
       <div class="dq-category" id="dqCategory"></div>
@@ -356,7 +356,7 @@ select option{background:var(--card2);}
   <div id="dailyResult" style="display:none;">
     <div class="dq-result">
       <div class="dq-result-score" id="dqResultScore">0</div>
-      <div class="dq-result-of">/ 3 corretas</div>
+      <div class="dq-result-of">/ 1 correta</div>
       <div class="dq-result-pts" id="dqResultPts">+0 pontos bónus</div>
       <div class="dq-result-title" id="dqResultTitle"></div>
       <div class="dq-result-msg" id="dqResultMsg"></div>
@@ -406,7 +406,7 @@ select option{background:var(--card2);}
 <!-- QUIZ DIÁRIO -->
 <div id="page-daily" class="page">
   <div class="daily-hero">
-    <div class="daily-hero-label">⚡ Quiz do Dia · 3 Perguntas</div>
+    <div class="daily-hero-label">⚡ Quiz do Dia · 1 Pergunta</div>
     <h2>Desafio Diário</h2>
     <p>Uma pergunta por dia sobre o Seguro Auto. Acerta e ganhas +1 ponto bónus no ranking! 🔥</p>
   </div>
@@ -446,7 +446,7 @@ select option{background:var(--card2);}
     <div class="dq-progress-bar"><div class="dq-progress-fill" id="dqProgressFill" style="width:0%"></div></div>
     <div class="dq-counter">
       <div class="dq-counter-text">PERGUNTA DO DIA</div>
-      <div class="dq-score-live">⭐ <span id="dqScore">0</span> corretas</div>
+      <div class="dq-score-live">⭐ <span id="dqScore">0</span> correta</div>
     </div>
     <div class="dq-card">
       <div class="dq-category" id="dqCategory"></div>
@@ -461,7 +461,7 @@ select option{background:var(--card2);}
   <div id="dailyResult" style="display:none;">
     <div class="dq-result">
       <div class="dq-result-score" id="dqResultScore">0</div>
-      <div class="dq-result-of">/ 3 corretas</div>
+      <div class="dq-result-of">/ 1 correta</div>
       <div class="dq-result-pts" id="dqResultPts">+0 pontos bónus</div>
       <div class="dq-result-title" id="dqResultTitle"></div>
       <div class="dq-result-msg" id="dqResultMsg"></div>
@@ -625,7 +625,7 @@ async function loadRankingFromSheets() {
   }
 }
 
-// ============ QUIZ DATA (16 perguntas) ============
+// ============ QUIZ DATA (20 perguntas) ============
 const allQuestions = [
   {category:'🛡️ Planos',question:'O plano Mais inclui Choque, Colisão e Capotamento (CCC)?',options:['Sim — está incluído no Mais','Não — o CCC só existe no plano Top','Sim, mas apenas como cobertura opcional no Mais','O Mais não tem qualquer Dano Próprio'],correct:1,feedback:'O CCC existe APENAS no plano Top. O plano Mais inclui Furto/Roubo e Incêndio/Raio/Explosão, mas não cobre danos por colisão provocada pelo próprio condutor.'},
   {category:'⚡ Elétricos',question:'A oferta para elétricos é diferente da oferta para carros a combustão em termos de coberturas de danos próprios?',options:['Sim — os elétricos têm coberturas de danos próprios especiais','Não — todas as coberturas e capitais são iguais; só a Multi Assistência é diferente','Sim — os elétricos têm prémios mais baixos','Os elétricos não podem ter o plano Top'],correct:1,feedback:'Todas as coberturas e capitais de danos próprios são iguais para elétricos e combustão. A diferença está APENAS na Multi Assistência, que tem versões e-Base, e-VIP e e-VIP Plus com assistências adaptadas.'},
@@ -671,7 +671,7 @@ let dailyScore = 0;
 let dailyQuestions = [];
 
 function getDailyQuestions() {
-  // Seleciona 3 perguntas com base no dia (rotação diária)
+  // Seleciona 1 pergunta com base no dia (rotação diária)
   const d = new Date();
   const seed = d.getFullYear() * 10000 + (d.getMonth()+1) * 100 + d.getDate();
   const indices = [];
@@ -714,16 +714,16 @@ function initDailyPage() {
   // Load correct count from Sheets
   loadCorrectCount();
 
-  // update streak UI
-  document.getElementById('correctCount').textContent = dailyState.quizPerfeitoCount||0;
-  document.getElementById('correctCount').textContent = dailyState.quizPerfeitoCount||0;
-  document.getElementById('daysPlayed').textContent = dailyState.daysPlayed;
-
+  // update counters safely
+  const safeSet = (id, val) => { const el = document.getElementById(id); if(el) el.textContent = val; };
+  safeSet('correctCount', dailyState.quizPerfeitoCount||0);
   const navStreak = document.getElementById('navStreak');
-  if (dailyState.streak > 0) {
-    navStreak.style.display = 'flex';
-    document.getElementById('navStreakNum').textContent = dailyState.streak;
-  } else { navStreak.style.display = 'none'; }
+  if (navStreak) {
+    if (dailyState.streak > 0) {
+      navStreak.style.display = 'flex';
+      safeSet('navStreakNum', dailyState.streak);
+    } else { navStreak.style.display = 'none'; }
+  }
 
   if (dailyState.todayDone && dailyState.lastDay === today) {
     // já jogou hoje
@@ -764,21 +764,28 @@ function startDaily() {
 
 function renderDailyQuestion() {
   const q = dailyQuestions[dailyCurrentQ];
+  if (!q) { console.error('No question found for index', dailyCurrentQ); return; }
   const letters = ['A','B','C','D'];
-  document.getElementById('dqNum').textContent = dailyCurrentQ + 1;
-  document.getElementById('dqScore').textContent = dailyScore;
-  document.getElementById('dqCategory').textContent = q.category;
-  document.getElementById('dqText').textContent = q.question;
-  document.getElementById('dqProgressFill').style.width = ((dailyCurrentQ / DAILY_Q_PER_DAY) * 100) + '%';
-  document.getElementById('dqFeedback').style.display = 'none';
-  document.getElementById('dqFeedback').className = 'dq-feedback';
-  document.getElementById('dqNextBtn').style.display = 'none';
 
-  document.getElementById('dqOptions').innerHTML = q.options.map((opt,i) =>
-    `<button class="dq-option" onclick="selectDaily(${i})">
-      <span class="dq-letter">${letters[i]}</span><span>${opt}</span>
-    </button>`
-  ).join('');
+  // Safe element updates
+  const safe = (id, val) => { const el = document.getElementById(id); if(el) el.textContent = val; };
+  const safeStyle = (id, prop, val) => { const el = document.getElementById(id); if(el) el.style[prop] = val; };
+  const safeClass = (id, cls) => { const el = document.getElementById(id); if(el) el.className = cls; };
+
+  safe('dqCategory', q.category);
+  safe('dqText', q.question);
+  safeStyle('dqFeedback', 'display', 'none');
+  safeClass('dqFeedback', 'dq-feedback');
+  safeStyle('dqNextBtn', 'display', 'none');
+
+  const opts = document.getElementById('dqOptions');
+  if (opts) {
+    opts.innerHTML = q.options.map((opt,i) =>
+      `<button class="dq-option" onclick="selectDaily(${i})">
+        <span class="dq-letter">${letters[i]}</span><span>${opt}</span>
+      </button>`
+    ).join('');
+  }
 }
 
 function selectDaily(idx) {
