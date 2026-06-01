@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Campanha Comercial 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red:#C8102E; --gold:#C9963A; --dark:#111214; --card:#1C1E22; --card2:#23262C;
+  --border:rgba(255,255,255,0.07); --text:#F0EDE8; --muted:rgba(240,237,232,0.45);
+  --fuel:#2ECC71; --wrong:#E74C3C; --streak:#F39C12;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--dark);color:var(--text);font-family:'Sora',sans-serif;min-height:100vh;overflow-x:hidden;}
+
+nav{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(17,18,20,0.96);backdrop-filter:blur(12px);z-index:100;flex-wrap:wrap;gap:8px;}
+.nav-logo{font-family:'Playfair Display',serif;font-size:16px;font-weight:900;}
+.nav-logo span{color:var(--gold);}
+.nav-tabs{display:flex;gap:2px;background:var(--card);border-radius:8px;padding:3px;flex-wrap:wrap;}
+.nav-tab{padding:6px 11px;border-radius:6px;font-size:11px;font-weight:500;cursor:pointer;color:var(--muted);border:none;background:none;transition:all 0.2s;white-space:nowrap;}
+.nav-tab.active{background:var(--red);color:#fff;}
+.nav-streak{font-size:12px;font-weight:700;color:var(--streak);display:flex;align-items:center;gap:4px;}
+
+.page{display:none;padding:24px 18px;max-width:900px;margin:0 auto;}
+.page.active{display:block;}
+
+/* HERO */
+.hero-strip{background:linear-gradient(135deg,var(--red) 0%,#8B0B1F 100%);border-radius:12px;padding:28px 32px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-bottom:22px;position:relative;overflow:hidden;}
+.hero-strip::before{content:'⛽';position:absolute;right:-10px;top:-20px;font-size:120px;opacity:0.07;}
+.hero-text h1{font-family:'Playfair Display',serif;font-size:clamp(22px,4vw,36px);font-weight:900;line-height:1.1;}
+.hero-text p{margin-top:6px;font-size:12px;opacity:0.7;}
+.hero-product{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:10px;padding:16px 22px;text-align:center;min-width:140px;}
+.hero-product .icon{font-size:32px;}
+.hero-product .prod-name{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-top:5px;}
+.hero-product .prod-label{font-size:10px;opacity:0.55;letter-spacing:2px;text-transform:uppercase;margin-top:2px;}
+
+/* PRIZES */
+.prizes-row{display:flex;gap:12px;margin-bottom:22px;flex-wrap:wrap;}
+.prize-card{flex:1;min-width:120px;background:var(--card);border-radius:10px;padding:16px;text-align:center;border:1px solid var(--border);position:relative;overflow:hidden;}
+.prize-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.prize-card.p1::before{background:var(--gold);}
+.prize-card.p2::before{background:#A8A8B3;}
+.prize-card.p3::before{background:#CD7F32;}
+.prize-pos{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:5px;}
+.prize-medal{font-size:24px;}
+.prize-val{font-family:'Playfair Display',serif;font-size:24px;font-weight:900;margin-top:5px;}
+.prize-card.p1 .prize-val{color:var(--gold);}
+.prize-card.p2 .prize-val{color:#A8A8B3;}
+.prize-card.p3 .prize-val{color:#CD7F32;}
+.prize-type{font-size:10px;color:var(--fuel);font-weight:500;margin-top:3px;}
+
+/* RANKING */
+.ranking-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+.ranking-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;}
+.live-badge{display:flex;align-items:center;gap:5px;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--fuel);}
+.live-dot{width:6px;height:6px;border-radius:50%;background:var(--fuel);animation:pulse 1.5s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(1.3);}}
+.ranking-list{display:flex;flex-direction:column;gap:9px;}
+.rank-item{background:var(--card);border-radius:10px;padding:13px 16px;display:flex;align-items:center;gap:12px;border:1px solid var(--border);transition:transform 0.2s,border-color 0.2s;}
+.rank-item:hover{transform:translateX(3px);border-color:rgba(201,150,58,0.3);}
+.rank-item.top1{background:linear-gradient(90deg,rgba(201,150,58,0.12) 0%,var(--card) 60%);border-color:rgba(201,150,58,0.25);}
+.rank-item.top2{background:linear-gradient(90deg,rgba(168,168,179,0.07) 0%,var(--card) 60%);}
+.rank-item.top3{background:linear-gradient(90deg,rgba(205,127,50,0.07) 0%,var(--card) 60%);}
+.rank-pos{font-family:'Playfair Display',serif;font-size:20px;font-weight:900;min-width:32px;text-align:center;}
+.top1 .rank-pos{color:var(--gold);}.top2 .rank-pos{color:#A8A8B3;}.top3 .rank-pos{color:#CD7F32;}
+.rank-avatar{width:36px;height:36px;border-radius:50%;background:var(--card2);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--gold);flex-shrink:0;font-family:'Playfair Display',serif;}
+.rank-info{flex:1;}
+.rank-name{font-size:13px;font-weight:600;}
+.rank-loja{font-size:11px;color:var(--muted);margin-top:1px;}
+.rank-score{text-align:right;}
+.rank-num{font-family:'Playfair Display',serif;font-size:20px;font-weight:900;}
+.rank-label{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
+.rank-bonus{font-size:10px;font-weight:600;color:var(--streak);text-align:right;margin-top:1px;}
+.rank-prize{font-size:10px;font-weight:600;color:var(--fuel);text-align:right;margin-top:1px;}
+
+/* ADMIN */
+.admin-section{background:var(--card);border-radius:12px;padding:22px;border:1px solid var(--border);margin-top:22px;}
+.admin-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr auto;gap:9px;align-items:end;}
+.form-group{display:flex;flex-direction:column;gap:5px;}
+label{font-size:10px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+input,select{background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--text);font-family:'Sora',sans-serif;font-size:13px;outline:none;transition:border-color 0.2s;}
+input:focus,select:focus{border-color:var(--gold);}
+select option{background:var(--card2);}
+.btn{padding:10px 18px;border-radius:8px;font-family:'Sora',sans-serif;font-size:13px;font-weight:600;cursor:pointer;border:none;transition:all 0.2s;}
+.btn-primary{background:var(--red);color:#fff;}
+.btn-primary:hover{background:#a00d24;transform:translateY(-1px);}
+.btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--border);}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
+.updated-tag{font-size:10px;background:rgba(46,204,113,0.15);color:var(--fuel);padding:2px 7px;border-radius:4px;letter-spacing:1px;text-transform:uppercase;}
+
+/* CALENDAR */
+.cal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-top:18px;}
+.cal-card{background:var(--card);border-radius:10px;padding:18px 14px;border:1px solid var(--border);position:relative;overflow:hidden;}
+.cal-card.active-month{border-color:var(--gold);background:linear-gradient(135deg,rgba(201,150,58,0.1) 0%,var(--card) 100%);}
+.cal-card.tbd{opacity:0.4;}
+.cal-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--red);}
+.cal-card.active-month::before{background:var(--gold);}
+.cal-month{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:7px;}
+.cal-icon{font-size:24px;margin-bottom:5px;}
+.cal-product{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;}
+.cal-status{margin-top:9px;font-size:10px;font-weight:500;display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;}
+.cal-status.active{background:rgba(46,204,113,0.15);color:var(--fuel);}
+.cal-status.upcoming{background:rgba(201,150,58,0.12);color:var(--gold);}
+.cal-status.tbd-s{background:rgba(255,255,255,0.05);color:var(--muted);}
+
+/* INFO */
+.info-block{background:var(--card);border-radius:12px;padding:22px;border:1px solid var(--border);margin-bottom:16px;}
+.info-block h3{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-bottom:13px;display:flex;align-items:center;gap:8px;}
+.rule-list{list-style:none;display:flex;flex-direction:column;gap:9px;}
+.rule-list li{display:flex;align-items:flex-start;gap:10px;font-size:13px;line-height:1.6;color:rgba(240,237,232,0.8);}
+.rule-list li::before{content:'→';color:var(--gold);font-weight:700;flex-shrink:0;}
+.comm-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+.chip{padding:6px 12px;border-radius:20px;font-size:12px;font-weight:500;border:1px solid var(--border);display:flex;align-items:center;gap:5px;}
+.chip.active-chip{background:rgba(200,16,46,0.12);border-color:rgba(200,16,46,0.3);color:#ff6b85;}
+
+/* ===== QUIZ DIÁRIO ===== */
+.daily-hero{background:linear-gradient(135deg,#0d1f2d 0%,#0a1628 100%);border:1px solid rgba(201,150,58,0.25);border-radius:12px;padding:24px 28px;margin-bottom:20px;position:relative;overflow:hidden;}
+.daily-hero::before{content:'⚡';position:absolute;right:16px;top:8px;font-size:70px;opacity:0.08;}
+.daily-hero-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:7px;}
+.daily-hero h2{font-family:'Playfair Display',serif;font-size:clamp(20px,3vw,28px);font-weight:900;}
+.daily-hero p{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.6;}
+
+/* streak bar */
+.streak-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;}
+.streak-card{background:var(--card);border-radius:10px;padding:14px 18px;border:1px solid var(--border);display:flex;align-items:center;gap:12px;flex:1;min-width:140px;}
+.streak-icon{font-size:26px;}
+.streak-val{font-family:'Playfair Display',serif;font-size:24px;font-weight:900;color:var(--streak);}
+.streak-lbl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:1px;}
+
+/* done today */
+.done-today{background:linear-gradient(135deg,rgba(46,204,113,0.1),rgba(46,204,113,0.04));border:1px solid rgba(46,204,113,0.25);border-radius:12px;padding:28px;text-align:center;margin-bottom:20px;}
+.done-today .done-icon{font-size:48px;margin-bottom:10px;}
+.done-today h3{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:var(--fuel);}
+.done-today p{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.6;}
+.done-today .next-time{margin-top:14px;font-size:12px;font-weight:600;color:var(--gold);letter-spacing:1px;}
+
+/* name form */
+.daily-name-form{background:var(--card);border-radius:12px;padding:22px;border:1px solid var(--border);margin-bottom:18px;}
+.daily-name-form h3{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;margin-bottom:14px;}
+.daily-name-row{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;}
+.daily-start-btn{padding:11px 24px;background:var(--gold);color:#000;border:none;border-radius:8px;font-family:'Sora',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all 0.2s;white-space:nowrap;}
+.daily-start-btn:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(201,150,58,0.3);}
+
+/* progress */
+.dq-progress-bar{height:3px;background:var(--card);border-radius:2px;margin-bottom:18px;overflow:hidden;}
+.dq-progress-fill{height:100%;background:var(--gold);border-radius:2px;transition:width 0.4s ease;}
+.dq-counter{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
+.dq-counter-text{font-size:11px;color:var(--muted);letter-spacing:1px;}
+.dq-score-live{font-size:11px;font-weight:600;color:var(--gold);}
+
+/* question */
+.dq-card{background:var(--card);border-radius:12px;padding:24px;border:1px solid var(--border);margin-bottom:14px;}
+.dq-category{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:9px;}
+.dq-question{font-family:'Playfair Display',serif;font-size:clamp(16px,2.5vw,20px);font-weight:700;line-height:1.4;}
+.dq-options{display:flex;flex-direction:column;gap:9px;margin-top:18px;}
+.dq-option{background:var(--card2);border:1px solid var(--border);border-radius:9px;padding:13px 16px;cursor:pointer;font-size:13px;font-family:'Sora',sans-serif;color:var(--text);text-align:left;transition:all 0.2s;display:flex;align-items:center;gap:10px;}
+.dq-option:hover:not(:disabled){border-color:var(--gold);background:rgba(201,150,58,0.08);}
+.dq-option.correct{border-color:var(--fuel);background:rgba(46,204,113,0.12);color:var(--fuel);}
+.dq-option.wrong{border-color:var(--wrong);background:rgba(231,76,60,0.1);color:var(--wrong);}
+.dq-option.reveal{border-color:var(--fuel);background:rgba(46,204,113,0.05);}
+.dq-option:disabled{cursor:default;}
+.dq-letter{width:26px;height:26px;border-radius:50%;background:var(--card);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;}
+.dq-feedback{border-radius:9px;padding:14px 18px;margin-top:12px;font-size:13px;line-height:1.6;display:none;}
+.dq-feedback.correct{background:rgba(46,204,113,0.1);border:1px solid rgba(46,204,113,0.2);color:var(--fuel);}
+.dq-feedback.wrong{background:rgba(231,76,60,0.07);border:1px solid rgba(231,76,60,0.18);color:#ff8a80;}
+.dq-next-btn{padding:11px 24px;background:var(--red);color:#fff;border:none;border-radius:8px;font-family:'Sora',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all 0.2s;display:none;margin-top:13px;}
+.dq-next-btn:hover{background:#a00d24;}
+
+/* daily result */
+.dq-result{background:var(--card);border-radius:12px;padding:28px;border:1px solid var(--border);text-align:center;}
+.dq-result-score{font-family:'Playfair Display',serif;font-size:52px;font-weight:900;color:var(--gold);}
+.dq-result-of{font-size:14px;color:var(--muted);}
+.dq-result-pts{display:inline-block;margin-top:12px;padding:6px 16px;background:rgba(243,156,18,0.15);border:1px solid rgba(243,156,18,0.3);border-radius:20px;font-size:13px;font-weight:700;color:var(--streak);}
+.dq-result-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;margin-top:14px;}
+.dq-result-msg{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.6;}
+.dq-result-streak{margin-top:16px;font-size:13px;font-weight:600;color:var(--streak);}
+
+/* TOAST */
+.toast{position:fixed;bottom:20px;right:20px;background:var(--fuel);color:#000;padding:10px 16px;border-radius:8px;font-size:12px;font-weight:600;transform:translateY(80px);opacity:0;transition:all 0.3s;z-index:999;}
+.toast.show{transform:translateY(0);opacity:1;}
+
+/* QUIZ COMPLETO (tab Quiz) */
+.quiz-hero{background:linear-gradient(135deg,#1a2a1a 0%,#0d1a0d 100%);border:1px solid rgba(46,204,113,0.2);border-radius:12px;padding:24px 28px;margin-bottom:22px;position:relative;overflow:hidden;}
+.quiz-hero::before{content:'🧠';position:absolute;right:16px;top:8px;font-size:70px;opacity:0.1;}
+.quiz-hero-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--fuel);margin-bottom:7px;}
+.quiz-hero h2{font-family:'Playfair Display',serif;font-size:clamp(20px,3vw,28px);font-weight:900;}
+.quiz-hero p{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.6;}
+.quiz-start-btn{margin-top:18px;padding:12px 28px;background:var(--fuel);color:#000;border:none;border-radius:8px;font-family:'Sora',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all 0.2s;}
+.quiz-start-btn:hover{transform:translateY(-2px);}
+.quiz-progress-bar{height:3px;background:var(--card);border-radius:2px;margin-bottom:18px;overflow:hidden;}
+.quiz-progress-fill{height:100%;background:var(--fuel);border-radius:2px;transition:width 0.4s ease;}
+.quiz-counter{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
+.quiz-counter-text{font-size:11px;color:var(--muted);letter-spacing:1px;}
+.quiz-score-live{font-size:11px;font-weight:600;color:var(--fuel);}
+.quiz-question-card{background:var(--card);border-radius:12px;padding:24px;border:1px solid var(--border);margin-bottom:14px;}
+.quiz-category{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:9px;}
+.quiz-question-text{font-family:'Playfair Display',serif;font-size:clamp(16px,2.5vw,20px);font-weight:700;line-height:1.4;}
+.quiz-options{display:flex;flex-direction:column;gap:9px;margin-top:18px;}
+.quiz-option{background:var(--card2);border:1px solid var(--border);border-radius:9px;padding:13px 16px;cursor:pointer;font-size:13px;font-family:'Sora',sans-serif;color:var(--text);text-align:left;transition:all 0.2s;display:flex;align-items:center;gap:10px;}
+.quiz-option:hover:not(:disabled){border-color:var(--gold);background:rgba(201,150,58,0.08);}
+.quiz-option.correct{border-color:var(--fuel);background:rgba(46,204,113,0.12);color:var(--fuel);}
+.quiz-option.wrong{border-color:var(--wrong);background:rgba(231,76,60,0.1);color:var(--wrong);}
+.quiz-option.reveal-correct{border-color:var(--fuel);background:rgba(46,204,113,0.05);}
+.quiz-option:disabled{cursor:default;}
+.quiz-option-letter{width:26px;height:26px;border-radius:50%;background:var(--card);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;}
+.quiz-feedback{border-radius:9px;padding:14px 18px;margin-top:12px;font-size:13px;line-height:1.6;display:none;}
+.quiz-feedback.correct{background:rgba(46,204,113,0.1);border:1px solid rgba(46,204,113,0.2);color:var(--fuel);}
+.quiz-feedback.wrong{background:rgba(231,76,60,0.07);border:1px solid rgba(231,76,60,0.18);color:#ff8a80;}
+.quiz-next-btn{padding:11px 24px;background:var(--red);color:#fff;border:none;border-radius:8px;font-family:'Sora',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all 0.2s;display:none;margin-top:13px;}
+.quiz-next-btn:hover{background:#a00d24;}
+.quiz-results{text-align:center;padding:16px 0;}
+.quiz-score-circle{width:120px;height:120px;border-radius:50%;margin:0 auto 20px;display:flex;flex-direction:column;align-items:center;justify-content:center;border:4px solid var(--fuel);}
+.quiz-score-circle.mid{border-color:var(--gold);}
+.quiz-score-circle.low{border-color:var(--wrong);}
+.quiz-score-num{font-family:'Playfair Display',serif;font-size:38px;font-weight:900;color:var(--fuel);}
+.quiz-score-circle.mid .quiz-score-num{color:var(--gold);}
+.quiz-score-circle.low .quiz-score-num{color:var(--wrong);}
+.quiz-score-total{font-size:12px;color:var(--muted);}
+.quiz-result-title{font-family:'Playfair Display',serif;font-size:24px;font-weight:900;margin-bottom:8px;}
+.quiz-result-msg{font-size:13px;color:var(--muted);line-height:1.7;max-width:500px;margin:0 auto 22px;}
+.quiz-retry-btn{padding:12px 28px;background:var(--fuel);color:#000;border:none;border-radius:8px;font-family:'Sora',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all 0.2s;}
+.quiz-breakdown{margin-top:24px;text-align:left;}
+.quiz-breakdown-title{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.quiz-breakdown-item{display:flex;align-items:center;gap:9px;padding:9px 13px;border-radius:8px;margin-bottom:7px;font-size:12px;background:var(--card);border:1px solid var(--border);}
+.quiz-breakdown-item.ok{border-left:3px solid var(--fuel);}
+.quiz-breakdown-item.nok{border-left:3px solid var(--wrong);}
+.quiz-bi-q{flex:1;color:var(--muted);}
+
+
+/* PASSWORD MODAL */
+.pwd-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:999;display:flex;align-items:center;justify-content:center;}
+.pwd-box{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:36px 32px;width:90%;max-width:360px;text-align:center;}
+.pwd-box h3{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;margin-bottom:8px;}
+.pwd-box p{font-size:13px;color:var(--muted);margin-bottom:20px;}
+.pwd-input{width:100%;background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:12px;color:var(--text);font-family:'Sora',sans-serif;font-size:15px;outline:none;text-align:center;letter-spacing:3px;margin-bottom:12px;}
+.pwd-input:focus{border-color:var(--gold);}
+.pwd-btn{width:100%;padding:12px;background:var(--red);color:#fff;border:none;border-radius:8px;font-family:'Sora',sans-serif;font-size:14px;font-weight:600;cursor:pointer;}
+.pwd-btn:hover{background:#a00d24;}
+.pwd-error{color:var(--wrong);font-size:12px;margin-top:8px;display:none;}
+
+@media(max-width:600px){.form-grid{grid-template-columns:1fr;}.prizes-row{flex-direction:column;}.hero-strip{flex-direction:column;}.daily-name-row{flex-direction:column;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Juntos <span>no Topo</span></div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showPage('ranking',this)">🏆 Ranking</button>
+    <button class="nav-tab" onclick="showPage('daily',this)">⚡ Quiz do Dia</button>
+    <button class="nav-tab" onclick="handleQuizTab(this)">🧠 Quiz Completo</button>
+    
+    <button class="nav-tab" onclick="showPage('campanha',this)">📋 Campanha</button>
+  </div>
+  <div class="nav-streak" id="navStreak" style="display:none">🔥 <span id="navStreakNum">0</span> dias</div>
+</nav>
+
+<!-- RANKING -->
+<div id="page-ranking" class="page active">
+  <div class="hero-strip">
+    <div class="hero-text"><h1>Campanha Comercial</h1></div>
+    <div class="hero-product" id="heroProduct"><div class="icon">🚗</div><div class="prod-name">Automóvel</div><div class="prod-label">Produto do mês</div></div>
+  </div>
+  <!-- prizes-row kept as voucher info -->
+  <div class="prizes-row">
+    <div class="prize-card p1"><div class="prize-pos">1.º Lugar</div><div class="prize-medal">🥇</div><div class="prize-val">30€</div><div class="prize-type">⛽ Voucher Combustível</div></div>
+    <div class="prize-card p2"><div class="prize-pos">2.º Lugar</div><div class="prize-medal">🥈</div><div class="prize-val">20€</div><div class="prize-type">⛽ Voucher Combustível</div></div>
+    <div class="prize-card p3"><div class="prize-pos">3.º Lugar</div><div class="prize-medal">🥉</div><div class="prize-val">10€</div><div class="prize-type">⛽ Voucher Combustível</div></div>
+  </div>
+  <div style="background:rgba(243,156,18,0.08);border:1px solid rgba(243,156,18,0.2);border-radius:10px;padding:12px 16px;margin-bottom:18px;font-size:12px;color:var(--streak);">
+    🔥 <strong>Como pontuar:</strong> cada apólice vendida = <strong>1 ponto</strong>. Faz o Quiz do Dia com 3/3 certas e os teus pontos de vendas <strong>duplicam</strong>. Sem vendas, sem pontos — mesmo com quiz perfeito!
+  </div>
+  <div class="ranking-header">
+    <div class="ranking-title">Ranking Junho</div>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <button onclick="loadRankingFromSheets()" style="background:var(--card);border:1px solid var(--border);color:var(--muted);border-radius:6px;padding:5px 12px;font-size:11px;cursor:pointer;font-family:'Sora',sans-serif;" title="Atualizar">🔄 Atualizar</button>
+      <div class="live-badge"><div class="live-dot"></div> Ao vivo</div>
+    </div>
+  </div>
+  <div class="ranking-list" id="rankingList"></div>
+  <div class="admin-section">
+    <div class="admin-title">✏️ Atualizar Vendas <span class="updated-tag">Gestora</span></div>
+    <div class="form-grid">
+      <div class="form-group"><label>Comercial</label><select id="selComercial"></select></div>
+      <div class="form-group"><label>Apólices vendidas</label><input type="number" id="inputVendas" min="0" placeholder="Ex: 5"></div>
+      <button class="btn btn-primary" onclick="updateVendas()">Registar</button>
+    </div>
+    <div style="margin-top:12px;display:flex;gap:9px;flex-wrap:wrap;">
+      <div class="form-group" style="flex:1;min-width:150px;"><label>Novo comercial</label><input type="text" id="inputNome" placeholder="Nome Apelido"></div>
+      <div class="form-group" style="flex:1;min-width:120px;"><label>Loja</label><input type="text" id="inputLoja" placeholder="Ex: Lisboa Colombo"></div>
+      <button class="btn btn-ghost" style="align-self:flex-end;" onclick="addComercial()">+ Adicionar</button>
+    </div>
+  </div>
+</div>
+
+<!-- QUIZ DIÁRIO -->
+<div id="page-daily" class="page">
+  <div class="daily-hero">
+    <div class="daily-hero-label">⚡ Quiz do Dia · 3 Perguntas</div>
+    <h2>Desafio Diário</h2>
+    <p>Uma pergunta por dia sobre o produto do mês. Acerta e os teus pontos de vendas duplicam! Quem não vende, não pontua. 🔥</p>
+  </div>
+
+  <div class="streak-row">
+    <div class="streak-card"><div class="streak-icon">🔥</div><div><div class="streak-val" id="streakCount">0</div><div class="streak-lbl">Dias seguidos</div></div></div>
+    <div class="streak-card"><div class="streak-icon">⭐</div><div><div class="streak-val" id="bonusTotal">0</div><div class="streak-lbl">Dias acertados</div></div></div>
+    <div class="streak-card"><div class="streak-icon">✅</div><div><div class="streak-val" id="daysPlayed">0</div><div class="streak-lbl">Dias jogados</div></div></div>
+  </div>
+
+  <!-- JÁ JOGOU HOJE -->
+  <div id="doneToday" class="done-today" style="display:none;">
+    <div class="done-icon">🎯</div>
+    <h3>Quiz de hoje concluído!</h3>
+    <p id="doneTodayMsg">Voltaste hoje. O teu streak continua!</p>
+    <div class="next-time">Volta amanhã para o próximo desafio ⏰</div>
+  </div>
+
+  <!-- FORMULÁRIO NOME -->
+  <div id="dailyNameForm" class="daily-name-form">
+    <h3>Quem és tu?</h3>
+    <div class="daily-name-row">
+      <div class="form-group" style="flex:1;min-width:150px;"><label>Nome</label><input type="text" id="dailyNome" placeholder="Nome e apelido"></div>
+      <div class="form-group" style="flex:1;min-width:120px;"><label>Loja</label><input type="text" id="dailyLoja" placeholder="Ex: Lisboa Colombo"></div>
+      <button class="daily-start-btn" onclick="startDaily()">▶ Começar</button>
+    </div>
+    <div style="margin-top:10px;font-size:11px;color:var(--muted);">💡 O teu nome é guardado para o próximo dia — não precisas de preencher sempre.</div>
+  </div>
+
+  <!-- PERGUNTA -->
+  <div id="dailyQuestion" style="display:none;">
+    <div class="dq-progress-bar"><div class="dq-progress-fill" id="dqProgressFill" style="width:0%"></div></div>
+    <div class="dq-counter">
+      <div class="dq-counter-text">PERGUNTA DO DIA</div>
+      <div class="dq-score-live">⭐ <span id="dqScore">0</span> corretas</div>
+    </div>
+    <div class="dq-card">
+      <div class="dq-category" id="dqCategory"></div>
+      <div class="dq-question" id="dqText"></div>
+      <div class="dq-options" id="dqOptions"></div>
+      <div class="dq-feedback" id="dqFeedback"></div>
+    </div>
+    <button class="dq-next-btn" id="dqNextBtn" onclick="nextDaily()">Próxima →</button>
+  </div>
+
+  <!-- RESULTADO DIÁRIO -->
+  <div id="dailyResult" style="display:none;">
+    <div class="dq-result">
+      <div class="dq-result-score" id="dqResultScore">0</div>
+      <div class="dq-result-of">/ 3 corretas</div>
+      <div class="dq-result-pts" id="dqResultPts">+0 pontos bónus</div>
+      <div class="dq-result-title" id="dqResultTitle"></div>
+      <div class="dq-result-msg" id="dqResultMsg"></div>
+      <div class="dq-result-streak" id="dqResultStreak"></div>
+    </div>
+  </div>
+</div>
+
+<!-- QUIZ COMPLETO -->
+<div id="page-quiz" class="page">
+  <div id="quizStart">
+    <div class="quiz-hero">
+      <div class="quiz-hero-label">Formação · Seguro Automóvel</div>
+      <h2>Quiz Completo · 21 Perguntas</h2>
+      <p>Testa todos os teus conhecimentos sobre coberturas, situações reais e argumentos de venda do Seguro Auto Generali.</p>
+      <div style="margin-top:18px;display:flex;flex-direction:column;gap:7px;max-width:320px;">
+        <label style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4);">Nome</label>
+        <input type="text" id="quizNome" placeholder="Nome e apelido" style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:8px;padding:11px 13px;color:#fff;font-family:'Sora',sans-serif;font-size:13px;outline:none;">
+        <label style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-top:5px;">Loja</label>
+        <input type="text" id="quizLoja" placeholder="Ex: Lisboa Colombo" style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:8px;padding:11px 13px;color:#fff;font-family:'Sora',sans-serif;font-size:13px;outline:none;">
+      </div>
+      <button class="quiz-start-btn" onclick="startQuiz()">▶ Começar o Quiz</button>
+    </div>
+  </div>
+  <div id="quizQuestion" style="display:none;">
+    <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="quizProgressFill" style="width:0%"></div></div>
+    <div class="quiz-counter"><div class="quiz-counter-text">PERGUNTA <span id="qNum">1</span> DE 21</div><div class="quiz-score-live">✅ <span id="qScore">0</span> corretas</div></div>
+    <div class="quiz-question-card">
+      <div class="quiz-category" id="qCategory"></div>
+      <div class="quiz-question-text" id="qText"></div>
+      <div class="quiz-options" id="qOptions"></div>
+      <div class="quiz-feedback" id="qFeedback"></div>
+    </div>
+    <button class="quiz-next-btn" id="qNextBtn" onclick="nextQuestion()">Próxima pergunta →</button>
+  </div>
+  <div id="quizResults" style="display:none;">
+    <div class="quiz-results">
+      <div class="quiz-score-circle" id="resultCircle"><div class="quiz-score-num" id="resultNum">0</div><div class="quiz-score-total">/ 16</div></div>
+      <div class="quiz-result-title" id="resultTitle"></div>
+      <div class="quiz-result-msg" id="resultMsg"></div>
+      <button class="quiz-retry-btn" onclick="resetQuiz()">🔄 Tentar de novo</button>
+      <div class="quiz-breakdown"><div class="quiz-breakdown-title">Resumo das respostas</div><div id="quizBreakdown"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- QUIZ DIÁRIO -->
+<div id="page-daily" class="page">
+  <div class="daily-hero">
+    <div class="daily-hero-label">⚡ Quiz do Dia · 3 Perguntas</div>
+    <h2>Desafio Diário</h2>
+    <p>Uma pergunta por dia sobre o produto do mês. Acerta e os teus pontos de vendas duplicam! Quem não vende, não pontua. 🔥</p>
+  </div>
+
+  <div class="streak-row">
+    <div class="streak-card"><div class="streak-icon">🔥</div><div><div class="streak-val" id="streakCount">0</div><div class="streak-lbl">Dias seguidos</div></div></div>
+    <div class="streak-card"><div class="streak-icon">⭐</div><div><div class="streak-val" id="bonusTotal">0</div><div class="streak-lbl">Dias acertados</div></div></div>
+    <div class="streak-card"><div class="streak-icon">✅</div><div><div class="streak-val" id="daysPlayed">0</div><div class="streak-lbl">Dias jogados</div></div></div>
+  </div>
+
+  <!-- JÁ JOGOU HOJE -->
+  <div id="doneToday" class="done-today" style="display:none;">
+    <div class="done-icon">🎯</div>
+    <h3>Quiz de hoje concluído!</h3>
+    <p id="doneTodayMsg">Voltaste hoje. O teu streak continua!</p>
+    <div class="next-time">Volta amanhã para o próximo desafio ⏰</div>
+  </div>
+
+  <!-- FORMULÁRIO NOME -->
+  <div id="dailyNameForm" class="daily-name-form">
+    <h3>Quem és tu?</h3>
+    <div class="daily-name-row">
+      <div class="form-group" style="flex:1;min-width:150px;"><label>Nome</label><input type="text" id="dailyNome" placeholder="Nome e apelido"></div>
+      <div class="form-group" style="flex:1;min-width:120px;"><label>Loja</label><input type="text" id="dailyLoja" placeholder="Ex: Lisboa Colombo"></div>
+      <button class="daily-start-btn" onclick="startDaily()">▶ Começar</button>
+    </div>
+    <div style="margin-top:10px;font-size:11px;color:var(--muted);">💡 O teu nome é guardado para o próximo dia — não precisas de preencher sempre.</div>
+  </div>
+
+  <!-- PERGUNTA -->
+  <div id="dailyQuestion" style="display:none;">
+    <div class="dq-progress-bar"><div class="dq-progress-fill" id="dqProgressFill" style="width:0%"></div></div>
+    <div class="dq-counter">
+      <div class="dq-counter-text">PERGUNTA DO DIA</div>
+      <div class="dq-score-live">⭐ <span id="dqScore">0</span> corretas</div>
+    </div>
+    <div class="dq-card">
+      <div class="dq-category" id="dqCategory"></div>
+      <div class="dq-question" id="dqText"></div>
+      <div class="dq-options" id="dqOptions"></div>
+      <div class="dq-feedback" id="dqFeedback"></div>
+    </div>
+    <button class="dq-next-btn" id="dqNextBtn" onclick="nextDaily()">Próxima →</button>
+  </div>
+
+  <!-- RESULTADO DIÁRIO -->
+  <div id="dailyResult" style="display:none;">
+    <div class="dq-result">
+      <div class="dq-result-score" id="dqResultScore">0</div>
+      <div class="dq-result-of">/ 3 corretas</div>
+      <div class="dq-result-pts" id="dqResultPts">+0 pontos bónus</div>
+      <div class="dq-result-title" id="dqResultTitle"></div>
+      <div class="dq-result-msg" id="dqResultMsg"></div>
+      <div class="dq-result-streak" id="dqResultStreak"></div>
+    </div>
+  </div>
+</div>
+
+<!-- QUIZ COMPLETO -->
+<div id="page-quiz" class="page">
+  <div id="quizStart">
+    <div class="quiz-hero">
+      <div class="quiz-hero-label">Formação · Seguro Automóvel</div>
+      <h2>Quiz Completo · 21 Perguntas</h2>
+      <p>Testa todos os teus conhecimentos sobre coberturas, situações reais e argumentos de venda do Seguro Auto Generali.</p>
+      <div style="margin-top:18px;display:flex;flex-direction:column;gap:7px;max-width:320px;">
+        <label style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4);">Nome</label>
+        <input type="text" id="quizNome" placeholder="Nome e apelido" style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:8px;padding:11px 13px;color:#fff;font-family:'Sora',sans-serif;font-size:13px;outline:none;">
+        <label style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-top:5px;">Loja</label>
+        <input type="text" id="quizLoja" placeholder="Ex: Lisboa Colombo" style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:8px;padding:11px 13px;color:#fff;font-family:'Sora',sans-serif;font-size:13px;outline:none;">
+      </div>
+      <button class="quiz-start-btn" onclick="startQuiz()">▶ Começar o Quiz</button>
+    </div>
+  </div>
+  <div id="quizQuestion" style="display:none;">
+    <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="quizProgressFill" style="width:0%"></div></div>
+    <div class="quiz-counter"><div class="quiz-counter-text">PERGUNTA <span id="qNum">1</span> DE 21</div><div class="quiz-score-live">✅ <span id="qScore">0</span> corretas</div></div>
+    <div class="quiz-question-card">
+      <div class="quiz-category" id="qCategory"></div>
+      <div class="quiz-question-text" id="qText"></div>
+      <div class="quiz-options" id="qOptions"></div>
+      <div class="quiz-feedback" id="qFeedback"></div>
+    </div>
+    <button class="quiz-next-btn" id="qNextBtn" onclick="nextQuestion()">Próxima pergunta →</button>
+  </div>
+  <div id="quizResults" style="display:none;">
+    <div class="quiz-results">
+      <div class="quiz-score-circle" id="resultCircle"><div class="quiz-score-num" id="resultNum">0</div><div class="quiz-score-total">/ 16</div></div>
+      <div class="quiz-result-title" id="resultTitle"></div>
+      <div class="quiz-result-msg" id="resultMsg"></div>
+      <button class="quiz-retry-btn" onclick="resetQuiz()">🔄 Tentar de novo</button>
+      <div class="quiz-breakdown"><div class="quiz-breakdown-title">Resumo das respostas</div><div id="quizBreakdown"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- CALENDÁRIO -->
+<div id="page-calendario" class="page">
+  <div style="margin-bottom:18px;">
+    <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:7px;">Plano Anual</div>
+    <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:900;">Produto por Mês</div>
+  </div>
+  <div class="cal-grid" id="calGrid"></div>
+</div>
+
+<!-- CAMPANHA -->
+<div id="page-campanha" class="page">
+  <div style="margin-bottom:18px;">
+    <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:7px;">Informação</div>
+    <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:900;">Como Funciona</div>
+  </div>
+  <div class="info-block"><h3>🎯 Objetivo</h3><ul class="rule-list"><li>Cada mês tem um produto Generali alvo.</li><li>O comercial com mais apólices ganha o 1.º prémio mensal.</li><li>Cada apólice vendida = <strong>30 pontos</strong>.</li><li>Os prémios são atribuídos no início do mês seguinte.</li></ul></div>
+  <div class="info-block"><h3>⛽ Prémios Mensais</h3><ul class="rule-list"><li><strong style="color:var(--gold)">1.º lugar</strong> — Voucher combustível 30€</li><li><strong style="color:#A8A8B3">2.º lugar</strong> — Voucher combustível 20€</li><li><strong style="color:#CD7F32">3.º lugar</strong> — Voucher combustível 10€</li></ul></div>
+  <div class="info-block"><h3>🔥 Como funcionam os pontos</h3><ul class="rule-list"><li>Cada apólice vendida vale <strong>1 ponto</strong> no ranking.</li><li>Resposta certa no Quiz do Dia = <strong>+1 ponto</strong> bónus.</li><li>Quem não vende, não pontua — mesmo com quiz perfeito.</li><li>Os pontos acumulam ao longo do mês — vender e saber o produto faz a diferença!</li></ul></div>
+  <div class="info-block"><h3>📅 Produtos Definidos</h3><ul class="rule-list"><li>O produto alvo de cada mês é comunicado no email de arranque mensal.</li></ul></div>
+  <div class="info-block"><h3>📣 Comunicação</h3><div class="comm-chips"><div class="chip active-chip">📧 Email semanal</div><div class="chip active-chip">⚡ Quiz diário</div><div class="chip active-chip">🧠 Quiz completo</div><div class="chip active-chip">🤝 Visitas às lojas</div></div></div>
+</div>
+
+
+<!-- PASSWORD MODAL -->
+<div class="pwd-overlay" id="pwdOverlay" style="display:none;">
+  <div class="pwd-box">
+    <div style="font-size:32px;margin-bottom:12px;">🔐</div>
+    <h3>Acesso Restrito</h3>
+    <p>O Quiz Completo é de uso exclusivo da gestora comercial. Introduza a palavra-passe para continuar.</p>
+    <input type="password" class="pwd-input" id="pwdInput" placeholder="••••••••••••" maxlength="20">
+    <button class="pwd-btn" onclick="checkPassword()">Entrar</button>
+    <div class="pwd-error" id="pwdError">Palavra-passe incorreta. Tente novamente.</div>
+    <button onclick="cancelPassword()" style="margin-top:12px;background:transparent;border:none;color:var(--muted);font-size:12px;cursor:pointer;font-family:'Sora',sans-serif;">Cancelar</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ============ CONFIG ============
+const SHEETS_URL = '';
+const SHEETS_ID = '2PACX-1vQpYefnEOFzjnISwu5COWrCir4Msn17sNcxy7zk6KVxSofblQQYPYkUl61IBxDBvK9LFKr3YJl6OJfa';
+const RANKING_CSV_DIRECT = `https://docs.google.com/spreadsheets/d/e/${SHEETS_ID}/pub?gid=0&single=true&output=csv`;
+const RANKING_CSV_PROXY = `https://corsproxy.io/?${encodeURIComponent(RANKING_CSV_DIRECT)}`;
+const DAILY_Q_PER_DAY = 1;
+
+// ============ MONTHS ============
+const months = [
+  {name:'Junho',icon:'🚗',product:'Automóvel',tbd:false},
+  {name:'Julho',icon:'🏠',product:'Casa',tbd:false},
+  {name:'Agosto',icon:'✈️',product:'Férias',tbd:false},
+  {name:'Setembro',icon:'🏥',product:'Saúde',tbd:false},
+  {name:'Outubro',icon:'🍂',product:'A definir',tbd:true},
+  {name:'Novembro',icon:'🌂',product:'A definir',tbd:true},
+  {name:'Dezembro',icon:'🎄',product:'A definir',tbd:true},
+  {category:'❌ Exclusões',question:'Qual destas situações está EXCLUÍDA da cobertura de Furto ou Roubo?',options:['Furto do veículo na via pública','Tentativa de furto com danos no veículo','Objetos ou bagagem no interior do veículo','Desaparecimento do veículo após roubo'],correct:2,feedback:'Os objetos ou bagagem no interior do veículo estão EXCLUÍDOS da cobertura de Furto ou Roubo. O mesmo se aplica a extras não identificados na apólice e a furtos cometidos por pessoas que vivam com o tomador.'},
+  {category:'❌ Exclusões',question:'Qual destas situações está EXCLUÍDA da Proteção Especial do Condutor (PEC)?',options:['Acidente com culpa do condutor','Acidente em que o condutor não usava o cinto de segurança','Acidente em autoestrada','Acidente com um terceiro responsável'],correct:1,feedback:'A PEC exclui: não utilização do cinto de segurança, taxa de alcoolemia superior ao permitido, condutor sem licença válida, acidente de trabalho e treinos e competições de velocidade. É importante conhecer as exclusões para gerir expectativas!'},
+  {category:'🎁 Transmissão de Experiência',question:'Em que casos é permitida a atribuição de experiência/bónus de outro condutor a uma nova apólice?',options:['Nunca — cada apólice tem a sua própria experiência','Ao cônjuge, de pais para filhos, ou para o mesmo tomador com outra apólice na Generali, cumprindo condições específicas','Apenas entre apólices do mesmo tomador','Apenas se o veículo estiver registado em nome do tomador'],correct:1,feedback:'É possível transmitir experiência: ao cônjuge, de pais para filhos (veículo em nome do filho, condutor habitual o filho) ou entre apólices do mesmo tomador. O limite é sempre a antiguidade da carta do condutor beneficiário.'},
+  {category:'🔧 Quebra de Vidros',question:'Como deve o cliente proceder em caso de quebra de vidros?',options:['Pode ir diretamente a qualquer oficina sem avisar o segurador','Deve solicitar autorização à Linha de Sinistros antes de reparar ou substituir os vidros','Só precisa de avisar após a reparação','A cobertura aplica-se automaticamente sem qualquer contacto'],correct:1,feedback:'O cliente deve solicitar autorização à Linha de Sinistros antes de reparar ou substituir vidros (exceto faróis e espelhos). Se não o fizer, terá de efetuar uma participação de sinistro para que a companhia possa pagar o dano.'},
+  {category:'🚛 Reboque Atrelado',question:'Um cliente tem um reboque atrelado ao carro com 250 kg de peso bruto. Precisa de fazer seguro separado para o reboque?',options:['Sim — qualquer reboque precisa de seguro próprio','Não — até 300 kg de peso bruto não é necessário seguro adicional, mas tem de selecionar "Serviço de Reboque" na apólice','Não — está automaticamente coberto sem qualquer indicação','Apenas se o reboque transportar mercadorias'],correct:1,feedback:'Se o reboque for até 300 kg de peso bruto não é necessário seguro adicional de RC, mas é obrigatório selecionar "Serviço de Reboque" na apólice. Se tiver mais de 300 kg, é necessário fazer um seguro separado para o reboque.'},
+  {category:'⏸️ Suspensão',question:'Em que situação pode o cliente suspender a apólice e por quanto tempo?',options:['Em qualquer situação, sem limite de tempo','Em caso de venda do veículo, até 120 dias, sem pagar qualquer prémio durante esse período','Apenas em caso de acidente grave, por 60 dias','Não é possível suspender — apenas cancelar'],correct:1,feedback:'O cliente pode suspender a apólice em caso de venda do veículo, até à aquisição de um novo, com um prazo máximo de 120 dias, durante o qual não paga qualquer prémio. É um argumento de fidelização muito útil!'},
+];
+const currentMonthIdx = 0;
+
+// ============ COMERCIAIS ============
+let comerciais = [];
+let nextId = 1;
+
+// ============ LOAD FROM GOOGLE SHEETS ============
+async function loadRankingFromSheets() {
+  try {
+    document.getElementById('rankingList').innerHTML = '<div style="text-align:center;padding:32px;color:var(--muted);font-size:13px;">⏳ A carregar ranking...</div>';
+    // Tenta direto primeiro, se falhar usa proxy CORS
+    let csv;
+    try {
+      const res = await fetch(RANKING_CSV_DIRECT + '&t=' + Date.now());
+      csv = await res.text();
+    } catch(e) {
+      const res = await fetch(RANKING_CSV_PROXY);
+      csv = await res.text();
+    }
+    const lines = csv.trim().split('\n').slice(1);
+    const loaded = lines
+      .filter(l => l.trim())
+      .map((line, i) => {
+        const cols = line.split(',').map(c => c.replace(/^"|"$/g,'').trim());
+        return { id: i+1, nome: cols[0]||'', loja: cols[1]||'', vendas: parseInt(cols[2])||0, bonus:0, quizPerfeito:false };
+      })
+      .filter(c => c.nome);
+    if (loaded.length > 0) {
+      comerciais = loaded;
+      nextId = comerciais.length + 1;
+    }
+    renderRanking();
+    populateSelect();
+    showToast('✅ Ranking atualizado!');
+  } catch(e) {
+    document.getElementById('rankingList').innerHTML = '<div style="text-align:center;padding:32px;color:var(--wrong);font-size:13px;">⚠️ Não foi possível carregar o ranking. Verifica a ligação.</div>';
+    console.error('Sheets load error:', e);
+  }
+}
+
+// ============ QUIZ DATA (16 perguntas) ============
+const allQuestions = [
+  {category:'🛡️ Planos',question:'O plano Mais inclui Choque, Colisão e Capotamento (CCC)?',options:['Sim — está incluído no Mais','Não — o CCC só existe no plano Top','Sim, mas apenas como cobertura opcional no Mais','O Mais não tem qualquer Dano Próprio'],correct:1,feedback:'O CCC existe APENAS no plano Top. O plano Mais inclui Furto/Roubo e Incêndio/Raio/Explosão, mas não cobre danos por colisão provocada pelo próprio condutor.'},
+  {category:'⚡ Elétricos',question:'A oferta para elétricos é diferente da oferta para carros a combustão em termos de coberturas de danos próprios?',options:['Sim — os elétricos têm coberturas de danos próprios especiais','Não — todas as coberturas e capitais são iguais; só a Multi Assistência é diferente','Sim — os elétricos têm prémios mais baixos','Os elétricos não podem ter o plano Top'],correct:1,feedback:'Todas as coberturas e capitais de danos próprios são iguais para elétricos e combustão. A diferença está APENAS na Multi Assistência, que tem versões e-Base, e-VIP e e-VIP Plus com assistências adaptadas.'},
+  {category:'⚡ Elétricos',question:'Qual o capital coberto pela Proteção de Cabos de Carregamento na Multi Assistência e-Base?',options:['200€ por ocorrência','400€ por ocorrência por anuidade','500€ por ocorrência por anuidade','Sem limite — cobre o valor total'],correct:1,feedback:'A Proteção de Cabos de Carregamento cobre 400€ por ocorrência, por anuidade, em caso de roubo ou furto dos cabos. Está disponível na e-Base e na e-VIP.'},
+  {category:'⚡ Elétricos',question:'A proteção do Home Charger está incluída em que nível de Multi Assistência?',options:['e-Base — disponível logo no plano Base','e-VIP e e-VIP Plus — é um nível de assistência superior','Em todos os níveis de forma igual','Não existe esta cobertura'],correct:1,feedback:'A Proteção do Home Charger (500€/ano, em caso de dano acidental por vandalismo ou tentativa de roubo) está disponível apenas na Multi Assistência e-VIP e e-VIP Plus — não está na e-Base.'},
+  {category:'🚘 Assistência',question:'A Assistência em Viagem da Generali cobre situações de falta de combustível?',options:['Não — apenas avarias mecânicas e acidentes','Sim — falta de combustível está coberta nas Multi Assistências VIP e VIP Plus','Sim — está incluída em todos os planos sem exceção','Apenas no estrangeiro'],correct:1,feedback:'A assistência em caso de falta ou troca de combustível está coberta nas Multi Assistências VIP e VIP Plus. Também cobre furo de pneu, perda ou roubo de chaves e chaves trancadas no interior.'},
+  {category:'🚘 Assistência',question:'Quem tem direito ao serviço de Multi Assistência além do cliente?',options:['Apenas o tomador do seguro','Apenas o condutor indicado na apólice','O cônjuge/pessoa que coabite + ascendentes e descendentes até ao 2.º grau que vivam a seu cargo','Qualquer pessoa que conduza o veículo'],correct:2,feedback:'Têm direito: o cliente, o cônjuge ou pessoa que coabite permanentemente, e os ascendentes e descendentes até ao 2.º grau (avô/neto) que vivam a seu cargo. Um argumento familiar muito relevante!'},
+  {category:'🛞 Pneus',question:'O que cobre a cobertura de Pneus do Seguro Auto?',options:['Qualquer dano nos pneus incluindo desgaste normal','Reparação ou substituição do(s) pneu(s) danificado(s) por furo ou rebentamento, incluindo o pneu do mesmo eixo se necessário','Substituição de todos os pneus em caso de acidente','Apenas pneus com menos de 2 anos'],correct:1,feedback:'A cobertura de Pneus garante a reparação ou substituição por furo ou rebentamento, incluindo o outro pneu do mesmo eixo quando necessário. Não cobre pneus com perfil inferior a 2mm, com mais de 5 anos, nem danos por vandalismo.'},
+  {category:'📋 Subscrição',question:'Um cliente não fez seguro de um veículo há 35 dias e agora quer contratar. Há alguma restrição?',options:['Nenhuma — subscreve normalmente','Aplica-se um período de carência de 15 dias na Assistência em Viagem em caso de avaria','Não é possível subscrever após 30 dias sem seguro','Tem de fazer vistoria obrigatória ao veículo'],correct:1,feedback:'Se existir interregno de seguro superior a 30 dias, aplica-se um período de carência de 15 dias na Assistência em Viagem em caso de avaria. Importante informar o cliente para gerir expectativas!'},
+  {category:'🐾 Animais',question:'Um cão que viaja num reboque atrelado ao carro está coberto pela cobertura de animais?',options:['Sim — desde que seja um animal de companhia','Não — o animal tem de estar no veículo ligeiro, em contentor apropriado ou com cinto de segurança','Sim — se o reboque estiver declarado na apólice','Apenas se o dono tiver o plano Top'],correct:1,feedback:'Os cães e gatos têm de estar no veículo ligeiro e transportados em contentores apropriados ou com cinto de segurança para animais. Um animal num reboque não está coberto.'},
+  {category:'📱 Sinistros',question:'Como pode o cliente participar um sinistro automóvel sem ir a uma loja?',options:['Não é possível — tem de ir sempre a uma loja','Pela App (com geolocalização e fotos), pelo site ou pelo email sinistrosauto@tranquilidade.pt','Apenas por telefone em dias úteis','Só através do mediador'],correct:1,feedback:'O cliente pode participar pela App Generali (com geolocalização e fotos), pelo site, por email para sinistrosauto@tranquilidade.pt, pelo mediador ou numa loja. A App é o canal mais rápido!'},
+  {category:'📱 Sinistros',question:'O que é o sistema IDS e quando se aplica?',options:['Sistema de descontos por fidelização','Indemnização Direta ao Segurado — regulariza o sinistro na própria seguradora mesmo sem DP, para sinistros sem danos corporais até 15.000€','Sistema de identificação de sinistros fraudulentos','Apenas para sinistros no estrangeiro'],correct:1,feedback:'IDS = Indemnização Direta ao Segurado. Permite regularizar o sinistro diretamente na seguradora do cliente, mesmo sem Danos Próprios, para sinistros sem danos corporais até 15.000€.'},
+  {category:'📱 Sinistros',question:'O Take Me Home tem algum limite de utilização por anuidade?',options:['Sem limite — pode usar sempre que precisar','Limite de 3 serviços por anuidade, com limite de 50 km por sinistro','Limite de 1 serviço por anuidade','Apenas 2 utilizações por ano'],correct:1,feedback:'Take Me Home tem limite de 3 serviços por anuidade, com limite de 50 km por sinistro. Não inclui gastos com combustível, portagens e similares.'},
+  {category:'📋 Complemento Indemnização',question:'O que acontece ao Complemento de Indemnização por Perda Total quando o veículo atinge 36 meses de matrícula?',options:['A cobertura cessa completamente','Passa de garantia do valor em novo para um reforço de 20% do valor venal','Mantém-se igual até 5 anos','O cliente tem de subscrever nova cobertura'],correct:1,feedback:'Até 36 meses: garantia do valor em novo. Após 36 meses: reforço de 20% do valor venal à data do sinistro. Nenhuma congénere tradicional tem esta proteção em caso de culpa de terceiros!'},
+  {category:'🔧 Extras',question:'O cliente instalou um sistema de som de 2.000€ no carro após a compra. Está coberto pelo seguro?',options:['Não — extras nunca estão cobertos pelo seguro auto','Sim — até 20% do valor do veículo, com limite de 10.000€ total e 1.500€ por extra, desde que declarados na apólice','Sim — automaticamente, sem necessidade de declarar','Apenas se instalado por uma oficina autorizada'],correct:1,feedback:'Os extras têm de estar devidamente identificados e valorizados na apólice. São aceites até 20% do valor do veículo, com limite de 10.000€ total e 1.500€ por extra.'},
+  {category:'❌ Exclusões',question:'Qual destas situações está EXCLUÍDA da cobertura de Furto ou Roubo?',options:['Furto do veículo na via pública','Tentativa de furto com danos no veículo','Objetos ou bagagem no interior do veículo','Desaparecimento do veículo após roubo'],correct:2,feedback:'Os objetos ou bagagem no interior do veículo estão EXCLUÍDOS da cobertura de Furto ou Roubo. O mesmo se aplica a extras não identificados na apólice e a furtos cometidos por pessoas que vivam com o tomador.'},
+  {category:'❌ Exclusões',question:'Qual destas situações está EXCLUÍDA da Proteção Especial do Condutor (PEC)?',options:['Acidente com culpa do condutor','Acidente em que o condutor não usava o cinto de segurança','Acidente em autoestrada','Acidente com um terceiro responsável'],correct:1,feedback:'A PEC exclui: não utilização do cinto de segurança, taxa de alcoolemia superior ao permitido, condutor sem licença válida, acidente de trabalho e treinos e competições de velocidade.'},
+  {category:'🎁 Transmissão de Experiência',question:'Em que casos é permitida a atribuição de experiência/bónus de outro condutor a uma nova apólice?',options:['Nunca — cada apólice tem a sua própria experiência','Ao cônjuge, de pais para filhos, ou para o mesmo tomador com outra apólice na Generali, cumprindo condições específicas','Apenas entre apólices do mesmo tomador','Apenas se o veículo estiver registado em nome do tomador'],correct:1,feedback:'É possível transmitir experiência: ao cônjuge, de pais para filhos (veículo em nome do filho, condutor habitual o filho) ou entre apólices do mesmo tomador. O limite é sempre a antiguidade da carta do condutor beneficiário.'},
+  {category:'🔧 Quebra de Vidros',question:'Como deve o cliente proceder em caso de quebra de vidros?',options:['Pode ir diretamente a qualquer oficina sem avisar o segurador','Deve solicitar autorização à Linha de Sinistros antes de reparar ou substituir os vidros','Só precisa de avisar após a reparação','A cobertura aplica-se automaticamente sem qualquer contacto'],correct:1,feedback:'O cliente deve solicitar autorização à Linha de Sinistros antes de reparar ou substituir vidros (exceto faróis e espelhos). Se não o fizer, terá de efetuar uma participação de sinistro para que a companhia possa pagar o dano.'},
+  {category:'🚛 Reboque Atrelado',question:'Um cliente tem um reboque atrelado ao carro com 250 kg de peso bruto. Precisa de fazer seguro separado para o reboque?',options:['Sim — qualquer reboque precisa de seguro próprio','Não — até 300 kg de peso bruto não é necessário seguro adicional, mas tem de selecionar "Serviço de Reboque" na apólice','Não — está automaticamente coberto sem qualquer indicação','Apenas se o reboque transportar mercadorias'],correct:1,feedback:'Se o reboque for até 300 kg de peso bruto não é necessário seguro adicional de RC, mas é obrigatório selecionar "Serviço de Reboque" na apólice. Se tiver mais de 300 kg, é necessário fazer um seguro separado.'},
+  {category:'⏸️ Suspensão',question:'Em que situação pode o cliente suspender a apólice e por quanto tempo?',options:['Em qualquer situação, sem limite de tempo','Em caso de venda do veículo, até 120 dias, sem pagar qualquer prémio durante esse período','Apenas em caso de acidente grave, por 60 dias','Não é possível suspender — apenas cancelar'],correct:1,feedback:'O cliente pode suspender a apólice em caso de venda do veículo, até à aquisição de um novo, com um prazo máximo de 120 dias, durante o qual não paga qualquer prémio.'},
+];
+
+// ============ DAILY QUIZ STATE ============
+function getTodayKey() {
+  const d = new Date();
+  return `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
+}
+
+function getDailyState() {
+  try {
+    const raw = sessionStorage.getItem('dailyState');
+    return raw ? JSON.parse(raw) : {streak:0, bonus:0, daysPlayed:0, lastDay:'', nome:'', loja:'', todayDone:false, todayScore:0};
+  } catch(e) { return {streak:0,bonus:0,daysPlayed:0,lastDay:'',nome:'',loja:'',todayDone:false,todayScore:0}; }
+}
+function saveDailyState(s) {
+  try { sessionStorage.setItem('dailyState', JSON.stringify(s)); } catch(e){}
+}
+
+let dailyState = getDailyState();
+let dailyCurrentQ = 0;
+let dailyScore = 0;
+let dailyQuestions = [];
+
+function getDailyQuestions() {
+  // Seleciona 3 perguntas com base no dia (rotação diária)
+  const d = new Date();
+  const seed = d.getFullYear() * 10000 + (d.getMonth()+1) * 100 + d.getDate();
+  const indices = [];
+  let s = seed;
+  while (indices.length < DAILY_Q_PER_DAY) {
+    s = (s * 1664525 + 1013904223) & 0x7fffffff;
+    const idx = s % allQuestions.length;
+    if (!indices.includes(idx)) indices.push(idx);
+  }
+  return indices.map(i => allQuestions[i]);
+}
+
+function initDailyPage() {
+  dailyState = getDailyState();
+  const today = getTodayKey();
+
+  // update streak UI
+  document.getElementById('streakCount').textContent = dailyState.streak;
+  document.getElementById('bonusTotal').textContent = dailyState.quizPerfeitoCount||0;
+  document.getElementById('daysPlayed').textContent = dailyState.daysPlayed;
+
+  const navStreak = document.getElementById('navStreak');
+  if (dailyState.streak > 0) {
+    navStreak.style.display = 'flex';
+    document.getElementById('navStreakNum').textContent = dailyState.streak;
+  } else { navStreak.style.display = 'none'; }
+
+  if (dailyState.todayDone && dailyState.lastDay === today) {
+    // já jogou hoje
+    document.getElementById('doneToday').style.display = 'block';
+    document.getElementById('doneTodayMsg').textContent =
+      dailyState.todayScore === 1
+        ? `Acertaste hoje! +1 ponto bónus ganho. 🎯 Streak: ${dailyState.streak} dias!`
+        : `Não acertaste hoje. Volta amanhã para ganhar +1 ponto! Streak: ${dailyState.streak} dias.`;
+    document.getElementById('dailyNameForm').style.display = 'none';
+    document.getElementById('dailyQuestion').style.display = 'none';
+    document.getElementById('dailyResult').style.display = 'none';
+  } else {
+    document.getElementById('doneToday').style.display = 'none';
+    document.getElementById('dailyQuestion').style.display = 'none';
+    document.getElementById('dailyResult').style.display = 'none';
+    document.getElementById('dailyNameForm').style.display = 'block';
+    if (dailyState.nome) document.getElementById('dailyNome').value = dailyState.nome;
+    if (dailyState.loja) document.getElementById('dailyLoja').value = dailyState.loja;
+  }
+}
+
+function startDaily() {
+  const nome = document.getElementById('dailyNome').value.trim();
+  const loja = document.getElementById('dailyLoja').value.trim();
+  if (!nome || !loja) { showToast('⚠️ Preenche o nome e a loja'); return; }
+  dailyState.nome = nome;
+  dailyState.loja = loja;
+  saveDailyState(dailyState);
+
+  dailyQuestions = getDailyQuestions();
+  dailyCurrentQ = 0;
+  dailyScore = 0;
+
+  document.getElementById('dailyNameForm').style.display = 'none';
+  document.getElementById('dailyQuestion').style.display = 'block';
+  renderDailyQuestion();
+}
+
+function renderDailyQuestion() {
+  const q = dailyQuestions[dailyCurrentQ];
+  const letters = ['A','B','C','D'];
+  document.getElementById('dqNum').textContent = dailyCurrentQ + 1;
+  document.getElementById('dqScore').textContent = dailyScore;
+  document.getElementById('dqCategory').textContent = q.category;
+  document.getElementById('dqText').textContent = q.question;
+  document.getElementById('dqProgressFill').style.width = ((dailyCurrentQ / DAILY_Q_PER_DAY) * 100) + '%';
+  document.getElementById('dqFeedback').style.display = 'none';
+  document.getElementById('dqFeedback').className = 'dq-feedback';
+  document.getElementById('dqNextBtn').style.display = 'none';
+
+  document.getElementById('dqOptions').innerHTML = q.options.map((opt,i) =>
+    `<button class="dq-option" onclick="selectDaily(${i})">
+      <span class="dq-letter">${letters[i]}</span><span>${opt}</span>
+    </button>`
+  ).join('');
+}
+
+function selectDaily(idx) {
+  const q = dailyQuestions[dailyCurrentQ];
+  const opts = document.querySelectorAll('.dq-option');
+  opts.forEach(o => o.disabled = true);
+  const isCorrect = idx === q.correct;
+  if (isCorrect) dailyScore++;
+  opts[idx].classList.add(isCorrect ? 'correct' : 'wrong');
+  if (!isCorrect) opts[q.correct].classList.add('reveal');
+  const fb = document.getElementById('dqFeedback');
+  fb.className = 'dq-feedback ' + (isCorrect ? 'correct' : 'wrong');
+  fb.innerHTML = (isCorrect ? '✅ ' : '❌ ') + q.feedback;
+  fb.style.display = 'block';
+  document.getElementById('dqScore').textContent = dailyScore;
+  const nb = document.getElementById('dqNextBtn');
+  nb.style.display = 'inline-block';
+  nb.textContent = dailyCurrentQ < DAILY_Q_PER_DAY - 1 ? 'Próxima →' : 'Ver resultado 🏆';
+}
+
+function nextDaily() {
+  dailyCurrentQ++;
+  if (dailyCurrentQ >= DAILY_Q_PER_DAY) { showDailyResult(); return; }
+  renderDailyQuestion();
+}
+
+function showDailyResult() {
+  document.getElementById('dailyQuestion').style.display = 'none';
+  document.getElementById('dailyResult').style.display = 'block';
+
+  const today = getTodayKey();
+  // streak logic
+  const yesterday = (() => {
+    const d = new Date(); d.setDate(d.getDate()-1);
+    return `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
+  })();
+  if (dailyState.lastDay === yesterday) dailyState.streak++;
+  else if (dailyState.lastDay !== today) dailyState.streak = 1;
+
+  if (dailyScore === 1) {
+    const firstName = dailyState.nome.split(' ')[0].toLowerCase();
+    const c = comerciais.find(x => x.nome.toLowerCase().includes(firstName));
+    if (c) { c.bonus += 1; renderRanking(); }
+    dailyState.quizPerfeitoCount = (dailyState.quizPerfeitoCount||0) + 1;
+  }
+  dailyState.bonus += dailyScore;
+  dailyState.daysPlayed++;
+  dailyState.lastDay = today;
+  dailyState.todayDone = true;
+  dailyState.todayScore = dailyScore;
+  saveDailyState(dailyState);
+
+  // update UI
+  document.getElementById('streakCount').textContent = dailyState.streak;
+  document.getElementById('bonusTotal').textContent = dailyState.quizPerfeitoCount||0;
+  document.getElementById('daysPlayed').textContent = dailyState.daysPlayed;
+  const navStreak = document.getElementById('navStreak');
+  navStreak.style.display = 'flex';
+  document.getElementById('navStreakNum').textContent = dailyState.streak;
+
+
+
+  document.getElementById('dqResultScore').textContent = dailyScore;
+  const ptsMsg = dailyScore === 1
+    ? '+1 ponto bónus adicionado ao teu total! 🎯'
+    : 'Sem pontos hoje — volta amanhã!';
+  document.getElementById('dqResultPts').textContent = ptsMsg;
+
+  let title, msg;
+  if (dailyScore === 3) { title = '🏆 Perfeito!'; msg = 'Todas certas! Estás em grande forma. Continua assim amanhã!'; }
+  else if (dailyScore === 2) { title = '🎯 Muito bem!'; msg = 'Quase perfeito! Revê a pergunta que erraste e amanhã consegues os 3.'; }
+  else if (dailyScore === 1) { title = '📚 Podes melhorar!'; msg = 'Um de três. Vai ao Quiz Completo para consolidar o conhecimento!'; }
+  else { title = '💡 Amanhã é outro dia!'; msg = 'Hoje não foi o teu dia — mas voltares já conta para o streak. Estuda e amanhã vais melhor!'; }
+
+  document.getElementById('dqResultTitle').textContent = title;
+  document.getElementById('dqResultMsg').textContent = msg;
+  document.getElementById('dqResultStreak').textContent = `🔥 Streak atual: ${dailyState.streak} dia${dailyState.streak!==1?'s':''}`;
+
+  if (SHEETS_URL) saveToSheets(dailyState.nome, dailyState.loja, dailyScore, 3, 'quiz-diario');
+}
+
+// ============ RANKING ============
+document.getElementById('heroProduct').querySelector('.icon').textContent = months[currentMonthIdx].icon;
+document.getElementById('heroProduct').querySelector('.prod-name').textContent = months[currentMonthIdx].product;
+document.getElementById('currentMonthLabel') && (document.getElementById('currentMonthLabel').textContent = months[currentMonthIdx].name.toUpperCase());
+renderRanking(); populateSelect();
+
+function renderRanking() {
+  const sorted = [...comerciais].sort((a,b) => { const tA=(a.vendas*30)+a.bonus; const tB=(b.vendas*30)+b.bonus; return tB-tA; });
+  const prizes = ['🥇 30€ combustível','🥈 20€ combustível','🥉 10€ combustível'];
+  const posClass = ['top1','top2','top3'];
+  document.getElementById('rankingList').innerHTML = sorted.map((c,i) => {
+    const initials = c.nome.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+    const cls = i<3?posClass[i]:'';
+    const prizeHtml = i<3?`<div class="rank-prize">${prizes[i]}</div>`:'';
+    const pos = i<3?['🥇','🥈','🥉'][i]:`${i+1}.º`;
+    const total = (c.vendas * 30) + c.bonus;
+    const bonusHtml = c.bonus>0 ? `<div class="rank-bonus">⭐ +${c.bonus} pts quiz</div>` : '';
+    const lbl = `${c.vendas} ap. × 30${c.bonus>0?' + '+c.bonus+' quiz':''} = ${total} pts`;
+    return `<div class="rank-item ${cls}">
+      <div class="rank-pos">${pos}</div>
+      <div class="rank-avatar">${initials}</div>
+      <div class="rank-info"><div class="rank-name">${c.nome}</div><div class="rank-loja">${c.loja}</div></div>
+      <div class="rank-score">
+        <div class="rank-num">${total}</div>
+        <div class="rank-label">${lbl}</div>
+        ${bonusHtml}${prizeHtml}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function populateSelect() {
+  const sel = document.getElementById('selComercial');
+  const sorted = [...comerciais].sort((a,b)=>a.nome.localeCompare(b.nome));
+  sel.innerHTML = sorted.map(c=>`<option value="${c.id}">${c.nome} — ${c.loja}</option>`).join('');
+}
+function updateVendas() {
+  const id = parseInt(document.getElementById('selComercial').value);
+  const val = parseInt(document.getElementById('inputVendas').value);
+  if(isNaN(val)||val<0){showToast('⚠️ Insira um número válido');return;}
+  const c = comerciais.find(x=>x.id===id);
+  if(c){c.vendas=val;renderRanking();showToast(`✅ ${c.nome}: ${val} apólices`);}
+  document.getElementById('inputVendas').value='';
+}
+function addComercial() {
+  const nome=document.getElementById('inputNome').value.trim();
+  const loja=document.getElementById('inputLoja').value.trim();
+  if(!nome||!loja){showToast('⚠️ Preencha nome e loja');return;}
+  comerciais.push({id:nextId++,nome,loja,vendas:0,bonus:0,quizPerfeito:false});
+  renderRanking();populateSelect();
+  document.getElementById('inputNome').value='';
+  document.getElementById('inputLoja').value='';
+  showToast(`✅ ${nome} adicionado`);
+}
+
+// ============ QUIZ COMPLETO ============
+let currentQ=0,score=0,userAnswers=[],quizNomeAtual='',quizLojaAtual='';
+
+function startQuiz() {
+  const nome=document.getElementById('quizNome').value.trim();
+  const loja=document.getElementById('quizLoja').value.trim();
+  if(!nome||!loja){showToast('⚠️ Preenche o nome e a loja');return;}
+  quizNomeAtual=nome;quizLojaAtual=loja;
+  currentQ=0;score=0;userAnswers=[];
+  document.getElementById('quizStart').style.display='none';
+  document.getElementById('quizResults').style.display='none';
+  document.getElementById('quizQuestion').style.display='block';
+  renderQuestion();
+}
+function renderQuestion() {
+  const q=allQuestions[currentQ];
+  const letters=['A','B','C','D'];
+  document.getElementById('qNum').textContent=currentQ+1;
+  document.getElementById('qScore').textContent=score;
+  document.getElementById('qCategory').textContent=q.category;
+  document.getElementById('qText').textContent=q.question;
+  document.getElementById('quizProgressFill').style.width=((currentQ/allQuestions.length)*100)+'%';
+  document.getElementById('qFeedback').style.display='none';
+  document.getElementById('qFeedback').className='quiz-feedback';
+  document.getElementById('qNextBtn').style.display='none';
+  document.getElementById('qOptions').innerHTML=q.options.map((opt,i)=>
+    `<button class="quiz-option" onclick="selectAnswer(${i})">
+      <span class="quiz-option-letter">${letters[i]}</span><span>${opt}</span>
+    </button>`).join('');
+}
+function selectAnswer(idx) {
+  const q=allQuestions[currentQ];
+  const opts=document.querySelectorAll('.quiz-option');
+  opts.forEach(o=>o.disabled=true);
+  const isCorrect=idx===q.correct;
+  if(isCorrect)score++;
+  userAnswers.push({q:currentQ,correct:isCorrect});
+  opts[idx].classList.add(isCorrect?'correct':'wrong');
+  if(!isCorrect)opts[q.correct].classList.add('reveal-correct');
+  const fb=document.getElementById('qFeedback');
+  fb.className='quiz-feedback '+(isCorrect?'correct':'wrong');
+  fb.innerHTML=(isCorrect?'✅ ':'❌ ')+q.feedback;
+  fb.style.display='block';
+  document.getElementById('qScore').textContent=score;
+  const nb=document.getElementById('qNextBtn');
+  nb.style.display='inline-block';
+  nb.textContent=currentQ<allQuestions.length-1?'Próxima pergunta →':'Ver resultados 🏆';
+}
+function nextQuestion(){currentQ++;if(currentQ>=allQuestions.length){showResults();return;}renderQuestion();}
+function showResults(){
+  document.getElementById('quizQuestion').style.display='none';
+  document.getElementById('quizResults').style.display='block';
+  document.getElementById('quizProgressFill').style.width='100%';
+  const pct=score/allQuestions.length;
+  const circle=document.getElementById('resultCircle');
+  document.getElementById('resultNum').textContent=score;
+  circle.className=pct>=0.75?'quiz-score-circle':pct>=0.5?'quiz-score-circle mid':'quiz-score-circle low';
+  let title,msg;
+  if(pct===1){title='🏆 Perfeito! Expert Generali!';msg='Todas certas! Estás completamente preparado para vender com confiança.';}
+  
+  else if(pct>=0.5){title='📚 Bom começo, há margem!';msg='Há tópicos a reforçar. Dedica tempo a rever as coberturas dos planos.';}
+  else{title='💡 Hora de estudar!';msg='Vai rever as condições gerais e tenta novamente!';}
+  document.getElementById('resultTitle').textContent=`${quizNomeAtual} · ${title}`;
+  document.getElementById('resultMsg').textContent=msg;
+  document.getElementById('quizBreakdown').innerHTML=userAnswers.map(a=>{
+    const q=allQuestions[a.q];
+    return `<div class="quiz-breakdown-item ${a.correct?'ok':'nok'}">
+      <span>${a.correct?'✅':'❌'}</span>
+      <span class="quiz-bi-q">${q.question.substring(0,70)}${q.question.length>70?'…':''}</span>
+    </div>`;}).join('');
+  if(SHEETS_URL)saveToSheets(quizNomeAtual,quizLojaAtual,score,allQuestions.length,'quiz-completo');
+}
+function resetQuiz(){document.getElementById('quizResults').style.display='none';document.getElementById('quizStart').style.display='block';}
+
+// ============ SHEETS ============
+async function saveToSheets(nome,loja,score,total,tipo){
+  if(!SHEETS_URL)return;
+  try{await fetch(SHEETS_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({nome,loja,score,total,tipo,data:new Date().toLocaleString('pt-PT')})});}catch(e){}
+}
+
+// ============ NAV ============
+
+function handleQuizTab(el) {
+  if (quizUnlocked) {
+    showPage('quiz', el);
+  } else {
+    document.getElementById('pwdOverlay').style.display = 'flex';
+    setTimeout(() => document.getElementById('pwdInput').focus(), 100);
+  }
+}
+
+function showPage(id,el){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  el.classList.add('active');
+  if(id==='daily') initDailyPage();
+}
+
+
+// ============ PASSWORD PROTECTION ============
+const QUIZ_PASSWORD = 'Lesmucinho05';
+let quizUnlocked = false;
+
+function checkPassword() {
+  const val = document.getElementById('pwdInput').value;
+  if (val === QUIZ_PASSWORD) {
+    quizUnlocked = true;
+    document.getElementById('pwdOverlay').style.display = 'none';
+    document.getElementById('pwdInput').value = '';
+    document.getElementById('pwdError').style.display = 'none';
+    // Navigate to quiz page
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('page-quiz').classList.add('active');
+    document.querySelector('[onclick*="quiz"]').classList.add('active');
+  } else {
+    document.getElementById('pwdError').style.display = 'block';
+    document.getElementById('pwdInput').value = '';
+    document.getElementById('pwdInput').focus();
+  }
+}
+
+function cancelPassword() {
+  document.getElementById('pwdOverlay').style.display = 'none';
+  document.getElementById('pwdInput').value = '';
+  document.getElementById('pwdError').style.display = 'none';
+}
+
+// Allow Enter key on password input
+document.getElementById('pwdInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') checkPassword();
+});
+
+// ============ TOAST ============
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800);}
+
+// INIT
+loadRankingFromSheets();
+initDailyPage();
+</script>
+</body>
+</html>
