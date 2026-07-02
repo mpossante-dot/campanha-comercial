@@ -318,16 +318,22 @@ const vendas = data.vendas || [];
 const quiz = data.quiz || [];
 
 const people = {};
+const peopleByName = {}; // índice por nome apenas, para associar quiz a vendas
 vendas.forEach(v=>{
 if(!v.nome) return;
 const k = v.nome.trim().toLowerCase()+'|'+v.loja;
 if(!people[k]) people[k]={nome:v.nome.trim(), loja:v.loja, apolices:0, quizPts:0};
 people[k].apolices += (Number(v.qtd)||0) * 30;
+// regista também pelo nome simples
+const kn = v.nome.trim().toLowerCase();
+if(!peopleByName[kn]) peopleByName[kn] = k;
 });
 quiz.forEach(q=>{
 if(!q.nome) return;
-const k = q.nome.trim().toLowerCase()+'|'+q.loja;
-if(!people[k]) people[k]={nome:q.nome.trim(), loja:q.loja, apolices:0, quizPts:0};
+const kn = q.nome.trim().toLowerCase();
+// pontos do quiz só contam se a pessoa tiver pelo menos uma venda
+const k = peopleByName[kn];
+if(!k) return;
 people[k].quizPts += Number(q.points)||0;
 });
 
