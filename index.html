@@ -169,8 +169,18 @@ footer.app-footer{text-align:center;font-size:11px;color:var(--muted);padding:18
 <button class="btn btn-secondary" id="btnRefresh" style="margin-top:12px;">↻ Atualizar ranking</button>
 </div>
 
-<div class="card">
+<div class="card" id="vendaCard">
 <h2>Registar venda</h2>
+<div class="sub">Acesso restrito</div>
+<div id="vendaLocked">
+<div class="field">
+<label>PIN</label>
+<input type="password" id="vendaPin" placeholder="••••••••••••">
+</div>
+<button class="btn btn-primary" id="btnUnlock">🔒 Entrar</button>
+<div class="quiz-note" id="pinError" style="color:var(--bad);display:none;">PIN incorreto.</div>
+</div>
+<div id="vendaForm" style="display:none;">
 <div class="sub">1 apólice de Multirriscos Habitação = 30 pontos</div>
 <div class="field">
 <label>Nome do comercial</label>
@@ -191,6 +201,7 @@ footer.app-footer{text-align:center;font-size:11px;color:var(--muted);padding:18
 </div>
 <button class="btn btn-primary" id="btnAddVenda">+ Adicionar venda</button>
 <div class="toast" id="vendaToast">Venda registada! 🎉</div>
+</div>
 </div>
 </section>
 
@@ -627,7 +638,20 @@ container.innerHTML=`
 init();
 }
 
-/* ==================== BOOT ==================== */
+/* ==================== PIN ==================== */
+const VENDA_PIN = 'Lesmucinho05';
+document.getElementById('btnUnlock').addEventListener('click', ()=>{
+const pin = document.getElementById('vendaPin').value;
+if(pin === VENDA_PIN){
+document.getElementById('vendaLocked').style.display = 'none';
+document.getElementById('vendaForm').style.display = 'block';
+} else {
+document.getElementById('pinError').style.display = 'block';
+}
+});
+document.getElementById('vendaPin').addEventListener('keydown', e=>{ if(e.key==='Enter') document.getElementById('btnUnlock').click(); });
+
+/* ==================== VENDAS ==================== */
 refreshRanking();
 runQuizDia();
 </script>
