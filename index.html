@@ -1,962 +1,635 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-PT">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Campanha Comercial 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Juntos no Topo · Multirriscos Habitação</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root {
-  --red:#C8102E; --gold:#006633; --dark:#1A1A1A; --card:#FFFFFF; --card2:#F5F7F5;
-  --border:rgba(0,0,0,0.10); --text:#1A1A1A; --muted:rgba(30,30,30,0.65);
-  --fuel:#006633; --wrong:#E74C3C; --streak:#006633;
+:root{
+--maroon:#8B1E2E;--maroon-dark:#5E121F;--maroon-light:#B43347;
+--gold:#C99A3B;--cream:#FBF6F1;--card:#FFFFFF;--ink:#2A1A1D;
+--muted:#8A7A7D;--line:#EAE0DC;
+--lisboa:#1F6F73;--lisboa-bg:#E7F2F2;
+--gaia:#C9762A;--gaia-bg:#FBEEE0;
+--ok:#2E7D4F;--ok-bg:#E7F4EC;
+--bad:#C23B3B;--bad-bg:#FBEAEA;
+--radius:16px;--shadow:0 2px 10px rgba(74,20,28,0.08),0 1px 2px rgba(74,20,28,0.06);
 }
-*{margin:0;padding:0;box-sizing:border-box;}
-body{background:#F5F7F5;color:var(--dark);font-family:'Sora',sans-serif;min-height:100vh;overflow-x:hidden;}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{background:var(--cream);color:var(--ink);font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;padding-bottom:40px;}
+.app{max-width:720px;margin:0 auto;padding:0 16px;}
+h1,h2,h3{font-family:'Fraunces',serif;margin:0;}
 
-nav{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);border-bottom:2px solid #C8102E;z-index:100;flex-wrap:wrap;gap:8px;}
-.nav-logo{font-family:'Playfair Display',serif;font-size:16px;font-weight:900;color:#1A1A1A;}
-.nav-logo span{color:var(--gold);}
-.nav-tabs{display:flex;gap:2px;background:#F0F0F0;border-radius:8px;padding:3px;flex-wrap:wrap;}
-.nav-tab{padding:6px 11px;border-radius:6px;font-size:11px;font-weight:500;cursor:pointer;color:#666;border:none;background:none;transition:all 0.2s;white-space:nowrap;}
-.nav-tab.active{background:var(--red);color:#fff;}
-.nav-streak{font-size:12px;font-weight:700;color:var(--streak);display:flex;align-items:center;gap:4px;}
+.app-header{background:linear-gradient(135deg,var(--maroon) 0%,var(--maroon-dark) 100%);color:#fff;margin:0 -16px;padding:28px 16px 22px;border-radius:0 0 22px 22px;box-shadow:var(--shadow);}
+.app-header .eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;opacity:.85;font-weight:600;}
+.app-header h1{font-size:28px;font-weight:700;margin-top:4px;line-height:1.15;}
+.product-banner{margin-top:14px;background:rgba(255,255,255,0.14);border:1px solid rgba(255,255,255,0.22);border-radius:12px;padding:10px 14px;font-size:14px;font-weight:600;}
+.rule-banner{margin-top:10px;font-size:12.5px;opacity:.92;line-height:1.5;}
 
-.page{display:none;padding:24px 18px;max-width:900px;margin:0 auto;}
-.page.active{display:block;}
+.tabs{display:flex;gap:6px;margin:16px 0 18px;overflow-x:auto;padding-bottom:2px;}
+.tab-btn{flex:1 0 auto;white-space:nowrap;border:none;background:#fff;color:var(--maroon-dark);font-family:'Inter',sans-serif;font-weight:600;font-size:13.5px;padding:10px 14px;border-radius:999px;cursor:pointer;box-shadow:var(--shadow);transition:transform .12s,background .15s,color .15s;}
+.tab-btn.active{background:var(--maroon);color:#fff;}
+.tab-btn:active{transform:scale(.97);}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;animation:fadein .25s ease;}
+@keyframes fadein{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
 
-.hero-strip{background:linear-gradient(135deg,var(--red) 0%,#8B0B1F 100%);border-radius:12px;padding:28px 32px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-bottom:22px;position:relative;overflow:hidden;}
-.hero-strip::before{content:'⛽';position:absolute;right:-10px;top:-20px;font-size:120px;opacity:0.07;}
-.hero-text h1{font-family:'Playfair Display',serif;font-size:clamp(22px,4vw,36px);font-weight:900;line-height:1.1;}
-.hero-text p{margin-top:6px;font-size:12px;opacity:0.7;}
-.hero-product{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:10px;padding:16px 22px;text-align:center;min-width:140px;}
-.hero-product .icon{font-size:32px;}
-.hero-product .prod-name{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-top:5px;}
-.hero-product .prod-label{font-size:10px;opacity:0.55;letter-spacing:2px;text-transform:uppercase;margin-top:2px;}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;margin-bottom:14px;}
+.card h2{font-size:17px;font-weight:600;margin-bottom:4px;}
+.card .sub{font-size:13px;color:var(--muted);margin-bottom:14px;}
 
-.prizes-row{display:flex;gap:12px;margin-bottom:22px;flex-wrap:wrap;}
-.prize-card{flex:1;min-width:120px;background:var(--card);border-radius:10px;padding:16px;text-align:center;border:1px solid var(--border);position:relative;overflow:hidden;}
-.prize-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
-.prize-card.p1::before{background:var(--gold);}
-.prize-card.p2::before{background:#A8A8B3;}
-.prize-card.p3::before{background:#CD7F32;}
-.prize-pos{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:5px;}
-.prize-medal{font-size:24px;}
-.prize-val{font-family:'Playfair Display',serif;font-size:24px;font-weight:900;margin-top:5px;}
-.prize-card.p1 .prize-val{color:var(--gold);}
-.prize-card.p2 .prize-val{color:#A8A8B3;}
-.prize-card.p3 .prize-val{color:#CD7F32;}
-.prize-type{font-size:10px;color:var(--fuel);font-weight:500;margin-top:3px;}
+.teams{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
+.team-card{border-radius:14px;padding:14px;}
+.team-card.lisboa{background:var(--lisboa-bg);}
+.team-card.gaia{background:var(--gaia-bg);}
+.team-card .team-name{font-weight:700;font-size:14px;display:flex;align-items:center;gap:6px;}
+.team-card.lisboa .team-name{color:var(--lisboa);}
+.team-card.gaia .team-name{color:var(--gaia);}
+.team-card .team-points{font-family:'Fraunces',serif;font-size:26px;font-weight:700;margin-top:4px;}
+.team-card .team-meta{font-size:12px;color:var(--muted);margin-top:2px;}
+.progress-track{height:10px;border-radius:999px;background:var(--line);overflow:hidden;margin:12px 0 4px;display:flex;}
+.progress-fill-lisboa{background:var(--lisboa);height:100%;transition:width .4s ease;}
+.progress-fill-gaia{background:var(--gaia);height:100%;transition:width .4s ease;}
+.progress-caption{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);}
 
-.ranking-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
-.ranking-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;}
-.live-badge{display:flex;align-items:center;gap:5px;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--fuel);}
-.live-dot{width:6px;height:6px;border-radius:50%;background:var(--fuel);animation:pulse 1.5s infinite;}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(1.3);}}
-.ranking-list{display:flex;flex-direction:column;gap:9px;}
-.rank-item{background:#FFFFFF;border-radius:10px;padding:13px 16px;display:flex;align-items:center;gap:12px;border:1px solid rgba(0,0,0,0.08);transition:transform 0.2s,border-color 0.2s;box-shadow:0 1px 6px rgba(0,0,0,0.05);}
-.rank-item:hover{transform:translateX(3px);border-color:rgba(201,150,58,0.3);}
-.rank-item.top1{background:linear-gradient(90deg,rgba(200,16,46,0.06) 0%,#fff 60%);border-color:rgba(200,16,46,0.3);}
-.rank-item.top2{background:linear-gradient(90deg,rgba(0,102,51,0.05) 0%,#fff 60%);}
-.rank-item.top3{background:linear-gradient(90deg,rgba(0,102,51,0.03) 0%,#fff 60%);}
-.rank-pos{font-family:'Playfair Display',serif;font-size:20px;font-weight:900;min-width:32px;text-align:center;}
-.top1 .rank-pos{color:var(--gold);}.top2 .rank-pos{color:#A8A8B3;}.top3 .rank-pos{color:#CD7F32;}
-.rank-avatar{width:36px;height:36px;border-radius:50%;background:#006633;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;flex-shrink:0;font-family:'Playfair Display',serif;}
-.rank-info{flex:1;}
-.rank-name{font-size:13px;font-weight:600;}
-.rank-loja{font-size:11px;color:#555;margin-top:1px;}
-.rank-score{text-align:right;}
-.rank-num{font-family:'Playfair Display',serif;font-size:20px;font-weight:900;}
-.rank-label{font-size:9px;color:#555;text-transform:uppercase;letter-spacing:1px;}
-.rank-bonus{font-size:10px;font-weight:600;color:var(--streak);text-align:right;margin-top:1px;}
-.rank-prize{font-size:10px;font-weight:600;color:var(--fuel);text-align:right;margin-top:1px;}
+.lb-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);}
+.lb-row:last-child{border-bottom:none;}
+.lb-rank{width:26px;height:26px;border-radius:50%;background:var(--line);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--maroon-dark);flex-shrink:0;}
+.lb-rank.gold{background:var(--gold);color:#fff;}
+.lb-name{font-weight:600;font-size:14px;flex:1;}
+.lb-loja{font-size:11px;padding:2px 8px;border-radius:999px;font-weight:600;}
+.lb-loja.lisboa{background:var(--lisboa-bg);color:var(--lisboa);}
+.lb-loja.gaia{background:var(--gaia-bg);color:var(--gaia);}
+.lb-points{font-family:'Fraunces',serif;font-weight:700;font-size:15px;color:var(--maroon-dark);min-width:50px;text-align:right;}
+.lb-empty{font-size:13px;color:var(--muted);text-align:center;padding:18px 0;}
+.lb-loading{font-size:13px;color:var(--muted);text-align:center;padding:18px 0;animation:pulse 1.2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
 
-.admin-section{background:#FFFFFF;border-radius:12px;padding:22px;border:1px solid rgba(0,0,0,0.08);margin-top:22px;box-shadow:0 1px 6px rgba(0,0,0,0.05);}
-.admin-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
-.form-grid{display:grid;grid-template-columns:1fr 1fr auto;gap:9px;align-items:end;}
-.form-group{display:flex;flex-direction:column;gap:5px;}
-label{font-size:10px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
-input,select{background:#F5F7F5;border:1px solid rgba(0,0,0,0.12);border-radius:8px;padding:10px 12px;color:#1A1A1A;font-family:'Sora',sans-serif;font-size:13px;outline:none;transition:border-color 0.2s;}
-input:focus,select:focus{border-color:#006633;}
-select option{background:var(--card2);}
-.btn{padding:10px 18px;border-radius:8px;font-family:'Sora',sans-serif;font-size:13px;font-weight:600;cursor:pointer;border:none;transition:all 0.2s;}
-.btn-primary{background:var(--red);color:#fff;}
-.btn-primary:hover{background:#a00d24;transform:translateY(-1px);}
-.btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--border);}
-.btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
-.updated-tag{font-size:10px;background:rgba(46,204,113,0.15);color:var(--fuel);padding:2px 7px;border-radius:4px;letter-spacing:1px;text-transform:uppercase;}
+.field{margin-bottom:12px;}
+.field label{display:block;font-size:12.5px;font-weight:600;color:var(--muted);margin-bottom:5px;}
+.field input,.field select{width:100%;padding:11px 12px;border:1.5px solid var(--line);border-radius:10px;font-size:14.5px;font-family:'Inter',sans-serif;background:#fff;color:var(--ink);}
+.field input:focus,.field select:focus{outline:2px solid var(--maroon-light);outline-offset:0;border-color:var(--maroon-light);}
+.row-2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 
-.info-block{background:#FFFFFF;border-radius:12px;padding:22px;border:1px solid rgba(0,0,0,0.08);margin-bottom:16px;box-shadow:0 1px 6px rgba(0,0,0,0.05);}
-.info-block h3{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-bottom:13px;display:flex;align-items:center;gap:8px;color:#1a1a1a;}
-.rule-list{list-style:none;display:flex;flex-direction:column;gap:9px;}
-.rule-list li{display:flex;align-items:flex-start;gap:10px;font-size:13px;line-height:1.6;color:#2a2a2a;}
-.rule-list li::before{content:'→';color:#006633;font-weight:700;flex-shrink:0;}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:none;border-radius:12px;padding:12px 18px;font-family:'Inter',sans-serif;font-weight:700;font-size:14.5px;cursor:pointer;transition:transform .12s,opacity .15s;}
+.btn:active{transform:scale(.97);}
+.btn-primary{background:var(--maroon);color:#fff;width:100%;}
+.btn-primary:disabled{opacity:.5;cursor:not-allowed;}
+.btn-secondary{background:var(--cream);color:var(--maroon-dark);border:1.5px solid var(--line);width:100%;}
+.btn-ghost{background:none;color:var(--muted);font-size:12px;font-weight:600;padding:8px 4px;text-decoration:underline;border:none;cursor:pointer;}
 
-/* QUIZ DIÁRIO */
-.daily-hero{background:linear-gradient(135deg,#005229 0%,#006633 100%);border:1px solid rgba(0,102,51,0.3);border-radius:12px;padding:24px 28px;margin-bottom:20px;position:relative;overflow:hidden;}
-.daily-hero::before{content:'⚡';position:absolute;right:16px;top:8px;font-size:70px;opacity:0.08;}
-.daily-hero-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-bottom:7px;}
-.daily-hero h2{font-family:'Playfair Display',serif;font-size:clamp(20px,3vw,28px);font-weight:900;color:#fff;}
-.daily-hero p{font-size:13px;color:rgba(255,255,255,0.85);margin-top:6px;line-height:1.6;}
+.toast{font-size:13px;font-weight:600;color:var(--ok);background:var(--ok-bg);border-radius:10px;padding:9px 12px;margin-top:10px;display:none;}
+.toast.show{display:block;animation:fadein .2s ease;}
 
-.done-today{background:linear-gradient(135deg,rgba(0,102,51,0.08),rgba(0,102,51,0.03));border:1px solid rgba(0,102,51,0.2);border-radius:12px;padding:28px;text-align:center;margin-bottom:20px;}
-.done-today .done-icon{font-size:48px;margin-bottom:10px;}
-.done-today h3{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:var(--fuel);}
-.done-today p{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.6;}
-.done-today .next-time{margin-top:14px;font-size:12px;font-weight:600;color:var(--gold);letter-spacing:1px;}
+.quiz-hero{text-align:center;padding:8px 4px 4px;}
+.quiz-hero .quiz-label{font-size:12px;font-weight:700;color:var(--maroon);text-transform:uppercase;letter-spacing:.06em;}
+.quiz-hero h2{font-size:21px;margin-top:6px;}
+.quiz-hero p{font-size:13.5px;color:var(--muted);line-height:1.6;margin-top:8px;}
+.quiz-progress{font-size:12px;color:var(--muted);font-weight:600;margin-bottom:8px;}
+.quiz-category{font-size:11.5px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px;}
+.quiz-question{font-size:16px;font-weight:600;line-height:1.4;margin-bottom:16px;}
+.quiz-option{display:block;width:100%;text-align:left;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:9px;font-family:'Inter',sans-serif;font-size:14px;cursor:pointer;}
+.quiz-option:active{transform:scale(.99);}
+.quiz-option.correct{background:var(--ok-bg);border-color:var(--ok);color:var(--ok);font-weight:600;}
+.quiz-option.wrong{background:var(--bad-bg);border-color:var(--bad);color:var(--bad);font-weight:600;}
+.quiz-option.disabled{cursor:default;}
+.quiz-feedback{font-size:13.5px;line-height:1.55;background:var(--cream);border-radius:12px;padding:12px 14px;margin:10px 0 14px;}
+.quiz-result-title{font-size:22px;text-align:center;margin-bottom:6px;}
+.quiz-result-score{font-family:'Fraunces',serif;font-size:40px;font-weight:700;text-align:center;color:var(--maroon);}
+.quiz-result-msg{font-size:14px;color:var(--muted);text-align:center;margin:8px 0 16px;line-height:1.5;}
+.quiz-breakdown-item{display:flex;gap:8px;font-size:13px;padding:7px 0;border-bottom:1px solid var(--line);}
+.quiz-breakdown-item:last-child{border-bottom:none;}
+.quiz-note{font-size:12px;color:var(--muted);text-align:center;margin-top:6px;}
 
-.daily-name-form{background:#FFFFFF;border-radius:12px;padding:22px;border:1px solid rgba(0,0,0,0.08);margin-bottom:18px;box-shadow:0 1px 6px rgba(0,0,0,0.05);}
-.daily-name-form h3{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;margin-bottom:14px;color:#1a1a1a;}
-.daily-name-row{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;}
-.daily-start-btn{padding:11px 24px;background:var(--gold);color:#fff;border:none;border-radius:8px;font-family:'Sora',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all 0.2s;white-space:nowrap;}
-.daily-start-btn:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,102,51,0.3);}
+.arg-card{border-left:4px solid var(--maroon);padding:4px 0 4px 14px;margin-bottom:16px;}
+.arg-title{font-weight:700;font-size:14.5px;margin-bottom:4px;}
+.arg-text{font-size:13.5px;line-height:1.55;margin-bottom:6px;}
+.arg-quote{font-size:13px;font-style:italic;color:var(--maroon-dark);}
+.obj-item{margin-bottom:14px;}
+.obj-q{font-weight:700;font-size:13.5px;color:var(--maroon-dark);margin-bottom:4px;}
+.obj-a{font-size:13.5px;line-height:1.55;}
+.cross-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
+.cross-card{background:var(--cream);border-radius:12px;padding:12px 8px;text-align:center;}
+.cross-icon{font-size:22px;}
+.cross-name{font-size:11.5px;font-weight:700;margin-top:4px;line-height:1.3;}
+.cross-tip{font-size:10.5px;color:var(--muted);margin-top:4px;line-height:1.3;}
+.section-label{font-size:11.5px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;}
 
-.dq-progress-bar{height:3px;background:var(--card);border-radius:2px;margin-bottom:18px;overflow:hidden;}
-.dq-progress-fill{height:100%;background:var(--gold);border-radius:2px;transition:width 0.4s ease;}
-.dq-counter{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
-.dq-counter-text{font-size:11px;color:var(--muted);letter-spacing:1px;}
-.dq-score-live{font-size:11px;font-weight:600;color:var(--gold);}
-
-.dq-card{background:#FFFFFF;border-radius:12px;padding:24px;border:1px solid rgba(0,0,0,0.08);margin-bottom:14px;box-shadow:0 1px 6px rgba(0,0,0,0.05);}
-.dq-category{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#006633;margin-bottom:9px;}
-.dq-question{font-family:'Playfair Display',serif;font-size:clamp(16px,2.5vw,20px);font-weight:700;line-height:1.4;color:#1a1a1a;}
-.dq-options{display:flex;flex-direction:column;gap:9px;margin-top:18px;}
-.dq-option{background:#F5F7F5;border:1px solid rgba(0,0,0,0.08);border-radius:9px;padding:13px 16px;cursor:pointer;font-size:13px;font-family:'Sora',sans-serif;color:#1A1A1A;text-align:left;transition:all 0.2s;display:flex;align-items:center;gap:10px;}
-.dq-option:hover:not(:disabled){border-color:var(--gold);background:rgba(0,102,51,0.08);}
-.dq-option.correct{border-color:var(--fuel);background:rgba(46,204,113,0.12);color:var(--fuel);}
-.dq-option.wrong{border-color:var(--wrong);background:rgba(231,76,60,0.1);color:var(--wrong);}
-.dq-option.reveal{border-color:var(--fuel);background:rgba(46,204,113,0.05);}
-.dq-option:disabled{cursor:default;}
-.dq-letter{width:26px;height:26px;border-radius:50%;background:var(--card);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;}
-.dq-feedback{border-radius:9px;padding:14px 18px;margin-top:12px;font-size:13px;line-height:1.6;display:none;}
-.dq-feedback.correct{background:rgba(46,204,113,0.1);border:1px solid rgba(46,204,113,0.2);color:var(--fuel);}
-.dq-feedback.wrong{background:rgba(231,76,60,0.07);border:1px solid rgba(231,76,60,0.18);color:#ff8a80;}
-.dq-next-btn{padding:11px 24px;background:var(--red);color:#fff;border:none;border-radius:8px;font-family:'Sora',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all 0.2s;display:none;margin-top:13px;}
-.dq-next-btn:hover{background:#a00d24;}
-
-.dq-result{background:#FFFFFF;border-radius:12px;padding:28px;border:1px solid rgba(0,0,0,0.08);text-align:center;box-shadow:0 1px 6px rgba(0,0,0,0.05);}
-.dq-result-score{font-family:'Playfair Display',serif;font-size:52px;font-weight:900;color:var(--gold);}
-.dq-result-of{font-size:14px;color:var(--muted);}
-.dq-result-pts{display:inline-block;margin-top:12px;padding:6px 16px;background:rgba(0,102,51,0.12);border:1px solid rgba(0,102,51,0.25);border-radius:20px;font-size:13px;font-weight:700;color:var(--streak);}
-.dq-result-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;margin-top:14px;}
-.dq-result-msg{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.6;}
-.dq-result-streak{margin-top:16px;font-size:13px;font-weight:600;color:var(--streak);}
-
-/* QUIZ COMPLETO */
-.quiz-hero{background:linear-gradient(135deg,#005229 0%,#006633 100%);border:1px solid rgba(0,102,51,0.3);border-radius:12px;padding:24px 28px;margin-bottom:22px;position:relative;overflow:hidden;}
-.quiz-hero::before{content:'🧠';position:absolute;right:16px;top:8px;font-size:70px;opacity:0.1;}
-.quiz-hero-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:7px;}
-.quiz-hero h2{font-family:'Playfair Display',serif;font-size:clamp(20px,3vw,28px);font-weight:900;color:#fff;}
-.quiz-hero p{font-size:13px;color:rgba(255,255,255,0.8);margin-top:6px;line-height:1.6;}
-.quiz-start-btn{margin-top:18px;padding:12px 28px;background:#fff;color:#005229;border:none;border-radius:8px;font-family:'Sora',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all 0.2s;}
-.quiz-start-btn:hover{transform:translateY(-2px);}
-.quiz-progress-bar{height:3px;background:var(--card);border-radius:2px;margin-bottom:18px;overflow:hidden;}
-.quiz-progress-fill{height:100%;background:var(--fuel);border-radius:2px;transition:width 0.4s ease;}
-.quiz-counter{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
-.quiz-counter-text{font-size:11px;color:var(--muted);letter-spacing:1px;}
-.quiz-score-live{font-size:11px;font-weight:600;color:var(--fuel);}
-.quiz-question-card{background:#FFFFFF;border-radius:12px;padding:24px;border:1px solid rgba(0,0,0,0.08);margin-bottom:14px;box-shadow:0 1px 6px rgba(0,0,0,0.05);}
-.quiz-category{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:9px;}
-.quiz-question-text{font-family:'Playfair Display',serif;font-size:clamp(16px,2.5vw,20px);font-weight:700;line-height:1.4;}
-.quiz-options{display:flex;flex-direction:column;gap:9px;margin-top:18px;}
-.quiz-option{background:#F5F7F5;border:1px solid rgba(0,0,0,0.08);border-radius:9px;padding:13px 16px;cursor:pointer;font-size:13px;font-family:'Sora',sans-serif;color:#1A1A1A;text-align:left;transition:all 0.2s;display:flex;align-items:center;gap:10px;}
-.quiz-option:hover:not(:disabled){border-color:var(--gold);background:rgba(0,102,51,0.08);}
-.quiz-option.correct{border-color:var(--fuel);background:rgba(46,204,113,0.12);color:var(--fuel);}
-.quiz-option.wrong{border-color:var(--wrong);background:rgba(231,76,60,0.1);color:var(--wrong);}
-.quiz-option.reveal-correct{border-color:var(--fuel);background:rgba(46,204,113,0.05);}
-.quiz-option:disabled{cursor:default;}
-.quiz-option-letter{width:26px;height:26px;border-radius:50%;background:var(--card);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;}
-.quiz-feedback{border-radius:9px;padding:14px 18px;margin-top:12px;font-size:13px;line-height:1.6;display:none;}
-.quiz-feedback.correct{background:rgba(46,204,113,0.1);border:1px solid rgba(46,204,113,0.2);color:var(--fuel);}
-.quiz-feedback.wrong{background:rgba(231,76,60,0.07);border:1px solid rgba(231,76,60,0.18);color:#ff8a80;}
-.quiz-next-btn{padding:11px 24px;background:var(--red);color:#fff;border:none;border-radius:8px;font-family:'Sora',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all 0.2s;display:none;margin-top:13px;}
-.quiz-next-btn:hover{background:#a00d24;}
-.quiz-results{text-align:center;padding:16px 0;}
-.quiz-score-circle{width:120px;height:120px;border-radius:50%;margin:0 auto 20px;display:flex;flex-direction:column;align-items:center;justify-content:center;border:4px solid var(--fuel);}
-.quiz-score-circle.mid{border-color:var(--gold);}
-.quiz-score-circle.low{border-color:var(--wrong);}
-.quiz-score-num{font-family:'Playfair Display',serif;font-size:38px;font-weight:900;color:var(--fuel);}
-.quiz-score-circle.mid .quiz-score-num{color:var(--gold);}
-.quiz-score-circle.low .quiz-score-num{color:var(--wrong);}
-.quiz-score-total{font-size:12px;color:var(--muted);}
-.quiz-result-title{font-family:'Playfair Display',serif;font-size:24px;font-weight:900;margin-bottom:8px;}
-.quiz-result-msg{font-size:13px;color:var(--muted);line-height:1.7;max-width:500px;margin:0 auto 22px;}
-.quiz-retry-btn{padding:12px 28px;background:var(--fuel);color:#fff;border:none;border-radius:8px;font-family:'Sora',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all 0.2s;}
-.quiz-breakdown{margin-top:24px;text-align:left;}
-.quiz-breakdown-title{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
-.quiz-breakdown-item{display:flex;align-items:center;gap:9px;padding:9px 13px;border-radius:8px;margin-bottom:7px;font-size:12px;background:var(--card);border:1px solid var(--border);}
-.quiz-breakdown-item.ok{border-left:3px solid var(--fuel);}
-.quiz-breakdown-item.nok{border-left:3px solid var(--wrong);}
-.quiz-bi-q{flex:1;color:var(--muted);}
-
-.pwd-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:999;display:flex;align-items:center;justify-content:center;}
-.pwd-box{background:#FFFFFF;border:1px solid rgba(0,0,0,0.1);border-radius:12px;padding:36px 32px;width:90%;max-width:360px;text-align:center;}
-.pwd-box h3{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;margin-bottom:8px;}
-.pwd-box p{font-size:13px;color:var(--muted);margin-bottom:20px;}
-.pwd-input{width:100%;background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:12px;color:var(--text);font-family:'Sora',sans-serif;font-size:15px;outline:none;text-align:center;letter-spacing:3px;margin-bottom:12px;}
-.pwd-input:focus{border-color:var(--gold);}
-.pwd-btn{width:100%;padding:12px;background:var(--red);color:#fff;border:none;border-radius:8px;font-family:'Sora',sans-serif;font-size:14px;font-weight:600;cursor:pointer;}
-.pwd-btn:hover{background:#a00d24;}
-.pwd-error{color:var(--wrong);font-size:12px;margin-top:8px;display:none;}
-
-.toast{position:fixed;bottom:20px;right:20px;background:var(--fuel);color:#fff;padding:10px 16px;border-radius:8px;font-size:12px;font-weight:600;transform:translateY(80px);opacity:0;transition:all 0.3s;z-index:999;}
-.toast.show{transform:translateY(0);opacity:1;}
-
-@media(max-width:600px){.form-grid{grid-template-columns:1fr;}.prizes-row{flex-direction:column;}.hero-strip{flex-direction:column;}.daily-name-row{flex-direction:column;}}
+footer.app-footer{text-align:center;font-size:11px;color:var(--muted);padding:18px 0 4px;line-height:1.6;}
+@media(max-width:380px){.cross-grid{grid-template-columns:1fr 1fr;}}
 </style>
 </head>
 <body>
+<div class="app">
 
-<nav>
-  <div class="nav-logo">Juntos <span>no Topo</span></div>
-  <div class="nav-tabs">
-    <button class="nav-tab active" onclick="showPage('ranking',this)">🏆 Ranking</button>
-    <button class="nav-tab" onclick="showPage('daily',this)">⚡ Quiz do Dia</button>
-    <button class="nav-tab" onclick="handleQuizTab(this)">🧠 Quiz Completo</button>
-    <button class="nav-tab" onclick="showPage('campanha',this)">📋 Campanha</button>
-  </div>
-  <div class="nav-streak" id="navStreak" style="display:none">🔥 <span id="navStreakNum">0</span> dias</div>
+<header class="app-header">
+<div class="eyebrow">Campanha Comercial</div>
+<h1>🏆 Juntos no Topo</h1>
+<div class="product-banner">🏠 Julho · Multirriscos Habitação</div>
+<div class="rule-banner">🎯 cada apólice = 30 pontos · cada resposta certa no quiz do dia = 1 ponto</div>
+</header>
+
+<nav class="tabs">
+<button class="tab-btn active" data-tab="ranking">🏆 Ranking</button>
+<button class="tab-btn" data-tab="quizdia">⚡ Quiz do Dia</button>
+<button class="tab-btn" data-tab="campanha">📋 Campanha</button>
 </nav>
 
 <!-- RANKING -->
-<div id="page-ranking" class="page active">
-  <div class="hero-strip">
-    <div class="hero-text"><h1>Campanha Comercial</h1></div>
-    <div class="hero-product" id="heroProduct"><div class="icon">🚗</div><div class="prod-name">Automóvel</div><div class="prod-label">Produto do mês</div></div>
-  </div>
-  <div class="prizes-row">
-    <div class="prize-card p1"><div class="prize-pos">1.º Lugar</div><div class="prize-medal">🥇</div><div class="prize-val">30€</div><div class="prize-type">⛽ Voucher Combustível</div></div>
-    <div class="prize-card p2"><div class="prize-pos">2.º Lugar</div><div class="prize-medal">🥈</div><div class="prize-val">20€</div><div class="prize-type">⛽ Voucher Combustível</div></div>
-    <div class="prize-card p3"><div class="prize-pos">3.º Lugar</div><div class="prize-medal">🥉</div><div class="prize-val">10€</div><div class="prize-type">⛽ Voucher Combustível</div></div>
-  </div>
-  <div style="background:rgba(243,156,18,0.08);border:1px solid rgba(243,156,18,0.2);border-radius:10px;padding:12px 16px;margin-bottom:18px;font-size:12px;color:var(--streak);">
-    🔥 <strong>Como pontuar:</strong> cada apólice = <strong>30 pontos</strong>. Quiz do Dia certo = <strong>+1 ponto</strong> bónus. Quem não vende, não pontua.
-  </div>
-  <div class="ranking-header">
-    <div class="ranking-title">Ranking Junho</div>
-    <div style="display:flex;align-items:center;gap:10px;">
-      <button onclick="loadRankingFromSheets()" style="background:var(--card);border:1px solid var(--border);color:var(--muted);border-radius:6px;padding:5px 12px;font-size:11px;cursor:pointer;font-family:'Sora',sans-serif;">🔄 Atualizar</button>
-      <div class="live-badge"><div class="live-dot"></div> Ao vivo</div>
-    </div>
-  </div>
-  <div class="ranking-list" id="rankingList"></div>
-  <div style="text-align:center;margin-top:24px;">
-    <button onclick="showAdminLogin()" id="adminLockBtn" style="background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:8px;padding:10px 20px;font-size:12px;cursor:pointer;font-family:'Sora',sans-serif;display:flex;align-items:center;gap:6px;margin:0 auto;">🔒 Área Gestora</button>
-  </div>
-  <div class="admin-section" id="adminSection" style="display:none;">
-    <div class="admin-title">✏️ Atualizar Vendas <span class="updated-tag">Gestora</span></div>
-    <div class="form-grid">
-      <div class="form-group"><label>Comercial</label><select id="selComercial"></select></div>
-      <div class="form-group"><label>Apólices vendidas</label><input type="number" id="inputVendas" min="0" placeholder="Ex: 5"></div>
-      <button class="btn btn-primary" onclick="updateVendas()">Registar</button>
-    </div>
-    <div style="margin-top:12px;display:flex;gap:9px;flex-wrap:wrap;">
-      <div class="form-group" style="flex:1;min-width:150px;"><label>Novo comercial</label><input type="text" id="inputNome" placeholder="Nome Apelido"></div>
-      <div class="form-group" style="flex:1;min-width:120px;"><label>Loja</label><input type="text" id="inputLoja" placeholder="Ex: Gaia ou Lisboa"></div>
-      <button class="btn btn-ghost" style="align-self:flex-end;" onclick="addComercial()">+ Adicionar</button>
-    </div>
-  </div>
+<section id="tab-ranking" class="tab-panel active">
+<div class="card">
+<h2>Lisboa vs. Gaia</h2>
+<div class="sub">Soma de pontos de todos os comerciais de cada loja</div>
+<div class="teams">
+<div class="team-card lisboa">
+<div class="team-name">📍 Lisboa</div>
+<div class="team-points" id="lisboaPoints">—</div>
+<div class="team-meta" id="lisboaMeta">a carregar…</div>
+</div>
+<div class="team-card gaia">
+<div class="team-name">📍 Gaia</div>
+<div class="team-points" id="gaiaPoints">—</div>
+<div class="team-meta" id="gaiaMeta">a carregar…</div>
+</div>
+</div>
+<div class="progress-track">
+<div class="progress-fill-lisboa" id="fillLisboa" style="width:50%"></div>
+<div class="progress-fill-gaia" id="fillGaia" style="width:50%"></div>
+</div>
+<div class="progress-caption"><span>Lisboa</span><span>Gaia</span></div>
 </div>
 
-<!-- QUIZ DIÁRIO -->
-<div id="page-daily" class="page">
-  <div class="daily-hero">
-    <div class="daily-hero-label">⚡ Quiz do Dia · 1 Pergunta</div>
-    <h2>Desafio Diário</h2>
-    <p>Uma pergunta por dia sobre o Seguro Auto. Acerta e ganhas +1 ponto bónus no ranking! 🔥</p>
-  </div>
-
-  <!-- JÁ JOGOU HOJE -->
-  <div id="doneToday" class="done-today" style="display:none;">
-    <div class="done-icon">🎯</div>
-    <h3>Quiz de hoje concluído!</h3>
-    <p id="doneTodayMsg">Voltaste hoje. O teu streak continua!</p>
-    <div class="next-time">Volta amanhã para o próximo desafio ⏰</div>
-  </div>
-
-  <!-- CONTADOR RESPOSTAS CERTAS -->
-  <div style="background:#FFFFFF;border-radius:10px;padding:16px 20px;border:1px solid rgba(0,0,0,0.08);margin-bottom:16px;display:flex;align-items:center;gap:14px;box-shadow:0 1px 6px rgba(0,0,0,0.05);">
-    <div style="font-size:28px;">✅</div>
-    <div>
-      <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:900;color:var(--fuel);" id="correctCount">0</div>
-      <div style="font-size:10px;color:#555;text-transform:uppercase;letter-spacing:1px;margin-top:2px;">Respostas certas em junho</div>
-    </div>
-  </div>
-
-  <!-- FORMULÁRIO NOME -->
-  <div id="dailyNameForm" class="daily-name-form">
-    <h3>Quem és tu?</h3>
-    <div class="daily-name-row">
-      <div class="form-group" style="flex:1;min-width:150px;"><label>Nome</label><input type="text" id="dailyNome" placeholder="Nome e apelido"></div>
-      <div class="form-group" style="flex:1;min-width:120px;"><label>Loja</label><input type="text" id="dailyLoja" placeholder="Ex: Gaia ou Lisboa"></div>
-      <button class="daily-start-btn" onclick="startDaily()">▶ Começar</button>
-    </div>
-    <div style="margin-top:10px;font-size:11px;color:var(--muted);">💡 O teu nome é guardado para o próximo dia — não precisas de preencher sempre.</div>
-  </div>
-
-  <!-- PERGUNTA -->
-  <div id="dailyQuestion" style="display:none;">
-    <div class="dq-progress-bar"><div class="dq-progress-fill" id="dqProgressFill" style="width:0%"></div></div>
-    <div class="dq-counter">
-      <div class="dq-counter-text">PERGUNTA DO DIA</div>
-      <div class="dq-score-live">⭐ <span id="dqScore">0</span> correta</div>
-    </div>
-    <div class="dq-card">
-      <div class="dq-category" id="dqCategory"></div>
-      <div class="dq-question" id="dqText"></div>
-      <div class="dq-options" id="dqOptions"></div>
-      <div class="dq-feedback" id="dqFeedback"></div>
-    </div>
-    <button class="dq-next-btn" id="dqNextBtn" onclick="nextDaily()">Próxima →</button>
-  </div>
-
-  <!-- RESULTADO DIÁRIO -->
-  <div id="dailyResult" style="display:none;">
-    <div class="dq-result">
-      <div class="dq-result-score" id="dqResultScore">0</div>
-      <div class="dq-result-of">/ 1 correta</div>
-      <div class="dq-result-pts" id="dqResultPts">+0 pontos bónus</div>
-      <div class="dq-result-title" id="dqResultTitle"></div>
-      <div class="dq-result-msg" id="dqResultMsg"></div>
-      <div class="dq-result-streak" id="dqResultStreak"></div>
-    </div>
-  </div>
+<div class="card">
+<h2>Classificação individual</h2>
+<div class="sub">Apólices + pontos do quiz do dia</div>
+<div id="leaderboard"><div class="lb-loading">A carregar dados…</div></div>
+<button class="btn btn-secondary" id="btnRefresh" style="margin-top:12px;">↻ Atualizar ranking</button>
 </div>
 
-<!-- QUIZ COMPLETO -->
-<div id="page-quiz" class="page">
-  <div id="quizStart">
-    <div class="quiz-hero">
-      <div class="quiz-hero-label">Formação · Seguro Automóvel</div>
-      <h2>Quiz Completo · 20 Perguntas</h2>
-      <p>Testa todos os teus conhecimentos sobre coberturas, situações reais e argumentos de venda do Seguro Auto Generali.</p>
-      <div style="margin-top:18px;display:flex;flex-direction:column;gap:7px;max-width:320px;">
-        <label style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.6);">Nome</label>
-        <input type="text" id="quizNome" placeholder="Nome e apelido" style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);border-radius:8px;padding:11px 13px;color:#fff;font-family:'Sora',sans-serif;font-size:13px;outline:none;">
-        <label style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-top:5px;">Loja</label>
-        <input type="text" id="quizLoja" placeholder="Ex: Gaia ou Lisboa" style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);border-radius:8px;padding:11px 13px;color:#fff;font-family:'Sora',sans-serif;font-size:13px;outline:none;">
-      </div>
-      <button class="quiz-start-btn" onclick="startQuiz()">▶ Começar o Quiz</button>
-    </div>
-  </div>
-  <div id="quizQuestion" style="display:none;">
-    <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="quizProgressFill" style="width:0%"></div></div>
-    <div class="quiz-counter"><div class="quiz-counter-text">PERGUNTA <span id="qNum">1</span> DE 20</div><div class="quiz-score-live">✅ <span id="qScore">0</span> corretas</div></div>
-    <div class="quiz-question-card">
-      <div class="quiz-category" id="qCategory"></div>
-      <div class="quiz-question-text" id="qText"></div>
-      <div class="quiz-options" id="qOptions"></div>
-      <div class="quiz-feedback" id="qFeedback"></div>
-    </div>
-    <button class="quiz-next-btn" id="qNextBtn" onclick="nextQuestion()">Próxima pergunta →</button>
-  </div>
-  <div id="quizResults" style="display:none;">
-    <div class="quiz-results">
-      <div class="quiz-score-circle" id="resultCircle"><div class="quiz-score-num" id="resultNum">0</div><div class="quiz-score-total">/ 20</div></div>
-      <div class="quiz-result-title" id="resultTitle"></div>
-      <div class="quiz-result-msg" id="resultMsg"></div>
-      <button class="quiz-retry-btn" onclick="resetQuiz()">🔄 Tentar de novo</button>
-      <div class="quiz-breakdown"><div class="quiz-breakdown-title">Resumo das respostas</div><div id="quizBreakdown"></div></div>
-    </div>
-  </div>
+<div class="card">
+<h2>Registar venda</h2>
+<div class="sub">1 apólice de Multirriscos Habitação = 30 pontos</div>
+<div class="field">
+<label>Nome do comercial</label>
+<input type="text" id="vendaNome" placeholder="Ex: Mariana">
 </div>
+<div class="row-2">
+<div class="field">
+<label>Loja</label>
+<select id="vendaLoja">
+<option value="Lisboa">Lisboa</option>
+<option value="Gaia">Gaia</option>
+</select>
+</div>
+<div class="field">
+<label>Nº de apólices</label>
+<input type="number" id="vendaQtd" min="1" value="1">
+</div>
+</div>
+<button class="btn btn-primary" id="btnAddVenda">+ Adicionar venda</button>
+<div class="toast" id="vendaToast">Venda registada! 🎉</div>
+</div>
+</section>
+
+<!-- QUIZ DO DIA -->
+<section id="tab-quizdia" class="tab-panel">
+<div class="card" id="quizdiaCard"></div>
+</section>
 
 <!-- CAMPANHA -->
-<div id="page-campanha" class="page">
-  <div style="margin-bottom:18px;">
-    <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:7px;">Informação</div>
-    <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:900;">Como Funciona</div>
-  </div>
-  <div class="info-block"><h3>🎯 Objetivo</h3><ul class="rule-list"><li>Cada mês tem um produto alvo definido.</li><li>O comercial com mais pontos no final do mês ganha o 1.º prémio mensal.</li><li>Conta a data de emissão da apólice — só contam as emitidas durante o mês em curso.</li><li>Em caso de empate, o fator de desempate é o volume de prémios.</li><li>Os prémios são atribuídos no início do mês seguinte.</li></ul></div>
-  <div class="info-block"><h3>⛽ Prémios Mensais</h3><ul class="rule-list"><li><strong style="color:var(--gold)">1.º lugar</strong> — Voucher combustível 30€</li><li><strong style="color:#A8A8B3">2.º lugar</strong> — Voucher combustível 20€</li><li><strong style="color:#CD7F32">3.º lugar</strong> — Voucher combustível 10€</li></ul></div>
-  <div class="info-block"><h3>🔥 Como funcionam os pontos</h3><ul class="rule-list"><li>Cada apólice vendida vale 30 pontos no ranking.</li><li>Resposta certa no Quiz do Dia = +1 ponto bónus no ranking.</li><li>Quem não vende, não pontua — mesmo com quiz certo.</li><li>Os pontos acumulam ao longo do mês — vender e saber o produto faz a diferença!</li></ul></div>
-  <div class="info-block"><h3>📅 Produtos Definidos</h3><ul class="rule-list"><li>O produto alvo de cada mês é comunicado no email de arranque mensal.</li></ul></div>
+<section id="tab-campanha" class="tab-panel">
+<div class="card">
+<div class="section-label">Argumentos de venda</div>
+<div class="arg-card">
+<div class="arg-title">🏠 Proteção que vai além das quatro paredes</div>
+<div class="arg-text">Incêndio, danos por água, riscos elétricos e responsabilidade civil até 250.000€ vêm sempre incluídos — em qualquer plano, do Base ao Premium.</div>
+<div class="arg-quote">"Sabia que mesmo no plano mais simples já tem 250.000€ de responsabilidade civil incluídos?"</div>
+</div>
+<div class="arg-card">
+<div class="arg-title">🛠️ Assistência ao Lar 24 horas</div>
+<div class="arg-text">Reparações, mudanças, limpezas, médico ao domicílio e até babysitting — tudo a um pedido de distância, online ou por telefone, a qualquer hora.</div>
+<div class="arg-quote">"Sabia que pode pedir um técnico online, sem precisar de telefonar a ninguém?"</div>
+</div>
+<div class="arg-card">
+<div class="arg-title">🔧 5 planos, à medida de cada casa</div>
+<div class="arg-text">Base, Mais, XL, Top ou Premium — o cliente escolhe o nível de proteção e pode sempre reforçar com coberturas como RC Cães e Gatos ou equipamento eletrónico móvel.</div>
+<div class="arg-quote">"Tem um cão ou gato em casa? Podemos incluir responsabilidade civil e cobertura de saúde para o animal."</div>
+</div>
+<div class="arg-card">
+<div class="arg-title">💰 Pacotes T: poupança a juntar seguros</div>
+<div class="arg-text">Ao juntar o Seguro Casa a outro seguro Generali, o desconto chega a 15% — quem já tem o Auto fica a um passo de poupar ainda mais.</div>
+<div class="arg-quote">"Já tem o seu Auto na Generali? Junte a Casa e poupe até 15%."</div>
+</div>
 </div>
 
-<!-- ADMIN PASSWORD MODAL -->
-<div class="pwd-overlay" id="adminPwdOverlay" style="display:none;">
-  <div class="pwd-box">
-    <div style="font-size:32px;margin-bottom:12px;">🔒</div>
-    <h3>Área Gestora</h3>
-    <p>Acesso exclusivo à gestora comercial.</p>
-    <input type="password" class="pwd-input" id="adminPwdInput" placeholder="••••••••••••" maxlength="20">
-    <button class="pwd-btn" onclick="checkAdminPassword()">Entrar</button>
-    <div class="pwd-error" id="adminPwdError">Palavra-passe incorreta. Tente novamente.</div>
-    <button onclick="cancelAdminPassword()" style="margin-top:12px;background:transparent;border:none;color:var(--muted);font-size:12px;cursor:pointer;font-family:'Sora',sans-serif;">Cancelar</button>
-  </div>
+<div class="card">
+<div class="section-label">Objeções mais comuns — e como responder</div>
+<div class="obj-item">
+<div class="obj-q">❝ Já tenho seguro de casa ❞</div>
+<div class="obj-a">Pergunte a data de renovação e compare coberturas. Muitas apólices antigas não incluem avaria de eletrodomésticos ou fenómenos sísmicos. Ofereça uma simulação sem compromisso.</div>
+</div>
+<div class="obj-item">
+<div class="obj-q">❝ Está muito caro ❞</div>
+<div class="obj-a">Explore os Pacotes T (até 15% de desconto) e mostre que pode ajustar franquias e capitais ao orçamento do cliente, sem perder o essencial.</div>
+</div>
+<div class="obj-item">
+<div class="obj-q">❝ Só me interessa proteger a casa, o recheio não é preciso ❞</div>
+<div class="obj-a">Pergunte se tem eletrodomésticos, mobiliário ou equipamento eletrónico de valor. O recheio cobre furto, roubo e danos por água nos bens — não só na estrutura da casa.</div>
+</div>
+<div class="obj-item">
+<div class="obj-q">❝ Vou pensar ❞</div>
+<div class="obj-a">Mostre o simulador online no momento — leva poucos minutos. Pergunte diretamente o que falta saber para decidir hoje.</div>
+</div>
 </div>
 
-<!-- QUIZ PASSWORD MODAL -->
-<div class="pwd-overlay" id="pwdOverlay" style="display:none;">
-  <div class="pwd-box">
-    <div style="font-size:32px;margin-bottom:12px;">🔐</div>
-    <h3>Acesso Restrito</h3>
-    <p>O Quiz Completo é de uso exclusivo da gestora comercial. Introduza a palavra-passe para continuar.</p>
-    <input type="password" class="pwd-input" id="pwdInput" placeholder="••••••••••••" maxlength="20">
-    <button class="pwd-btn" onclick="checkPassword()">Entrar</button>
-    <div class="pwd-error" id="pwdError">Palavra-passe incorreta. Tente novamente.</div>
-    <button onclick="cancelPassword()" style="margin-top:12px;background:transparent;border:none;color:var(--muted);font-size:12px;cursor:pointer;font-family:'Sora',sans-serif;">Cancelar</button>
-  </div>
+<div class="card">
+<div class="section-label">Cross-sell natural após a Casa</div>
+<div class="cross-grid">
+<div class="cross-card"><div class="cross-icon">🚗</div><div class="cross-name">Seguro Automóvel</div><div class="cross-tip">Quem tem casa também tem carro. Pacote T.</div></div>
+<div class="cross-card"><div class="cross-icon">👩‍🍳</div><div class="cross-name">Empregados Domésticos</div><div class="cross-tip">Para quem tem apoio em casa.</div></div>
+<div class="cross-card"><div class="cross-icon">🔑</div><div class="cross-name">Proteção de Rendas</div><div class="cross-tip">Para quem arrenda a sua casa.</div></div>
 </div>
+</div>
+</section>
 
-<div class="toast" id="toast"></div>
+<footer class="app-footer">
+Dados guardados no Google Sheets · partilhados por toda a equipa.<br>
+Cada mês começa do zero — as campanhas não acumulam.<br>
+Generali Tranquilidade · Juntos no Topo
+</footer>
+</div>
 
 <script>
-// ============ CONFIG ============
-const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbycaf-z7ecN_nXtEGMniGm5a3PJwlMN99Jm93EWgFwYgzIQyL4InK4EIiV9h3IaRzBlPw/exec';
-const SHEETS_ID = '2PACX-1vQpYefnEOFzjnISwu5COWrCir4Msn17sNcxy7zk6KVxSofblQQYPYkUl61IBxDBvK9LFKr3YJl6OJfa';
-const RANKING_CSV_DIRECT = `https://docs.google.com/spreadsheets/d/e/${SHEETS_ID}/pub?gid=0&single=true&output=csv`;
-const RANKING_CSV_PROXY = `https://corsproxy.io/?${encodeURIComponent(RANKING_CSV_DIRECT)}&t=${Date.now()}`;
-const DAILY_Q_PER_DAY = 1;
-const QUIZ_PASSWORD = 'Lesmucinho05';
+/* ==================== CONFIG ==================== */
+const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzEexzqExtHL1J-MpGyKarhHYMEjCrOWt8dYlCvMva9QBgxthw3i03g8Z6BGobfG_dCuQ/exec';
+const CAMPAIGN_MONTH = 7; // Julho
 
-// ============ QUIZ DATA ============
+function currentMes(){
+const d = new Date();
+return d.getFullYear() + '_' + String(d.getMonth()+1).padStart(2,'0');
+}
+
+/* ==================== SHEETS API ==================== */
+async function sheetsGet(params){
+const url = SHEETS_URL + '?' + new URLSearchParams({...params, mes: currentMes()}).toString();
+try{
+await fetch(url, {mode:'no-cors'});
+}catch(e){ console.warn('Sheets write error', e); }
+}
+
+async function sheetsRead(){
+const url = SHEETS_URL + '?' + new URLSearchParams({action:'getData', mes: currentMes()}).toString();
+try{
+const res = await fetch(url);
+return await res.json();
+}catch(e){ console.warn('Sheets read error', e); return {vendas:[], quiz:[]}; }
+}
+
+/* ==================== TABS ==================== */
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+btn.addEventListener('click', ()=>{
+document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+btn.classList.add('active');
+document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
+});
+});
+
+/* ==================== RANKING ==================== */
+function escapeHTML(s){ return String(s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+async function refreshRanking(){
+const data = await sheetsRead();
+const vendas = data.vendas || [];
+const quiz = data.quiz || [];
+
+const people = {};
+vendas.forEach(v=>{
+if(!v.nome) return;
+const k = v.nome.trim().toLowerCase()+'|'+v.loja;
+if(!people[k]) people[k]={nome:v.nome.trim(), loja:v.loja, apolices:0, quizPts:0};
+people[k].apolices += (Number(v.qtd)||0) * 30;
+});
+quiz.forEach(q=>{
+if(!q.nome) return;
+const k = q.nome.trim().toLowerCase()+'|'+q.loja;
+if(!people[k]) people[k]={nome:q.nome.trim(), loja:q.loja, apolices:0, quizPts:0};
+people[k].quizPts += Number(q.points)||0;
+});
+
+const list = Object.values(people).map(p=>({...p, total:p.apolices+p.quizPts}));
+list.sort((a,b)=>b.total-a.total);
+
+let lT=0,gT=0,lA=0,gA=0,lQ=0,gQ=0;
+list.forEach(p=>{
+if(p.loja==='Lisboa'){lT+=p.total;lA+=p.apolices;lQ+=p.quizPts;}
+else{gT+=p.total;gA+=p.apolices;gQ+=p.quizPts;}
+});
+
+document.getElementById('lisboaPoints').textContent = lT;
+document.getElementById('gaiaPoints').textContent = gT;
+document.getElementById('lisboaMeta').textContent = (lA/30)+' apólices · '+lQ+' pts quiz';
+document.getElementById('gaiaMeta').textContent = (gA/30)+' apólices · '+gQ+' pts quiz';
+
+const sum = lT+gT;
+const lPct = sum>0 ? (lT/sum*100) : 50;
+document.getElementById('fillLisboa').style.width = lPct+'%';
+document.getElementById('fillGaia').style.width = (100-lPct)+'%';
+
+const lbEl = document.getElementById('leaderboard');
+if(list.length===0){
+lbEl.innerHTML = '<div class="lb-empty">Ainda não há dados registados este mês.</div>';
+} else {
+lbEl.innerHTML = list.map((p,i)=>`
+<div class="lb-row">
+<div class="lb-rank ${i===0?'gold':''}">${i+1}</div>
+<div class="lb-name">${escapeHTML(p.nome)}</div>
+<div class="lb-loja ${p.loja==='Lisboa'?'lisboa':'gaia'}">${p.loja}</div>
+<div class="lb-points">${p.total} pts</div>
+</div>`).join('');
+}
+}
+
+document.getElementById('btnRefresh').addEventListener('click', ()=>{
+document.getElementById('leaderboard').innerHTML = '<div class="lb-loading">A carregar dados…</div>';
+refreshRanking();
+});
+
+document.getElementById('btnAddVenda').addEventListener('click', async ()=>{
+const nome = document.getElementById('vendaNome').value.trim();
+const loja = document.getElementById('vendaLoja').value;
+const qtd = parseInt(document.getElementById('vendaQtd').value,10)||0;
+if(!nome||qtd<1) return;
+
+const btn = document.getElementById('btnAddVenda');
+btn.disabled = true; btn.textContent = 'A guardar…';
+
+await sheetsGet({action:'saveVenda', nome, loja, qtd});
+
+document.getElementById('vendaNome').value='';
+document.getElementById('vendaQtd').value='1';
+btn.disabled=false; btn.textContent='+ Adicionar venda';
+
+const toast = document.getElementById('vendaToast');
+toast.classList.add('show');
+setTimeout(()=>toast.classList.remove('show'), 2200);
+
+setTimeout(refreshRanking, 1500);
+});
+
+/* ==================== QUIZ — banco de perguntas ==================== */
 const allQuestions = [
-  {category:'🛡️ Planos',question:'O plano Mais inclui Choque, Colisão e Capotamento (CCC)?',options:['Sim — está incluído no Mais','Não — o CCC só existe no plano Top','Sim, mas apenas como cobertura opcional no Mais','O Mais não tem qualquer Dano Próprio'],correct:1,feedback:'O CCC existe APENAS no plano Top. O plano Mais inclui Furto/Roubo e Incêndio/Raio/Explosão, mas não cobre danos por colisão provocada pelo próprio condutor.'},
-  {category:'⚡ Elétricos',question:'A oferta para elétricos é diferente da oferta para carros a combustão em termos de coberturas de danos próprios?',options:['Sim — os elétricos têm coberturas de danos próprios especiais','Não — todas as coberturas e capitais são iguais; só a Multi Assistência é diferente','Sim — os elétricos têm prémios mais baixos','Os elétricos não podem ter o plano Top'],correct:1,feedback:'Todas as coberturas e capitais de danos próprios são iguais para elétricos e combustão. A diferença está APENAS na Multi Assistência, que tem versões e-Base, e-VIP e e-VIP Plus com assistências adaptadas.'},
-  {category:'⚡ Elétricos',question:'Qual o capital coberto pela Proteção de Cabos de Carregamento na Multi Assistência e-Base?',options:['200€ por ocorrência','400€ por ocorrência por anuidade','500€ por ocorrência por anuidade','Sem limite — cobre o valor total'],correct:1,feedback:'A Proteção de Cabos de Carregamento cobre 400€ por ocorrência, por anuidade, em caso de roubo ou furto dos cabos. Está disponível na e-Base e na e-VIP.'},
-  {category:'⚡ Elétricos',question:'A proteção do Home Charger está incluída em que nível de Multi Assistência?',options:['e-Base — disponível logo no plano Base','e-VIP e e-VIP Plus — é um nível de assistência superior','Em todos os níveis de forma igual','Não existe esta cobertura'],correct:1,feedback:'A Proteção do Home Charger (500€/ano, em caso de dano acidental por vandalismo ou tentativa de roubo) está disponível apenas na Multi Assistência e-VIP e e-VIP Plus — não está na e-Base.'},
-  {category:'🚘 Assistência',question:'A Assistência em Viagem da Generali cobre situações de falta de combustível?',options:['Não — apenas avarias mecânicas e acidentes','Sim — falta de combustível está coberta nas Multi Assistências VIP e VIP Plus','Sim — está incluída em todos os planos sem exceção','Apenas no estrangeiro'],correct:1,feedback:'A assistência em caso de falta ou troca de combustível está coberta nas Multi Assistências VIP e VIP Plus. Também cobre furo de pneu, perda ou roubo de chaves e chaves trancadas no interior.'},
-  {category:'🚘 Assistência',question:'Quem tem direito ao serviço de Multi Assistência além do cliente?',options:['Apenas o tomador do seguro','Apenas o condutor indicado na apólice','O cônjuge/pessoa que coabite + ascendentes e descendentes até ao 2.º grau que vivam a seu cargo','Qualquer pessoa que conduza o veículo'],correct:2,feedback:'Têm direito: o cliente, o cônjuge ou pessoa que coabite permanentemente, e os ascendentes e descendentes até ao 2.º grau (avô/neto) que vivam a seu cargo. Um argumento familiar muito relevante!'},
-  {category:'🛞 Pneus',question:'O que cobre a cobertura de Pneus do Seguro Auto?',options:['Qualquer dano nos pneus incluindo desgaste normal','Reparação ou substituição do(s) pneu(s) danificado(s) por furo ou rebentamento, incluindo o pneu do mesmo eixo se necessário','Substituição de todos os pneus em caso de acidente','Apenas pneus com menos de 2 anos'],correct:1,feedback:'A cobertura de Pneus garante a reparação ou substituição por furo ou rebentamento, incluindo o outro pneu do mesmo eixo quando necessário. Não cobre pneus com perfil inferior a 2mm, com mais de 5 anos, nem danos por vandalismo.'},
-  {category:'📋 Subscrição',question:'Um cliente não fez seguro de um veículo há 35 dias e agora quer contratar. Há alguma restrição?',options:['Nenhuma — subscreve normalmente','Aplica-se um período de carência de 15 dias na Assistência em Viagem em caso de avaria','Não é possível subscrever após 30 dias sem seguro','Tem de fazer vistoria obrigatória ao veículo'],correct:1,feedback:'Se existir interregno de seguro superior a 30 dias, aplica-se um período de carência de 15 dias na Assistência em Viagem em caso de avaria. Importante informar o cliente para gerir expectativas!'},
-  {category:'🐾 Animais',question:'Um cão que viaja num reboque atrelado ao carro está coberto pela cobertura de animais?',options:['Sim — desde que seja um animal de companhia','Não — o animal tem de estar no veículo ligeiro, em contentor apropriado ou com cinto de segurança','Sim — se o reboque estiver declarado na apólice','Apenas se o dono tiver o plano Top'],correct:1,feedback:'Os cães e gatos têm de estar no veículo ligeiro e transportados em contentores apropriados ou com cinto de segurança para animais. Um animal num reboque não está coberto.'},
-  {category:'📱 Sinistros',question:'Como pode o cliente participar um sinistro automóvel sem ir a uma loja?',options:['Não é possível — tem de ir sempre a uma loja','Pela App (com geolocalização e fotos), pelo site ou pelo email sinistrosauto@tranquilidade.pt','Apenas por telefone em dias úteis','Só através do mediador'],correct:1,feedback:'O cliente pode participar pela App Generali (com geolocalização e fotos), pelo site, por email para sinistrosauto@tranquilidade.pt, pelo mediador ou numa loja. A App é o canal mais rápido!'},
-  {category:'📱 Sinistros',question:'O que é o sistema IDS e quando se aplica?',options:['Sistema de descontos por fidelização','Indemnização Direta ao Segurado — regulariza o sinistro na própria seguradora mesmo sem DP, para sinistros sem danos corporais até 15.000€','Sistema de identificação de sinistros fraudulentos','Apenas para sinistros no estrangeiro'],correct:1,feedback:'IDS = Indemnização Direta ao Segurado. Permite regularizar o sinistro diretamente na seguradora do cliente, mesmo sem Danos Próprios, para sinistros sem danos corporais até 15.000€.'},
-  {category:'📱 Sinistros',question:'O Take Me Home tem algum limite de utilização por anuidade?',options:['Sem limite — pode usar sempre que precisar','Limite de 3 serviços por anuidade, com limite de 50 km por sinistro','Limite de 1 serviço por anuidade','Apenas 2 utilizações por ano'],correct:1,feedback:'Take Me Home tem limite de 3 serviços por anuidade, com limite de 50 km por sinistro. Não inclui gastos com combustível, portagens e similares.'},
-  {category:'📋 Complemento Indemnização',question:'O que acontece ao Complemento de Indemnização por Perda Total quando o veículo atinge 36 meses de matrícula?',options:['A cobertura cessa completamente','Passa de garantia do valor em novo para um reforço de 20% do valor venal','Mantém-se igual até 5 anos','O cliente tem de subscrever nova cobertura'],correct:1,feedback:'Até 36 meses: garantia do valor em novo. Após 36 meses: reforço de 20% do valor venal à data do sinistro. Nenhuma congénere tradicional tem esta proteção em caso de culpa de terceiros!'},
-  {category:'🔧 Extras',question:'O cliente instalou um sistema de som de 2.000€ no carro após a compra. Está coberto pelo seguro?',options:['Não — extras nunca estão cobertos pelo seguro auto','Sim — até 20% do valor do veículo, com limite de 10.000€ total e 1.500€ por extra, desde que declarados na apólice','Sim — automaticamente, sem necessidade de declarar','Apenas se instalado por uma oficina autorizada'],correct:1,feedback:'Os extras têm de estar devidamente identificados e valorizados na apólice. São aceites até 20% do valor do veículo, com limite de 10.000€ total e 1.500€ por extra.'},
-  {category:'❌ Exclusões',question:'Qual destas situações está EXCLUÍDA da cobertura de Furto ou Roubo?',options:['Furto do veículo na via pública','Tentativa de furto com danos no veículo','Objetos ou bagagem no interior do veículo','Desaparecimento do veículo após roubo'],correct:2,feedback:'Os objetos ou bagagem no interior do veículo estão EXCLUÍDOS da cobertura de Furto ou Roubo. O mesmo se aplica a extras não identificados na apólice e a furtos cometidos por pessoas que vivam com o tomador.'},
-  {category:'❌ Exclusões',question:'Qual destas situações está EXCLUÍDA da Proteção Especial do Condutor (PEC)?',options:['Acidente com culpa do condutor','Acidente em que o condutor não usava o cinto de segurança','Acidente em autoestrada','Acidente com um terceiro responsável'],correct:1,feedback:'A PEC exclui: não utilização do cinto de segurança, taxa de alcoolemia superior ao permitido, condutor sem licença válida, acidente de trabalho e treinos e competições de velocidade.'},
-  {category:'🎁 Transmissão de Experiência',question:'Em que casos é permitida a atribuição de experiência/bónus de outro condutor a uma nova apólice?',options:['Nunca — cada apólice tem a sua própria experiência','Ao cônjuge, de pais para filhos, ou para o mesmo tomador com outra apólice na Generali, cumprindo condições específicas','Apenas entre apólices do mesmo tomador','Apenas se o veículo estiver registado em nome do tomador'],correct:1,feedback:'É possível transmitir experiência: ao cônjuge, de pais para filhos (veículo em nome do filho, condutor habitual o filho) ou entre apólices do mesmo tomador. O limite é sempre a antiguidade da carta do condutor beneficiário.'},
-  {category:'🔧 Quebra de Vidros',question:'Como deve o cliente proceder em caso de quebra de vidros?',options:['Pode ir diretamente a qualquer oficina sem avisar o segurador','Deve solicitar autorização à Linha de Sinistros antes de reparar ou substituir os vidros','Só precisa de avisar após a reparação','A cobertura aplica-se automaticamente sem qualquer contacto'],correct:1,feedback:'O cliente deve solicitar autorização à Linha de Sinistros antes de reparar ou substituir vidros (exceto faróis e espelhos). Se não o fizer, terá de efetuar uma participação de sinistro para que a companhia possa pagar o dano.'},
-  {category:'🚛 Reboque Atrelado',question:'Um cliente tem um reboque atrelado ao carro com 250 kg de peso bruto. Precisa de fazer seguro separado para o reboque?',options:['Sim — qualquer reboque precisa de seguro próprio','Não — até 300 kg de peso bruto não é necessário seguro adicional, mas tem de selecionar "Serviço de Reboque" na apólice','Não — está automaticamente coberto sem qualquer indicação','Apenas se o reboque transportar mercadorias'],correct:1,feedback:'Se o reboque for até 300 kg de peso bruto não é necessário seguro adicional de RC, mas é obrigatório selecionar "Serviço de Reboque" na apólice. Se tiver mais de 300 kg, é necessário fazer um seguro separado.'},
-  {category:'⏸️ Suspensão',question:'Em que situação pode o cliente suspender a apólice e por quanto tempo?',options:['Em qualquer situação, sem limite de tempo','Em caso de venda do veículo, até 120 dias, sem pagar qualquer prémio durante esse período','Apenas em caso de acidente grave, por 60 dias','Não é possível suspender — apenas cancelar'],correct:1,feedback:'O cliente pode suspender a apólice em caso de venda do veículo, até à aquisição de um novo, com um prazo máximo de 120 dias, durante o qual não paga qualquer prémio.'},
+{category:'💶 Preços',question:'Qual o preço mínimo anual ("desde") do plano Base do Seguro Casa?',options:['45€','50€','60€','100€'],correct:0,feedback:'O plano Base é o mais acessível, com preços desde 45€/ano.'},
+{category:'💶 Preços',question:'Qual o preço mínimo anual ("desde") do plano Mais?',options:['45€','50€','55€','100€'],correct:1,feedback:'O plano Mais tem preços desde 50€/ano.'},
+{category:'💶 Preços',question:'Qual o preço mínimo anual ("desde") do plano XL?',options:['50€','55€','60€','100€'],correct:1,feedback:'O plano XL tem preços desde 55€/ano.'},
+{category:'💶 Preços',question:'Qual o preço mínimo anual ("desde") do plano Top?',options:['45€','55€','60€','100€'],correct:2,feedback:'O plano Top tem preços desde 60€/ano.'},
+{category:'💶 Preços',question:'Qual o preço mínimo anual ("desde") do plano Premium?',options:['60€','80€','100€','120€'],correct:2,feedback:'O Premium é o plano de topo, com preços desde 100€/ano.'},
+{category:'🏷️ Planos',question:'Qual destas é a frase que descreve o plano Base?',options:['A opção certa para casa e recheio valiosos','Proteção dos riscos mais comuns','Mais descanso para casa e recheio','Mais proteção em mais situações'],correct:1,feedback:'O Base oferece "Proteção dos riscos mais comuns".'},
+{category:'🏷️ Planos',question:'Qual destas é a frase que descreve o plano Mais?',options:['Proteção reforçada para bens mais caros','Proteção dos riscos mais comuns','A opção certa para casa e recheio valiosos','Mais proteção em mais situações'],correct:0,feedback:'O Mais oferece "Proteção reforçada para bens mais caros".'},
+{category:'🏷️ Planos',question:'Qual destas é a frase que descreve o plano XL?',options:['Proteção dos riscos mais comuns','Proteção reforçada para bens mais caros','Mais proteção em mais situações','Mais descanso para casa e recheio'],correct:2,feedback:'O XL oferece "Mais proteção em mais situações".'},
+{category:'🏷️ Planos',question:'Qual destas é a frase que descreve o plano Top?',options:['Mais descanso para casa e recheio','Proteção dos riscos mais comuns','A opção certa para casa e recheio valiosos','Proteção reforçada para bens mais caros'],correct:0,feedback:'O Top oferece "Mais descanso para casa e recheio".'},
+{category:'🏷️ Planos',question:'Qual destas é a frase que descreve o plano Premium?',options:['Mais proteção em mais situações','Proteção dos riscos mais comuns','A opção certa para casa e recheio valiosos','Proteção reforçada para bens mais caros'],correct:2,feedback:'O Premium é "A opção certa para casa e recheio valiosos".'},
+{category:'⚡ Riscos Elétricos',question:'Qual o capital de Riscos Elétricos no Imóvel no plano Base?',options:['1.000€','3.000€','6.000€','10.000€'],correct:0,feedback:'No plano Base, Riscos Elétricos no Imóvel garante 1.000€.'},
+{category:'⚡ Riscos Elétricos',question:'Qual o capital de Riscos Elétricos no Imóvel no plano Mais?',options:['1.000€','3.000€','6.000€','10.000€'],correct:1,feedback:'No plano Mais, Riscos Elétricos no Imóvel garante 3.000€.'},
+{category:'⚡ Riscos Elétricos',question:'Qual o capital de Riscos Elétricos no Imóvel no plano XL?',options:['1.000€','3.000€','6.000€','10.000€'],correct:2,feedback:'No plano XL, Riscos Elétricos no Imóvel garante 6.000€.'},
+{category:'⚡ Riscos Elétricos',question:'Qual o capital de Riscos Elétricos no Imóvel no plano Top?',options:['3.000€','6.000€','10.000€','15.000€'],correct:2,feedback:'No plano Top, Riscos Elétricos no Imóvel garante 10.000€.'},
+{category:'⚡ Riscos Elétricos',question:'No plano Premium, o capital de Riscos Elétricos no Imóvel é igual ao de que outro plano?',options:['Base','Mais','XL','Top'],correct:3,feedback:'No Premium, Riscos Elétricos no Imóvel garante 10.000€ — o mesmo valor do plano Top.'},
+{category:'🌳 Reconstituição de Jardins',question:'Qual o capital de Reconstituição de Jardins no plano Base?',options:['1.000€','1.500€','3.000€','6.000€'],correct:1,feedback:'No plano Base, Reconstituição de Jardins garante 1.500€.'},
+{category:'🌳 Reconstituição de Jardins',question:'Qual o capital de Reconstituição de Jardins no plano Mais?',options:['1.500€','3.000€','6.000€','10.000€'],correct:1,feedback:'No plano Mais, Reconstituição de Jardins garante 3.000€.'},
+{category:'🌳 Reconstituição de Jardins',question:'Qual o capital de Reconstituição de Jardins no plano XL?',options:['1.500€','3.000€','6.000€','10.000€'],correct:2,feedback:'No plano XL, Reconstituição de Jardins garante 6.000€.'},
+{category:'🌳 Reconstituição de Jardins',question:'Qual o capital de Reconstituição de Jardins no plano Top?',options:['3.000€','6.000€','10.000€','15.000€'],correct:2,feedback:'No plano Top, Reconstituição de Jardins garante 10.000€.'},
+{category:'🌳 Reconstituição de Jardins',question:'No plano Premium, qual o capital de Reconstituição de Jardins?',options:['6.000€','10.000€','15.000€','Não existe no Premium'],correct:1,feedback:'No Premium, Reconstituição de Jardins garante 10.000€ — igual ao Top.'},
+{category:'🔧 Avaria de Eletrodomésticos',question:'Qual o limite anual de Avaria de Eletrodomésticos no plano Base?',options:['Até 200€/anuidade','Até 300€/anuidade','Sem limite','Não está incluída'],correct:0,feedback:'Nos planos Base e Mais, o limite é até 200€ por anuidade.'},
+{category:'🔧 Avaria de Eletrodomésticos',question:'Qual o limite anual de Avaria de Eletrodomésticos no plano Mais?',options:['Até 200€/anuidade','Até 300€/anuidade','Sem limite','Não está incluída'],correct:0,feedback:'Nos planos Base e Mais, o limite é até 200€ por anuidade.'},
+{category:'🔧 Avaria de Eletrodomésticos',question:'Qual o limite anual de Avaria de Eletrodomésticos no plano XL?',options:['Até 200€/anuidade','Até 300€/anuidade','Sem limite','Não está incluída'],correct:1,feedback:'Nos planos XL, Top e Premium, o limite sobe para até 300€ por anuidade.'},
+{category:'🔧 Avaria de Eletrodomésticos',question:'Qual o limite anual de Avaria de Eletrodomésticos no plano Top?',options:['Até 200€/anuidade','Até 300€/anuidade','Sem limite','Não está incluída'],correct:1,feedback:'Nos planos XL, Top e Premium, o limite sobe para até 300€ por anuidade.'},
+{category:'🔧 Avaria de Eletrodomésticos',question:'Qual o limite anual de Avaria de Eletrodomésticos no plano Premium?',options:['Até 200€/anuidade','Até 300€/anuidade','Sem limite','Não está incluída'],correct:1,feedback:'No Premium, tal como no XL e Top, o limite é até 300€ por anuidade.'},
+{category:'📦 Capital do Recheio',question:'No plano Base, qual é o capital comum a Incêndio, Danos por Água, Furto/Roubo e Inundações no Recheio?',options:['1.500€','15.000€','30.000€','50.000€'],correct:1,feedback:'No Base, estas quatro coberturas do recheio partilham o capital de 15.000€.'},
+{category:'📦 Capital do Recheio',question:'No plano Mais, qual é o capital comum a Incêndio, Danos por Água, Furto/Roubo e Inundações no Recheio?',options:['15.000€','30.000€','60.000€','100.000€'],correct:1,feedback:'No Mais, este capital comum sobe para 30.000€.'},
+{category:'📦 Capital do Recheio',question:'No plano XL, qual é o capital comum a Incêndio, Danos por Água, Furto/Roubo e Inundações no Recheio?',options:['30.000€','60.000€','100.000€','15.000€'],correct:1,feedback:'No XL, este capital comum é de 60.000€.'},
+{category:'📦 Capital do Recheio',question:'No plano Top, qual é o capital comum a Incêndio, Danos por Água, Furto/Roubo e Inundações no Recheio?',options:['30.000€','60.000€','100.000€','150.000€'],correct:2,feedback:'No Top, este capital comum chega a 100.000€.'},
+{category:'📦 Capital do Recheio',question:'No plano Premium, como funciona o capital de Incêndio, Danos por Água, Furto/Roubo e Inundações no Recheio?',options:['É sempre 15.000€','É um valor fixo de 200.000€','Acompanha o Capital Recheio escolhido pelo cliente','É sempre 100.000€'],correct:2,feedback:'No Premium, estes capitais acompanham o Capital Recheio definido pelo cliente.'},
+{category:'🔌 Riscos Elétricos (Recheio)',question:'Qual o capital de Riscos Elétricos no Recheio no plano Base?',options:['1.000€','3.000€','6.000€','10.000€'],correct:0,feedback:'No Base, Riscos Elétricos no Recheio garante 1.000€.'},
+{category:'🔌 Riscos Elétricos (Recheio)',question:'Qual o capital de Riscos Elétricos no Recheio no plano Mais?',options:['1.000€','3.000€','6.000€','10.000€'],correct:1,feedback:'No Mais, Riscos Elétricos no Recheio garante 3.000€.'},
+{category:'🔌 Riscos Elétricos (Recheio)',question:'Qual o capital de Riscos Elétricos no Recheio no plano XL?',options:['1.000€','3.000€','6.000€','10.000€'],correct:2,feedback:'No XL, Riscos Elétricos no Recheio garante 6.000€.'},
+{category:'🔌 Riscos Elétricos (Recheio)',question:'Qual o capital de Riscos Elétricos no Recheio no plano Top?',options:['3.000€','6.000€','10.000€','15.000€'],correct:2,feedback:'No Top, Riscos Elétricos no Recheio garante 10.000€.'},
+{category:'🔌 Riscos Elétricos (Recheio)',question:'No plano Base, o capital de Riscos Elétricos é igual no Imóvel e no Recheio?',options:['Não, são sempre diferentes','Sim, em ambos é 1.000€','Só é igual no Imóvel','Só é igual no Recheio'],correct:1,feedback:'No plano Base, tanto no Imóvel como no Recheio, o capital de Riscos Elétricos é de 1.000€.'},
+{category:'💻 Equipamento Eletrónico Móvel',question:'Qual o capital para Equipamento Eletrónico Móvel no plano Base?',options:['750€','1.500€','3.000€','5.000€'],correct:0,feedback:'No Base, esta cobertura facultativa garante 750€.'},
+{category:'💻 Equipamento Eletrónico Móvel',question:'Qual o capital para Equipamento Eletrónico Móvel no plano Mais?',options:['750€','1.500€','3.000€','5.000€'],correct:1,feedback:'No Mais, esta cobertura garante 1.500€.'},
+{category:'💻 Equipamento Eletrónico Móvel',question:'Qual o capital para Equipamento Eletrónico Móvel no plano XL?',options:['750€','1.500€','3.000€','5.000€'],correct:2,feedback:'No XL, esta cobertura garante 3.000€.'},
+{category:'💻 Equipamento Eletrónico Móvel',question:'Qual o capital para Equipamento Eletrónico Móvel no plano Top?',options:['1.500€','3.000€','5.000€','10.000€'],correct:2,feedback:'No Top, esta cobertura garante 5.000€.'},
+{category:'💻 Equipamento Eletrónico Móvel',question:'Quantos dos 5 planos partilham o mesmo capital de 5.000€ para Equipamento Eletrónico Móvel?',options:['Nenhum','Só 1 (Top)','2 (Top e Premium)','Todos os 5 planos'],correct:2,feedback:'Top e Premium partilham o mesmo capital de 5.000€ para Equipamento Eletrónico Móvel.'},
+{category:'🛡️ Coberturas',question:'Quais coberturas estão sempre incluídas em todos os planos do Imóvel?',options:['Apenas Incêndio','Incêndio, Danos por Água, Riscos Elétricos, RC, Inundações/Tempestades e Avaria de Eletrodomésticos','Só Fenómenos Sísmicos','Apenas furto ou roubo'],correct:1,feedback:'Estas sete coberturas do Imóvel são obrigatórias em todos os planos, do Base ao Premium.'},
+{category:'🛡️ Coberturas',question:'Quais as duas coberturas facultativas no Imóvel?',options:['Incêndio e RC','Reconstituição de Jardins e Fenómenos Sísmicos','Danos por água e furto','Assistência ao lar e RC'],correct:1,feedback:'No Imóvel, só Reconstituição de Jardins e Fenómenos Sísmicos são facultativas.'},
+{category:'🛡️ Coberturas',question:'Quantas coberturas facultativas existem no Recheio?',options:['Nenhuma','Duas','Três: RC Cães e Gatos, Equipamento Eletrónico Móvel e Organização de Viatura para Mudanças','Cinco'],correct:2,feedback:'No Recheio há três coberturas facultativas: RC Cães e Gatos, Equipamento Eletrónico Móvel e Organização de Viatura para Mudanças.'},
+{category:'🛡️ Coberturas',question:'O capital de Responsabilidade Civil (250.000€) varia entre os 5 planos?',options:['Sim, varia muito','Não, é igual em todos os planos','Só varia no Premium','Só está incluído no Top e Premium'],correct:1,feedback:'A Responsabilidade Civil garante sempre 250.000€, seja qual for o plano.'},
+{category:'🛡️ Coberturas',question:'O que significa o regime Capital Seguro nas coberturas de Incêndio e Danos por Água do Imóvel?',options:['É sempre 250.000€','O capital acompanha o valor do imóvel definido na apólice','É sempre 15.000€','Só se aplica ao plano Premium'],correct:1,feedback:'Capital Seguro significa que o valor garantido acompanha o valor do imóvel indicado na apólice.'},
+{category:'🛡️ Coberturas',question:'A cobertura de RC Cães e Gatos (50.000€) está disponível em quantos planos?',options:['Só no Premium','Em todos os planos, como opção facultativa','Só no Top e Premium','Não existe'],correct:1,feedback:'A RC Cães e Gatos está disponível como opção facultativa em todos os planos, com 50.000€ de capital.'},
+{category:'🛡️ Coberturas',question:'Um cliente pode escolher segurar só a casa, só o recheio, ou ambos?',options:['Não, é sempre casa + recheio','Sim, escolhe livremente','Só pode segurar o recheio se for inquilino','Só é possível através de agente presencial'],correct:1,feedback:'O cliente escolhe proteger só a casa, só o recheio, ou os dois — útil sobretudo para quem arrenda.'},
+{category:'🛡️ Coberturas',question:'Qual a diferença entre o preço mínimo anual do plano Base e do plano Top?',options:['5€','10€','15€','25€'],correct:2,feedback:'A diferença é de 15€/ano: 45€ (Base) para 60€ (Top).'},
+{category:'🛡️ Coberturas',question:'Que plano introduz capitais de recheio personalizados (Capital Recheio) em vez de valores fixos?',options:['Base','Mais','XL','Premium'],correct:3,feedback:'O Premium é o único plano em que vários capitais do recheio acompanham o Capital Recheio escolhido pelo cliente.'},
+{category:'🛡️ Coberturas',question:'Avaria de Eletrodomésticos é uma cobertura obrigatória ou facultativa?',options:['Facultativa em todos os planos','Obrigatória, incluída em todos os planos (com limite anual)','Só obrigatória no Premium','Não existe'],correct:1,feedback:'A Avaria de Eletrodomésticos é obrigatória em todos os planos, com limite anual que varia entre 200€ e 300€.'},
+{category:'🛡️ Coberturas',question:'A Organização de Viatura para Mudanças, no Recheio, vem incluída em todos os planos?',options:['Não, é sempre opcional','Sim, apesar de ser facultativa, vem sempre incluída','Só está incluída no Premium','Não existe'],correct:1,feedback:'Apesar de ser facultativa, a Organização de Viatura para Mudanças vem sempre incluída em todos os planos.'},
+{category:'🛡️ Coberturas',question:'O plano XL situa-se onde na hierarquia dos 5 planos?',options:['Entre o Base e o Mais','Entre o Mais e o Top','Entre o Top e o Premium','É o mais básico'],correct:1,feedback:'A ordem é: Base, Mais, XL, Top e Premium — o XL fica entre o Mais e o Top.'},
+{category:'🛡️ Coberturas',question:'Quantos planos distintos tem o Seguro Casa da Generali Tranquilidade?',options:['3','4','5','6'],correct:2,feedback:'O Seguro Casa tem 5 planos: Base, Mais, XL, Top e Premium.'},
+{category:'🏠 Situações reais',question:'Uma inundação obriga a família a sair de casa temporariamente. Que despesas a Assistência ao Lar cobre?',options:['Nenhuma','Alojamento, alimentação e lavandaria','Só transporte','Só alimentação'],correct:1,feedback:'A Assistência ao Lar cobre despesas de alojamento, alimentação e lavandaria enquanto a casa está inabitável.'},
+{category:'🏠 Situações reais',question:'A máquina de lavar avariou e o cliente não consegue lavar roupa em casa. O que pode pedir?',options:['Nada','Reembolso das despesas em lavandaria, até ao montante definido','Substituição gratuita','Só é coberto se for inundação'],correct:1,feedback:'A Assistência reembolsa despesas em lavandaria quando o cliente não consegue usar a máquina.'},
+{category:'🏠 Situações reais',question:'A casa fica inabitável após um sinistro coberto. O que garante o seguro quanto à mudança da mobília?',options:['Nada','O aluguer da viatura de transporte e a guarda dos bens não transferidos','Apenas o transporte, sem guarda','Só nos planos Top e Premium'],correct:1,feedback:'A Assistência cobre o aluguer da viatura de mudança e a guarda dos bens que não sejam transferidos.'},
+{category:'🏠 Situações reais',question:'A fechadura ficou danificada e a casa fica acessível do exterior. O seguro ajuda?',options:['Não, fechaduras nunca são cobertas','Sim, a Assistência ao Lar atua nestas situações','Só se houver participação à polícia','Só no Premium'],correct:1,feedback:'A Assistência ao Lar cobre situações em que a fechadura fica inutilizada ou a casa fica acessível.'},
+{category:'🏠 Situações reais',question:'A partir de que plano o capital de Furto ou Roubo no recheio atinge 100.000€?',options:['Base','Mais','XL','Top'],correct:3,feedback:'O capital de furto/roubo no recheio chega a 100.000€ a partir do plano Top.'},
+{category:'🏠 Situações reais',question:'Uma rotura de canalização provoca infiltração em casa. O que garante a Assistência?',options:['Nada','O envio de um profissional para avaliar os danos','Só uma indemnização em dinheiro','Apenas aconselhamento por telefone'],correct:1,feedback:'A Assistência garante o envio de profissionais para avaliar os danos provocados por rotura ou infiltração.'},
+{category:'🏠 Situações reais',question:'Se o cliente tiver de se ausentar de casa devido a obras, o que o seguro pode cobrir?',options:['Nada','As despesas de alojamento enquanto durarem as obras necessárias','Só o custo das obras','Apenas se as obras forem de emergência'],correct:1,feedback:'O seguro pode cobrir as despesas de alojamento quando o cliente tem de se ausentar devido a obras.'},
+{category:'🏠 Situações reais',question:'Além de reparações, que outros serviços a Assistência ao Lar e Família disponibiliza?',options:['Apenas reparações','Mudanças, limpezas, médico ao domicílio e babysitting','Só seguros de viagem','Apoio jurídico em tribunal'],correct:1,feedback:'A Assistência ao Lar e Família inclui também mudanças, limpezas, médico ao domicílio e babysitting.'},
+{category:'🏠 Situações reais',question:'Para ser reembolsado de despesas de lavandaria ou alojamento, o que deve o cliente sempre pedir?',options:['Um orçamento prévio','Fatura com o número de contribuinte do titular','Apenas um recibo verbal','Nada, basta o pedido por telefone'],correct:1,feedback:'O cliente deve sempre pedir fatura com o NIF do titular da apólice para garantir o reembolso.'},
+{category:'🏠 Situações reais',question:'O seguro pode cobrir, como benefícios extra, assistência a animais e arranjo de eletrodomésticos?',options:['Não, nunca','Sim, são exemplos de benefícios adicionais disponíveis','Só em apólices empresariais','Só com seguro separado'],correct:1,feedback:'Assistência a animais, arranjo de eletrodomésticos e assistência médico-sanitária são benefícios extra do Seguro Casa.'},
+{category:'🏠 Situações reais',question:'Quando a casa fica inabitável, quem suporta os custos de guarda dos bens não transferidos?',options:['O cliente','A seguradora, ao abrigo da Assistência','O condomínio','Não há cobertura para isso'],correct:1,feedback:'A Assistência cobre os custos de guarda dos bens que não sejam transferidos para a habitação provisória.'},
+{category:'🏠 Situações reais',question:'Um cliente quer participar um sinistro de furto. Pode fazê-lo online?',options:['Não, só presencialmente','Sim, através da participação de sinistro online','Só por carta registada','Só se o valor for superior a 1.000€'],correct:1,feedback:'O cliente pode participar sinistros, incluindo furto, diretamente online no site da Generali Tranquilidade.'},
+{category:'🏠 Situações reais',question:'A partir de que plano o capital de Furto ou Roubo no recheio atinge 60.000€?',options:['Base','Mais','XL','Top'],correct:2,feedback:'O capital de furto/roubo no recheio chega a 60.000€ no plano XL.'},
+{category:'🏠 Situações reais',question:'A partir de que plano o capital de Furto ou Roubo no recheio atinge 30.000€?',options:['Base','Mais','XL','Top'],correct:1,feedback:'O capital de furto/roubo no recheio chega a 30.000€ no plano Mais.'},
+{category:'🏠 Situações reais',question:'Além de participar um sinistro online, o que mais pode o cliente consultar no site?',options:['Nada mais','O estado do sinistro que participou','Só o valor da indemnização por telefone','Só através do mediador'],correct:1,feedback:'O cliente pode consultar online o estado de um sinistro já participado.'},
+{category:'💰 Valor e serviços',question:'Quanto pode poupar um cliente que junte o Seguro Casa a outro seguro Generali, através dos Pacotes T?',options:['5%','Até 10%','Até 15%','30%'],correct:2,feedback:'Os Pacotes T oferecem desconto até 15% sobre o prémio comercial.'},
+{category:'💰 Valor e serviços',question:'Qual o número de telefone da Linha de Assistência ao Lar e Família?',options:['211 520 310','217 252 328','808 200 300','217 000 000'],correct:1,feedback:'A Linha de Assistência ao Lar e Família atende pelo 217 252 328.'},
+{category:'💰 Valor e serviços',question:'Durante quantas horas por dia está disponível a Linha de Assistência ao Lar e Família?',options:['8h às 20h','Dias úteis, 9h às 19h','24 horas','Só fins de semana'],correct:2,feedback:'A Linha de Assistência ao Lar e Família está disponível 24 horas por dia.'},
+{category:'💰 Valor e serviços',question:'Em que sistemas está disponível a App Generali Tranquilidade?',options:['Só iOS','iOS, Android e Huawei','Só Android','Só em computador'],correct:1,feedback:'A App Generali Tranquilidade está disponível em iOS, Android e Huawei.'},
+{category:'💰 Valor e serviços',question:'Como pode o cliente pedir uma reparação sem precisar de telefonar?',options:['Não é possível','Através do pedido de Assistência ao Lar Digital, online','Só presencialmente','Só por carta'],correct:1,feedback:'O cliente pode pedir Assistência ao Lar Digital online, sem telefonar.'},
+{category:'💰 Valor e serviços',question:'Qual destes é um cross-sell natural a propor depois do Seguro Casa?',options:['Seguro de Embarcações de Recreio','Seguro Empregados Domésticos','Seguro de Golfe','Seguro de Instrumentos Musicais'],correct:1,feedback:'O Seguro Empregados Domésticos é um cross-sell natural para clientes com apoio doméstico em casa.'},
+{category:'💰 Valor e serviços',question:'Qual o seguro indicado para um cliente que arrenda a sua casa e quer proteção contra falta de pagamento de renda?',options:['Seguro Automóvel','Proteção de Rendas','Seguro de Viagem','RC Caça'],correct:1,feedback:'O Seguro Proteção de Rendas protege quem arrenda a sua casa.'},
+{category:'💰 Valor e serviços',question:'Onde pode o cliente consultar as suas apólices e atualizar dados pessoais?',options:['Só por telefone','Na Área de Cliente, online','Só presencialmente','Não é possível consultar online'],correct:1,feedback:'A Área de Cliente permite consultar apólices, sinistros e atualizar dados pessoais, online.'},
+{category:'💰 Valor e serviços',question:'O que é a Vídeo-peritagem?',options:['Uma reunião presencial obrigatória','Avaliação de danos à distância, por videochamada','Um curso de formação','Um seguro adicional para vídeo-vigilância'],correct:1,feedback:'A Vídeo-peritagem permite avaliar danos à distância, por videochamada, sem visita presencial.'},
+{category:'💰 Valor e serviços',question:'O Seguro Casa permite ao cliente ajustar as franquias ao seu orçamento?',options:['Não, a franquia é sempre fixa','Sim, o cliente pode escolher diferentes franquias, ajustando ao seu orçamento','Só é possível no Premium','As franquias só existem no Recheio'],correct:1,feedback:'O cliente pode escolher diferentes franquias em cada cobertura, ajustando o nível de risco ao orçamento.'},
+{category:'🏢 Casa vs. Condomínio',question:'Se o prédio já tem Multirriscos Condomínio, a casa do cliente está totalmente protegida?',options:['Sim, está sempre tudo incluído','Não, o Multirriscos Condomínio normalmente não cobre o recheio da casa','Sim, mas só para inquilinos','Não, nenhuma cobertura se aplica ao prédio'],correct:1,feedback:'O Multirriscos Condomínio protege o edifício e partes comuns, mas normalmente não inclui o recheio.'},
+{category:'🏢 Casa vs. Condomínio',question:'O Seguro Casa garante automaticamente o recheio?',options:['Sim, sempre','Não, o cliente escolhe proteger a casa, o recheio, ou ambos','Só se pagar um suplemento obrigatório','Só nos planos Top e Premium'],correct:1,feedback:'É um erro comum pensar que o Seguro Casa cobre sempre o recheio por defeito — o cliente escolhe.'},
+{category:'🏢 Casa vs. Condomínio',question:'O que são "partes comuns" de um condomínio, para efeitos de seguro?',options:['Só as garagens','Telhado, instalações gerais de água/eletricidade/gás, e garagens ou espaços de estacionamento','Só os apartamentos individuais','Só o elevador'],correct:1,feedback:'Partes comuns incluem telhado, instalações gerais de água, eletricidade, gás, comunicações e garagens.'},
+{category:'🏢 Casa vs. Condomínio',question:'Quando pode um cliente com casa própria optar por manter só o seguro do recheio?',options:['Nunca','Quando o condomínio já cobre o edifício mas não cobre o recheio','Só se tiver crédito habitação','Só se viver no último andar'],correct:1,feedback:'Se o condomínio já cobre o edifício, o cliente pode manter o Seguro Casa apenas para o recheio, evitando duplicação.'},
+{category:'🏢 Casa vs. Condomínio',question:'Que desconto é oferecido no Multirriscos Condomínio para seguros feitos por empresas de gestão de condomínios?',options:['5%','10%','15%','20%'],correct:1,feedback:'É oferecido um desconto de 10% para seguros feitos por empresas de gestão de condomínios.'},
+{category:'🏢 Institucional',question:'A Generali Tranquilidade resulta da fusão de que duas marcas?',options:['Tranquilidade e Açoreana','Generali e Tranquilidade','Generali e Fidelidade','Tranquilidade e Allianz'],correct:1,feedback:'A Generali Tranquilidade resulta da fusão entre as marcas Generali e Tranquilidade.'},
+{category:'🏢 Institucional',question:'Onde fica a sede da Generali Tranquilidade?',options:['Porto, Avenida dos Aliados','Lisboa, Avenida da Liberdade, 242','Coimbra, Praça do Comércio','Faro, Avenida da República'],correct:1,feedback:'A sede da Generali Tranquilidade está na Avenida da Liberdade, 242, em Lisboa.'},
+{category:'🏢 Institucional',question:'Com que número está a Generali Tranquilidade registada na ASF?',options:['1197','2025','500','310'],correct:0,feedback:'A Generali Tranquilidade está registada na ASF com o número 1197.'},
+{category:'🏢 Institucional',question:'Em quantos passos pode o cliente fazer a simulação online do Seguro Casa?',options:['2','4','6','8'],correct:1,feedback:'A simulação online do Seguro Casa pode ser feita em apenas 4 passos.'},
+{category:'🏢 Institucional',question:'Que título a Generali Tranquilidade recebeu em estudos recentes da DECO PROteste?',options:['Seguradora mais barata','Melhor Seguradora','Seguradora com mais clientes','Seguradora mais antiga'],correct:1,feedback:'A Generali Tranquilidade foi distinguida como Melhor Seguradora pela DECO PROteste.'},
+{category:'🏢 Institucional',question:'Que documentos deve o cliente sempre consultar antes de subscrever o Seguro Casa?',options:['Apenas o preço','O Documento de Informação e as Condições Gerais da apólice','Só a proposta comercial','Nenhum, basta a palavra do comercial'],correct:1,feedback:'O Documento de Informação e as Condições Gerais são documentos que o cliente deve sempre consultar.'},
+{category:'💰 Valor e serviços',question:'Que serviço permite ao cliente continuar uma simulação online que tinha começado mas não terminou?',options:['Não é possível, tem de recomeçar','Recuperar Simulação, disponível online','Só ligando para a linha de apoio','Só através de agente presencial'],correct:1,feedback:'O site da Generali Tranquilidade tem uma opção de "Recuperar Simulação" para continuar onde ficou.'}
 ];
 
-// ============ COMERCIAIS ============
-let comerciais = [];
-let nextId = 1;
+/* ==================== QUIZ — lógica diária ==================== */
+function mulberry32(seed){
+return function(){
+seed|=0; seed=(seed+0x6D2B79F5)|0;
+let t=Math.imul(seed^(seed>>>15),1|seed);
+t=(t+Math.imul(t^(t>>>7),61|t))^t;
+return((t^(t>>>14))>>>0)/4294967296;
+};
+}
+function shuffledPoolForMonth(year,month){
+const seed=year*100+month;
+const rng=mulberry32(seed);
+const arr=allQuestions.map((_,i)=>i);
+for(let i=arr.length-1;i>0;i--){const j=Math.floor(rng()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}
+return arr;
+}
+function getDailyQuestions(date){
+date=date||new Date();
+const year=date.getFullYear(),month=date.getMonth()+1,day=date.getDate();
+const order=shuffledPoolForMonth(year,month);
+const startSlot=(day-1)*3;
+return[0,1,2].map(off=>allQuestions[order[(startSlot+off)%order.length]]);
+}
+function todayStr(){return new Date().toISOString().slice(0,10);}
 
-// ============ LOAD RANKING ============
-async function loadRankingFromSheets() {
-  try {
-    document.getElementById('rankingList').innerHTML = '<div style="text-align:center;padding:32px;color:var(--muted);font-size:13px;">⏳ A carregar ranking...</div>';
-    let csv;
-    try {
-      const res = await fetch(RANKING_CSV_PROXY, {mode:'cors'});
-      csv = await res.text();
-      if (!csv || csv.includes('<!DOCTYPE')) throw new Error('Bad response');
-    } catch(e) {
-      const res = await fetch(RANKING_CSV_DIRECT + '&t=' + Date.now());
-      csv = await res.text();
-    }
-    const lines = csv.trim().split('\n').slice(1);
-    const loaded = lines
-      .filter(l => l.trim())
-      .map((line, i) => {
-        const cols = line.split(',').map(c => c.replace(/^"|"$/g,'').trim());
-        return { id: i+1, nome: cols[0]||'', loja: cols[1]||'', vendas: parseInt(cols[2])||0, bonus:0, quizPerfeito:false };
-      })
-      .filter(c => c.nome);
-    if (loaded.length > 0) {
-      comerciais = loaded;
-      nextId = comerciais.length + 1;
-    }
-    renderRanking();
-    populateSelect();
-    showToast('✅ Ranking atualizado!');
-  } catch(e) {
-    document.getElementById('rankingList').innerHTML = '<div style="text-align:center;padding:32px;color:var(--wrong);font-size:13px;">⚠️ Não foi possível carregar o ranking. Verifica a ligação.</div>';
-    console.error('Sheets load error:', e);
-  }
+/* ==================== QUIZ — UI ==================== */
+function buildStartScreen(container){
+container.innerHTML=`
+<div class="quiz-hero">
+<div class="quiz-label">Formação · Multirriscos Habitação</div>
+<h2>Quiz do Dia</h2>
+<p>3 perguntas rápidas sobre o Seguro Casa Generali Tranquilidade. As perguntas mudam todos os dias e não se repetem ao longo do mês. Cada resposta certa vale 1 ponto no ranking.</p>
+</div>
+<div class="field" style="margin-top:18px;">
+<label>O teu nome</label>
+<input type="text" id="qdNome" placeholder="Ex: Nuno">
+</div>
+<div class="field">
+<label>Loja</label>
+<select id="qdLoja">
+<option value="Lisboa">Lisboa</option>
+<option value="Gaia">Gaia</option>
+</select>
+</div>
+<button class="btn btn-primary" id="qdStartBtn">▶ Começar</button>
+<div class="quiz-note" id="qdNote">Já fizeste o quiz de hoje? Entra com o mesmo nome para verificar.</div>
+`;
 }
 
-// ============ SAVE TO SHEETS — CORRIGIDO ============
-async function saveToSheets(nome, loja, score, total, tipo) {
-  if (!SHEETS_URL) return;
-  try {
-    const url = `${SHEETS_URL}?nome=${encodeURIComponent(nome)}&loja=${encodeURIComponent(loja)}&score=${score}&total=${total}&tipo=${tipo}`;
-    await fetch(url, { mode: 'no-cors' });
-    console.log('Guardado na sheet:', nome, score, tipo);
-  } catch(e) {
-    console.log('Sheets save error:', e);
-  }
+function runQuizDia(){
+const container=document.getElementById('quizdiaCard');
+const state={idx:0,answers:[],nome:'',loja:'',questions:[]};
+
+function init(){
+if(new Date().getMonth()+1!==CAMPAIGN_MONTH){
+container.innerHTML=`
+<div class="quiz-hero">
+<div class="quiz-label">Formação · Multirriscos Habitação</div>
+<h2>Quiz do Dia</h2>
+<p>Este quiz é específico da campanha de Julho (Multirriscos Habitação) e só está disponível durante esse mês.<br><br>Fora de Julho, esta secção fica em pausa.</p>
+</div>`;
+return;
+}
+buildStartScreen(container);
+document.getElementById('qdStartBtn').addEventListener('click',async()=>{
+const nomeInput=document.getElementById('qdNome').value.trim();
+const lojaInput=document.getElementById('qdLoja').value;
+const note=document.getElementById('qdNote');
+if(!nomeInput){note.textContent='Escreve o teu nome para começar.';note.style.color='var(--bad)';return;}
+
+// Check if already answered today via Sheets
+note.textContent='A verificar…'; note.style.color='var(--muted)';
+const data=await sheetsRead();
+const quiz=data.quiz||[];
+const already=quiz.find(r=>r.nome&&r.nome.trim().toLowerCase()===nomeInput.toLowerCase()&&r.date===todayStr());
+if(already){
+note.innerHTML=`Já fizeste o quiz de hoje, ${escapeHTML(nomeInput)}! Resultado: <strong>${already.score}/${already.total}</strong>. Volta amanhã 💪`;
+note.style.color='var(--maroon-dark)';
+return;
 }
 
-// ============ DAILY STATE — USA localStorage ============
-function getTodayKey() {
-  const d = new Date();
-  return `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
-}
-
-function getDailyState() {
-  try {
-    const raw = localStorage.getItem('dailyState');
-    return raw ? JSON.parse(raw) : {streak:0,bonus:0,daysPlayed:0,lastDay:'',nome:'',loja:'',todayDone:false,todayScore:0,quizPerfeitoCount:0};
-  } catch(e) {
-    return {streak:0,bonus:0,daysPlayed:0,lastDay:'',nome:'',loja:'',todayDone:false,todayScore:0,quizPerfeitoCount:0};
-  }
-}
-
-function saveDailyState(s) {
-  try { localStorage.setItem('dailyState', JSON.stringify(s)); } catch(e) { console.log('localStorage error:', e); }
-}
-
-let dailyState = getDailyState();
-let dailyCurrentQ = 0;
-let dailyScore = 0;
-let dailyQuestions = [];
-
-function getDailyQuestions() {
-  const d = new Date();
-  const seed = d.getFullYear() * 10000 + (d.getMonth()+1) * 100 + d.getDate();
-  const indices = [];
-  let s = seed;
-  while (indices.length < DAILY_Q_PER_DAY) {
-    s = (s * 1664525 + 1013904223) & 0x7fffffff;
-    const idx = s % allQuestions.length;
-    if (!indices.includes(idx)) indices.push(idx);
-  }
-  return indices.map(i => allQuestions[i]);
-}
-
-// ============ LOAD CORRECT COUNT FROM SHEETS ============
-async function loadCorrectCount() {
-  const nome = dailyState.nome || '';
-  if (!nome) {
-    document.getElementById('correctCount').textContent = dailyState.quizPerfeitoCount || 0;
-    return;
-  }
-  try {
-    const url = `${SHEETS_URL}?action=count&nome=${encodeURIComponent(nome)}`;
-    const res = await fetch(url);
-    const data = await res.json();
-    if (data && typeof data.count === 'number') {
-      dailyState.quizPerfeitoCount = data.count;
-      saveDailyState(dailyState);
-      document.getElementById('correctCount').textContent = data.count;
-    } else {
-      document.getElementById('correctCount').textContent = dailyState.quizPerfeitoCount || 0;
-    }
-  } catch(e) {
-    // fallback to local count
-    document.getElementById('correctCount').textContent = dailyState.quizPerfeitoCount || 0;
-  }
-}
-
-// ============ INIT DAILY PAGE ============
-function initDailyPage() {
-  dailyState = getDailyState();
-  const today = getTodayKey();
-
-  loadCorrectCount();
-
-  const safeSet = (id, val) => { const el = document.getElementById(id); if(el) el.textContent = val; };
-  safeSet('correctCount', dailyState.quizPerfeitoCount || 0);
-
-  const navStreak = document.getElementById('navStreak');
-  if (navStreak) {
-    if (dailyState.streak > 0) {
-      navStreak.style.display = 'flex';
-      safeSet('navStreakNum', dailyState.streak);
-    } else {
-      navStreak.style.display = 'none';
-    }
-  }
-
-  if (dailyState.todayDone && dailyState.lastDay === today) {
-    document.getElementById('doneToday').style.display = 'block';
-    document.getElementById('doneTodayMsg').textContent =
-      dailyState.todayScore === 1
-        ? `Acertaste hoje! +1 ponto bónus ganho. 🎯 Streak: ${dailyState.streak} dias!`
-        : `Não acertaste hoje. Volta amanhã para ganhar +1 ponto! Streak: ${dailyState.streak} dias.`;
-    document.getElementById('dailyNameForm').style.display = 'none';
-    document.getElementById('dailyQuestion').style.display = 'none';
-    document.getElementById('dailyResult').style.display = 'none';
-  } else {
-    document.getElementById('doneToday').style.display = 'none';
-    document.getElementById('dailyQuestion').style.display = 'none';
-    document.getElementById('dailyResult').style.display = 'none';
-    document.getElementById('dailyNameForm').style.display = 'block';
-    if (dailyState.nome) document.getElementById('dailyNome').value = dailyState.nome;
-    if (dailyState.loja) document.getElementById('dailyLoja').value = dailyState.loja;
-  }
-}
-
-function startDaily() {
-  const nome = document.getElementById('dailyNome').value.trim();
-  const loja = document.getElementById('dailyLoja').value.trim();
-  if (!nome || !loja) { showToast('⚠️ Preenche o nome e a loja'); return; }
-  dailyState.nome = nome;
-  dailyState.loja = loja;
-  saveDailyState(dailyState);
-
-  dailyQuestions = getDailyQuestions();
-  dailyCurrentQ = 0;
-  dailyScore = 0;
-
-  document.getElementById('dailyNameForm').style.display = 'none';
-  document.getElementById('dailyQuestion').style.display = 'block';
-  renderDailyQuestion();
-}
-
-function renderDailyQuestion() {
-  const q = dailyQuestions[dailyCurrentQ];
-  if (!q) { console.error('No question found for index', dailyCurrentQ); return; }
-  const letters = ['A','B','C','D'];
-
-  const safe = (id, val) => { const el = document.getElementById(id); if(el) el.textContent = val; };
-
-  safe('dqCategory', q.category);
-  safe('dqText', q.question);
-
-  const fb = document.getElementById('dqFeedback');
-  if (fb) { fb.style.display = 'none'; fb.className = 'dq-feedback'; }
-  const nb = document.getElementById('dqNextBtn');
-  if (nb) nb.style.display = 'none';
-
-  const opts = document.getElementById('dqOptions');
-  if (opts) {
-    opts.innerHTML = q.options.map((opt,i) =>
-      `<button class="dq-option" onclick="selectDaily(${i})">
-        <span class="dq-letter">${letters[i]}</span><span>${opt}</span>
-      </button>`
-    ).join('');
-  }
-}
-
-function selectDaily(idx) {
-  const q = dailyQuestions[dailyCurrentQ];
-  const opts = document.querySelectorAll('.dq-option');
-  opts.forEach(o => o.disabled = true);
-  const isCorrect = idx === q.correct;
-  if (isCorrect) dailyScore++;
-  opts[idx].classList.add(isCorrect ? 'correct' : 'wrong');
-  if (!isCorrect) opts[q.correct].classList.add('reveal');
-  const fb = document.getElementById('dqFeedback');
-  fb.className = 'dq-feedback ' + (isCorrect ? 'correct' : 'wrong');
-  fb.innerHTML = (isCorrect ? '✅ ' : '❌ ') + q.feedback;
-  fb.style.display = 'block';
-  document.getElementById('dqScore').textContent = dailyScore;
-  const nb = document.getElementById('dqNextBtn');
-  nb.style.display = 'inline-block';
-  nb.textContent = dailyCurrentQ < DAILY_Q_PER_DAY - 1 ? 'Próxima →' : 'Ver resultado 🏆';
-}
-
-function nextDaily() {
-  dailyCurrentQ++;
-  if (dailyCurrentQ >= DAILY_Q_PER_DAY) { showDailyResult(); return; }
-  renderDailyQuestion();
-}
-
-function showDailyResult() {
-  document.getElementById('dailyQuestion').style.display = 'none';
-  document.getElementById('dailyResult').style.display = 'block';
-
-  const today = getTodayKey();
-  const yesterday = (() => {
-    const d = new Date(); d.setDate(d.getDate()-1);
-    return `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
-  })();
-
-  if (dailyState.lastDay === yesterday) dailyState.streak++;
-  else if (dailyState.lastDay !== today) dailyState.streak = 1;
-
-  if (dailyScore === 1) {
-    // Update local bonus on ranking if name matches
-    const firstName = dailyState.nome.split(' ')[0].toLowerCase();
-    const c = comerciais.find(x => x.nome.toLowerCase().includes(firstName));
-    if (c) { c.bonus += 1; renderRanking(); }
-    // Increment local count
-    dailyState.quizPerfeitoCount = (dailyState.quizPerfeitoCount || 0) + 1;
-  }
-
-  dailyState.bonus += dailyScore;
-  dailyState.daysPlayed = (dailyState.daysPlayed || 0) + 1;
-  dailyState.lastDay = today;
-  dailyState.todayDone = true;
-  dailyState.todayScore = dailyScore;
-  saveDailyState(dailyState);
-
-  // Update UI counters
-  const safeSet = (id, val) => { const el = document.getElementById(id); if(el) el.textContent = val; };
-  safeSet('correctCount', dailyState.quizPerfeitoCount || 0);
-
-  const navStreak = document.getElementById('navStreak');
-  if (navStreak) {
-    navStreak.style.display = 'flex';
-    safeSet('navStreakNum', dailyState.streak);
-  }
-
-  safeSet('dqResultScore', dailyScore);
-  const ptsMsg = dailyScore === 1
-    ? '+1 ponto bónus adicionado ao teu total! 🎯'
-    : 'Sem pontos hoje — volta amanhã!';
-  safeSet('dqResultPts', ptsMsg);
-
-  let title, msg;
-  if (dailyScore === 1) { title = '🏆 Correto!'; msg = 'Acertaste! +1 ponto bónus garantido no ranking. Continua assim amanhã!'; }
-  else { title = '💡 Amanhã é outro dia!'; msg = 'Hoje não acertaste — mas voltares já conta para o streak. Estuda e amanhã vais melhor!'; }
-
-  safeSet('dqResultTitle', title);
-  safeSet('dqResultMsg', msg);
-  safeSet('dqResultStreak', `🔥 Streak atual: ${dailyState.streak} dia${dailyState.streak !== 1 ? 's' : ''}`);
-
-  // Save to Sheets
-  saveToSheets(dailyState.nome, dailyState.loja, dailyScore, DAILY_Q_PER_DAY, 'quiz-diario');
-  if (dailyScore === 1) showToast('✅ +1 ponto guardado!');
-}
-
-// ============ RANKING ============
-function renderRanking() {
-  const sorted = [...comerciais].sort((a,b) => {
-    const tA = (a.vendas * 30) + (a.vendas > 0 ? a.bonus : 0);
-    const tB = (b.vendas * 30) + (b.vendas > 0 ? b.bonus : 0);
-    return tB - tA;
-  });
-  const prizes = ['🥇 30€ combustível','🥈 20€ combustível','🥉 10€ combustível'];
-  const posClass = ['top1','top2','top3'];
-  document.getElementById('rankingList').innerHTML = sorted.map((c,i) => {
-    const initials = c.nome.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
-    const cls = i < 3 ? posClass[i] : '';
-    const prizeHtml = i < 3 ? `<div class="rank-prize">${prizes[i]}</div>` : '';
-    const pos = i < 3 ? ['🥇','🥈','🥉'][i] : `${i+1}.º`;
-    const total = (c.vendas * 30) + (c.vendas > 0 ? c.bonus : 0);
-    const bonusHtml = c.bonus > 0 ? `<div class="rank-bonus">⭐ +${c.bonus} pts quiz</div>` : '';
-    const lbl = c.vendas > 0
-      ? `${c.vendas} ap. × 30${c.bonus > 0 ? ' + '+c.bonus+' quiz' : ''} = ${total} pts`
-      : `0 apólices — sem pontos`;
-    return `<div class="rank-item ${cls}">
-      <div class="rank-pos">${pos}</div>
-      <div class="rank-avatar">${initials}</div>
-      <div class="rank-info"><div class="rank-name">${c.nome}</div><div class="rank-loja">${c.loja}</div></div>
-      <div class="rank-score">
-        <div class="rank-num">${total}</div>
-        <div class="rank-label">${lbl}</div>
-        ${bonusHtml}${prizeHtml}
-      </div>
-    </div>`;
-  }).join('');
-}
-
-function populateSelect() {
-  const sel = document.getElementById('selComercial');
-  const sorted = [...comerciais].sort((a,b) => a.nome.localeCompare(b.nome));
-  sel.innerHTML = sorted.map(c => `<option value="${c.id}">${c.nome} — ${c.loja}</option>`).join('');
-}
-
-function updateVendas() {
-  const id = parseInt(document.getElementById('selComercial').value);
-  const val = parseInt(document.getElementById('inputVendas').value);
-  if (isNaN(val) || val < 0) { showToast('⚠️ Insira um número válido'); return; }
-  const c = comerciais.find(x => x.id === id);
-  if (c) { c.vendas = val; renderRanking(); showToast(`✅ ${c.nome}: ${val} apólices`); }
-  document.getElementById('inputVendas').value = '';
-}
-
-function addComercial() {
-  const nome = document.getElementById('inputNome').value.trim();
-  const loja = document.getElementById('inputLoja').value.trim();
-  if (!nome || !loja) { showToast('⚠️ Preencha nome e loja'); return; }
-  comerciais.push({id: nextId++, nome, loja, vendas:0, bonus:0, quizPerfeito:false});
-  renderRanking();
-  populateSelect();
-  document.getElementById('inputNome').value = '';
-  document.getElementById('inputLoja').value = '';
-  showToast(`✅ ${nome} adicionado`);
-}
-
-// ============ QUIZ COMPLETO ============
-let currentQ = 0, score = 0, userAnswers = [], quizNomeAtual = '', quizLojaAtual = '';
-
-function startQuiz() {
-  const nome = document.getElementById('quizNome').value.trim();
-  const loja = document.getElementById('quizLoja').value.trim();
-  if (!nome || !loja) { showToast('⚠️ Preenche o nome e a loja'); return; }
-  quizNomeAtual = nome; quizLojaAtual = loja;
-  currentQ = 0; score = 0; userAnswers = [];
-  document.getElementById('quizStart').style.display = 'none';
-  document.getElementById('quizResults').style.display = 'none';
-  document.getElementById('quizQuestion').style.display = 'block';
-  renderQuestion();
-}
-
-function renderQuestion() {
-  const q = allQuestions[currentQ];
-  const letters = ['A','B','C','D'];
-  document.getElementById('qNum').textContent = currentQ + 1;
-  document.getElementById('qScore').textContent = score;
-  document.getElementById('qCategory').textContent = q.category;
-  document.getElementById('qText').textContent = q.question;
-  document.getElementById('quizProgressFill').style.width = ((currentQ / allQuestions.length) * 100) + '%';
-  document.getElementById('qFeedback').style.display = 'none';
-  document.getElementById('qFeedback').className = 'quiz-feedback';
-  document.getElementById('qNextBtn').style.display = 'none';
-  document.getElementById('qOptions').innerHTML = q.options.map((opt,i) =>
-    `<button class="quiz-option" onclick="selectAnswer(${i})">
-      <span class="quiz-option-letter">${letters[i]}</span><span>${opt}</span>
-    </button>`).join('');
-}
-
-function selectAnswer(idx) {
-  const q = allQuestions[currentQ];
-  const opts = document.querySelectorAll('.quiz-option');
-  opts.forEach(o => o.disabled = true);
-  const isCorrect = idx === q.correct;
-  if (isCorrect) score++;
-  userAnswers.push({q: currentQ, correct: isCorrect});
-  opts[idx].classList.add(isCorrect ? 'correct' : 'wrong');
-  if (!isCorrect) opts[q.correct].classList.add('reveal-correct');
-  const fb = document.getElementById('qFeedback');
-  fb.className = 'quiz-feedback ' + (isCorrect ? 'correct' : 'wrong');
-  fb.innerHTML = (isCorrect ? '✅ ' : '❌ ') + q.feedback;
-  fb.style.display = 'block';
-  document.getElementById('qScore').textContent = score;
-  const nb = document.getElementById('qNextBtn');
-  nb.style.display = 'inline-block';
-  nb.textContent = currentQ < allQuestions.length - 1 ? 'Próxima pergunta →' : 'Ver resultados 🏆';
-}
-
-function nextQuestion() {
-  currentQ++;
-  if (currentQ >= allQuestions.length) { showResults(); return; }
-  renderQuestion();
-}
-
-function showResults() {
-  document.getElementById('quizQuestion').style.display = 'none';
-  document.getElementById('quizResults').style.display = 'block';
-  document.getElementById('quizProgressFill').style.width = '100%';
-  const pct = score / allQuestions.length;
-  const circle = document.getElementById('resultCircle');
-  document.getElementById('resultNum').textContent = score;
-  circle.className = pct >= 0.75 ? 'quiz-score-circle' : pct >= 0.5 ? 'quiz-score-circle mid' : 'quiz-score-circle low';
-  let title, msg;
-  if (pct === 1) { title = '🏆 Perfeito! Expert Generali!'; msg = 'Todas certas! Estás completamente preparado para vender com confiança.'; }
-  else if (pct >= 0.75) { title = '🎯 Muito bem!'; msg = 'Excelente resultado! Revê as que erraste e serás imbatível.'; }
-  else if (pct >= 0.5) { title = '📚 Bom começo, há margem!'; msg = 'Há tópicos a reforçar. Dedica tempo a rever as coberturas dos planos.'; }
-  else { title = '💡 Hora de estudar!'; msg = 'Vai rever as condições gerais e tenta novamente!'; }
-  document.getElementById('resultTitle').textContent = `${quizNomeAtual} · ${title}`;
-  document.getElementById('resultMsg').textContent = msg;
-  document.getElementById('quizBreakdown').innerHTML = userAnswers.map(a => {
-    const q = allQuestions[a.q];
-    return `<div class="quiz-breakdown-item ${a.correct ? 'ok' : 'nok'}">
-      <span>${a.correct ? '✅' : '❌'}</span>
-      <span class="quiz-bi-q">${q.question.substring(0,70)}${q.question.length > 70 ? '…' : ''}</span>
-    </div>`;
-  }).join('');
-  saveToSheets(quizNomeAtual, quizLojaAtual, score, allQuestions.length, 'quiz-completo');
-}
-
-function resetQuiz() {
-  document.getElementById('quizResults').style.display = 'none';
-  document.getElementById('quizStart').style.display = 'block';
-}
-
-// ============ NAV ============
-let quizUnlocked = false;
-
-function handleQuizTab(el) {
-  if (quizUnlocked) {
-    showPage('quiz', el);
-  } else {
-    document.getElementById('pwdOverlay').style.display = 'flex';
-    setTimeout(() => document.getElementById('pwdInput').focus(), 100);
-  }
-}
-
-function showPage(id, el) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-  document.getElementById('page-' + id).classList.add('active');
-  el.classList.add('active');
-  if (id === 'daily') initDailyPage();
-}
-
-// ============ ADMIN PASSWORD ============
-let adminUnlocked = false;
-
-function showAdminLogin() {
-  if (adminUnlocked) {
-    document.getElementById('adminSection').style.display = 'block';
-    document.getElementById('adminLockBtn').style.display = 'none';
-    return;
-  }
-  document.getElementById('adminPwdOverlay').style.display = 'flex';
-  setTimeout(() => document.getElementById('adminPwdInput').focus(), 100);
-}
-
-function checkAdminPassword() {
-  const val = document.getElementById('adminPwdInput').value;
-  if (val === QUIZ_PASSWORD) {
-    adminUnlocked = true;
-    document.getElementById('adminPwdOverlay').style.display = 'none';
-    document.getElementById('adminPwdInput').value = '';
-    document.getElementById('adminPwdError').style.display = 'none';
-    document.getElementById('adminSection').style.display = 'block';
-    document.getElementById('adminLockBtn').style.display = 'none';
-  } else {
-    document.getElementById('adminPwdError').style.display = 'block';
-    document.getElementById('adminPwdInput').value = '';
-    document.getElementById('adminPwdInput').focus();
-  }
-}
-
-function cancelAdminPassword() {
-  document.getElementById('adminPwdOverlay').style.display = 'none';
-  document.getElementById('adminPwdInput').value = '';
-  document.getElementById('adminPwdError').style.display = 'none';
-}
-
-document.getElementById('adminPwdInput').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter') checkAdminPassword();
+state.nome=nomeInput; state.loja=lojaInput; state.idx=0; state.answers=[];
+state.questions=getDailyQuestions();
+renderQuestion();
 });
-
-// ============ QUIZ PASSWORD ============
-function checkPassword() {
-  const val = document.getElementById('pwdInput').value;
-  if (val === QUIZ_PASSWORD) {
-    quizUnlocked = true;
-    document.getElementById('pwdOverlay').style.display = 'none';
-    document.getElementById('pwdInput').value = '';
-    document.getElementById('pwdError').style.display = 'none';
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-    document.getElementById('page-quiz').classList.add('active');
-    // Activate the quiz tab button
-    const tabs = document.querySelectorAll('.nav-tab');
-    tabs.forEach(t => { if (t.textContent.includes('Quiz Completo')) t.classList.add('active'); });
-  } else {
-    document.getElementById('pwdError').style.display = 'block';
-    document.getElementById('pwdInput').value = '';
-    document.getElementById('pwdInput').focus();
-  }
 }
 
-function cancelPassword() {
-  document.getElementById('pwdOverlay').style.display = 'none';
-  document.getElementById('pwdInput').value = '';
-  document.getElementById('pwdError').style.display = 'none';
-}
-
-document.getElementById('pwdInput').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter') checkPassword();
+function renderQuestion(){
+const q=state.questions[state.idx];
+container.innerHTML=`
+<div class="quiz-progress">Pergunta ${state.idx+1} de ${state.questions.length}</div>
+<div class="quiz-category">${q.category}</div>
+<div class="quiz-question">${q.question}</div>
+<div id="optsWrap"></div>`;
+const wrap=document.getElementById('optsWrap');
+q.options.forEach((opt,i)=>{
+const b=document.createElement('button');
+b.className='quiz-option'; b.textContent=opt;
+b.addEventListener('click',()=>selectOption(i));
+wrap.appendChild(b);
 });
-
-// ============ TOAST ============
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2800);
 }
 
-// ============ INIT ============
-renderRanking();
-populateSelect();
-loadRankingFromSheets();
-initDailyPage();
+function selectOption(i){
+const q=state.questions[state.idx];
+const correct=q.correct;
+document.querySelectorAll('#optsWrap .quiz-option').forEach((b,idx)=>{
+b.classList.add('disabled'); b.disabled=true;
+if(idx===correct)b.classList.add('correct');
+if(idx===i&&i!==correct)b.classList.add('wrong');
+});
+const fb=document.createElement('div');
+fb.className='quiz-feedback'; fb.textContent=q.feedback;
+document.getElementById('optsWrap').after(fb);
+state.answers.push({q:state.idx,correct:i===correct});
+const nextBtn=document.createElement('button');
+nextBtn.className='btn btn-primary'; nextBtn.style.marginTop='6px';
+nextBtn.textContent=(state.idx<state.questions.length-1)?'Seguinte →':'Ver resultado';
+nextBtn.addEventListener('click',()=>{state.idx++;if(state.idx<state.questions.length)renderQuestion();else finish();});
+fb.after(nextBtn);
+}
+
+async function finish(){
+const score=state.answers.filter(a=>a.correct).length;
+const total=state.questions.length;
+let points=score;
+let extraMsg=score===total ? '<br><strong>Quiz perfeito! 🎯</strong>' : '';
+
+await sheetsGet({action:'saveQuiz',nome:state.nome,loja:state.loja,date:todayStr(),score,total,points});
+setTimeout(refreshRanking,1500);
+
+let title,msg;
+const pct=score/total;
+if(pct===1){title='🏅 Perfeito!';msg='Respondeste corretamente a tudo. Estás pronto para vender o Multirriscos Habitação com confiança.';}
+else if(pct>=0.67){title='🎯 Muito bom resultado!';msg='Tens um sólido conhecimento do produto. Revê a pergunta em que erraste para ficares ainda mais preparado.';}
+else{title='💡 Hora de estudar!';msg='Fica a conhecer melhor o produto — quanto mais souberes, mais fácil fica a conversa com o cliente.';}
+
+const breakdown=state.answers.map(a=>{
+const q=state.questions[a.q];
+return`<div class="quiz-breakdown-item"><span>${a.correct?'✅':'❌'}</span><span>${q.question.length>70?q.question.slice(0,70)+'…':q.question}</span></div>`;
+}).join('');
+
+container.innerHTML=`
+<div class="quiz-result-title">${title}</div>
+<div class="quiz-result-score">${score}/${total}</div>
+<div class="quiz-result-msg">${msg}${extraMsg}</div>
+<div style="margin:14px 0;">${breakdown}</div>
+<div class="quiz-note">Volta amanhã para 3 perguntas novas — não se repetem ao longo do mês.</div>`;
+}
+
+init();
+}
+
+/* ==================== BOOT ==================== */
+refreshRanking();
+runQuizDia();
 </script>
 </body>
 </html>
