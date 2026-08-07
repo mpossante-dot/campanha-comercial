@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Juntos no Topo · Multirriscos Habitação</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<title>Juntos no Topo · Saúde</title>
+<link rel="preconnect" href=https://fonts.googleapis.com>
+<link href=https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap rel="stylesheet">
 <style>
 :root{
 --maroon:#8B1E2E;--maroon-dark:#5E121F;--maroon-light:#B43347;
@@ -117,6 +117,10 @@ h1,h2,h3{font-family:'Fraunces',serif;margin:0;}
 .cross-name{font-size:11.5px;font-weight:700;margin-top:4px;line-height:1.3;}
 .cross-tip{font-size:10.5px;color:var(--muted);margin-top:4px;line-height:1.3;}
 .section-label{font-size:11.5px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;}
+.pending-card{background:var(--cream);border:1.5px dashed var(--line);border-radius:12px;padding:16px;text-align:center;}
+.pending-card .pending-icon{font-size:24px;margin-bottom:6px;}
+.pending-card .pending-title{font-weight:700;font-size:14px;margin-bottom:4px;}
+.pending-card .pending-text{font-size:13px;color:var(--muted);line-height:1.5;}
 
 footer.app-footer{text-align:center;font-size:11px;color:var(--muted);padding:18px 0 4px;line-height:1.6;}
 @media(max-width:380px){.cross-grid{grid-template-columns:1fr 1fr;}}
@@ -128,7 +132,7 @@ footer.app-footer{text-align:center;font-size:11px;color:var(--muted);padding:18
 <header class="app-header">
 <div class="eyebrow">Campanha Comercial</div>
 <h1>🏆 Juntos no Topo</h1>
-<div class="product-banner">🏠 Julho · Multirriscos Habitação</div>
+<div class="product-banner">💚 Agosto · Seguro Saúde</div>
 <div class="rule-banner">🎯 cada apólice = 30 pontos · cada resposta certa no quiz do dia = 1 ponto</div>
 </header>
 
@@ -181,7 +185,7 @@ footer.app-footer{text-align:center;font-size:11px;color:var(--muted);padding:18
 <div class="quiz-note" id="pinError" style="color:var(--bad);display:none;">PIN incorreto.</div>
 </div>
 <div id="vendaForm" style="display:none;">
-<div class="sub">1 apólice de Multirriscos Habitação = 30 pontos</div>
+<div class="sub">1 apólice de Seguro Saúde = 30 pontos</div>
 <div class="field">
 <label>Nome do comercial</label>
 <input type="text" id="vendaNome" placeholder="Ex: Mariana">
@@ -213,55 +217,66 @@ footer.app-footer{text-align:center;font-size:11px;color:var(--muted);padding:18
 <!-- CAMPANHA -->
 <section id="tab-campanha" class="tab-panel">
 <div class="card">
-<div class="section-label">Argumentos de venda</div>
+<div class="section-label">As 4 opções, por tipo de cliente</div>
 <div class="arg-card">
-<div class="arg-title">🏠 Proteção que vai além das quatro paredes</div>
-<div class="arg-text">Incêndio, danos por água, riscos elétricos e responsabilidade civil até 250.000€ vêm sempre incluídos — em qualquer plano, do Base ao Premium.</div>
-<div class="arg-quote">"Sabia que mesmo no plano mais simples já tem 250.000€ de responsabilidade civil incluídos?"</div>
+<div class="arg-title">🟢 Base — proteção essencial e económica</div>
+<div class="arg-text">15.000€ de Hospitalização, cirurgia ambulatória sempre incluída, Saúde Mental incluída desde já. Ideal para quem quer salvaguardar cirurgias e internamento com uma solução mais acessível, podendo depois reforçar com opcionais.</div>
+<div class="arg-quote">"Sabia que já na opção mais simples tem Saúde Mental incluída — internamento e consultas? A maior parte da concorrência só oferece isso com capital de Ambulatório."</div>
 </div>
 <div class="arg-card">
-<div class="arg-title">🛠️ Assistência ao Lar 24 horas</div>
-<div class="arg-text">Reparações, mudanças, limpezas, médico ao domicílio e até babysitting — tudo a um pedido de distância, online ou por telefone, a qualquer hora.</div>
-<div class="arg-quote">"Sabia que pode pedir um técnico online, sem precisar de telefonar a ninguém?"</div>
+<div class="arg-title">🔵 Mais — para quem quer mais cobertura</div>
+<div class="arg-text">75.000€ de Hospitalização, Parto incluído, capital de Ambulatório reforçado (2.500€) e acesso a Estomatologia e Próteses e Ortóteses.</div>
+<div class="arg-quote">"Estão a pensar ter filhos? O plano Mais já inclui o parto na cobertura de Hospitalização."</div>
 </div>
 <div class="arg-card">
-<div class="arg-title">🔧 5 planos, à medida de cada casa</div>
-<div class="arg-text">Base, Mais, XL, Top ou Premium — o cliente escolhe o nível de proteção e pode sempre reforçar com coberturas como RC Cães e Gatos ou equipamento eletrónico móvel.</div>
-<div class="arg-quote">"Tem um cão ou gato em casa? Podemos incluir responsabilidade civil e cobertura de saúde para o animal."</div>
+<div class="arg-title">🔴 Top — proteção sem limites</div>
+<div class="arg-text">500.000€ de Hospitalização, 0€ de copagamento na rede em Hospitalização e Parto, Medicamentos incluídos, Onco-risco e Assistência Oncológica sem custo adicional, e 1 milhão de euros para Doenças Graves com tratamento no estrangeiro, sem franquias.</div>
+<div class="arg-quote">"No Top, já não paga nada na hospitalização em rede — e tem acesso aos melhores especialistas mundiais em caso de dúvida sobre um diagnóstico."</div>
 </div>
 <div class="arg-card">
-<div class="arg-title">💰 Pacotes T: poupança a juntar seguros</div>
-<div class="arg-text">Ao juntar o Seguro Casa a outro seguro Generali, o desconto chega a 15% — quem já tem o Auto fica a um passo de poupar ainda mais.</div>
-<div class="arg-quote">"Já tem o seu Auto na Generali? Junte a Casa e poupe até 15%."</div>
+<div class="arg-title">🎗️ Extra — o complemento para quem já tem seguro</div>
+<div class="arg-text">Pode ser contratada como opcional na Base/Mais, isoladamente como seguro de "1º risco", ou como reforço de qualquer outro seguro (Generali ou concorrência). Dá acesso à Fundação Champalimaud com 150.000€ adicionais para tratamentos oncológicos.</div>
+<div class="arg-quote">"Já tem seguro de saúde pela empresa? A Extra reembolsa na percentagem de rede mesmo sobre despesas já usadas noutro seguro, e dá acesso à Champalimaud."</div>
+</div>
+</div>
+
+<div class="card">
+<div class="section-label">Diferenciadores fortes (vs. concorrência)</div>
+<div class="arg-card">
+<div class="arg-title">🏥 Rede e preços</div>
+<div class="arg-text">Mais de 30.000 prestadores na Rede AdvanceCare (Grupo Luz Saúde, Grupo José de Mello Saúde/CUF, Grupo Lusíadas Saúde), com preços entre 15% e 40% mais baixos que ao público — mesmo excedendo capitais e durante carências.</div>
+</div>
+<div class="arg-card">
+<div class="arg-title">🧠 Saúde Mental desde a Base</div>
+<div class="arg-text">Ao contrário da Médis e da Multicare (que só cobrem com inclusão de capital de Ambulatório), a Generali inclui Hospitalização e Médico Online de Saúde Mental logo na opção Base.</div>
+</div>
+<div class="arg-card">
+<div class="arg-title">🤸 Fisioterapia sem limites</div>
+<div class="arg-text">Sem pré-autorização e sem limite de sessões (copagamento fixo de 10€) — uma vantagem clara sobre a concorrência.</div>
+</div>
+<div class="arg-card">
+<div class="arg-title">🩹 Welcome Home</div>
+<div class="arg-text">Acompanhamento telefónico por um profissional de enfermagem após uma cirurgia — um serviço que reforça o cuidado pós-operatório.</div>
 </div>
 </div>
 
 <div class="card">
 <div class="section-label">Objeções mais comuns — e como responder</div>
 <div class="obj-item">
-<div class="obj-q">❝ Já tenho seguro de casa ❞</div>
-<div class="obj-a">Pergunte a data de renovação e compare coberturas. Muitas apólices antigas não incluem avaria de eletrodomésticos ou fenómenos sísmicos. Ofereça uma simulação sem compromisso.</div>
+<div class="obj-q">❝ Já tenho seguro de saúde pela empresa ❞</div>
+<div class="obj-a">É exatamente para este cliente que existe a opção Extra: complementa o seguro que já tem (mesmo que seja Médis, Multicare ou outro), com foco na prevenção oncológica e acesso à Champalimaud — sem ter de cancelar nada.</div>
 </div>
 <div class="obj-item">
 <div class="obj-q">❝ Está muito caro ❞</div>
-<div class="obj-a">Explore os Pacotes T (até 15% de desconto) e mostre que pode ajustar franquias e capitais ao orçamento do cliente, sem perder o essencial.</div>
+<div class="obj-a">O prémio mínimo é de apenas 5€/mês, os prémios são dedutíveis em sede de IRS, e há descontos até 15% consoante o nº de pessoas seguras e até 4% se pagar anualmente.</div>
 </div>
 <div class="obj-item">
-<div class="obj-q">❝ Só me interessa proteger a casa, o recheio não é preciso ❞</div>
-<div class="obj-a">Pergunte se tem eletrodomésticos, mobiliário ou equipamento eletrónico de valor. O recheio cobre furto, roubo e danos por água nos bens — não só na estrutura da casa.</div>
+<div class="obj-q">❝ Não tenho doenças, não preciso ❞</div>
+<div class="obj-a">Só em Portugal, 2% das despesas de saúde são para prevenção — e é possível evitar 138 mortes por 100.000 habitantes com diagnóstico precoce. O Onco-risco (Top e Extra) e o check-up anual (todas as opções) são precisamente sobre isso.</div>
 </div>
 <div class="obj-item">
 <div class="obj-q">❝ Vou pensar ❞</div>
-<div class="obj-a">Mostre o simulador online no momento — leva poucos minutos. Pergunte diretamente o que falta saber para decidir hoje.</div>
-</div>
-</div>
-
-<div class="card">
-<div class="section-label">Cross-sell natural após a Casa</div>
-<div class="cross-grid">
-<div class="cross-card"><div class="cross-icon">🚗</div><div class="cross-name">Seguro Automóvel</div><div class="cross-tip">Quem tem casa também tem carro. Pacote T.</div></div>
-<div class="cross-card"><div class="cross-icon">👩‍🍳</div><div class="cross-name">Empregados Domésticos</div><div class="cross-tip">Para quem tem apoio em casa.</div></div>
-<div class="cross-card"><div class="cross-icon">🔑</div><div class="cross-name">Proteção de Rendas</div><div class="cross-tip">Para quem arrenda a sua casa.</div></div>
+<div class="obj-a">Pergunte diretamente o que falta esclarecer. Pode ainda mostrar o cartão digital e a App myAdvanceCare, que tornam o acesso imediato a partir do primeiro dia, com simulador de despesas incluído.</div>
 </div>
 </div>
 </section>
@@ -276,7 +291,7 @@ Generali Tranquilidade · Juntos no Topo
 <script>
 /* ==================== CONFIG ==================== */
 const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzEexzqExtHL1J-MpGyKarhHYMEjCrOWt8dYlCvMva9QBgxthw3i03g8Z6BGobfG_dCuQ/exec';
-const CAMPAIGN_MONTH = 7; // Julho
+const CAMPAIGN_MONTH = 8; // Agosto
 
 function currentMes(){
 const d = new Date();
@@ -324,14 +339,12 @@ if(!v.nome) return;
 const k = v.nome.trim().toLowerCase()+'|'+v.loja;
 if(!people[k]) people[k]={nome:v.nome.trim(), loja:v.loja, apolices:0, quizPts:0};
 people[k].apolices += (Number(v.qtd)||0) * 30;
-// regista também pelo nome simples
 const kn = v.nome.trim().toLowerCase();
 if(!peopleByName[kn]) peopleByName[kn] = k;
 });
 quiz.forEach(q=>{
 if(!q.nome) return;
 const kn = q.nome.trim().toLowerCase();
-// pontos do quiz só contam se a pessoa tiver pelo menos uma venda
 const k = peopleByName[kn];
 if(!k) return;
 people[k].quizPts += Number(q.points)||0;
@@ -399,96 +412,104 @@ setTimeout(refreshRanking, 1500);
 
 /* ==================== QUIZ — banco de perguntas ==================== */
 const allQuestions = [
-{category:'💶 Preços',question:'Qual o preço mínimo anual ("desde") do plano Base do Seguro Casa?',options:['45€','50€','60€','100€'],correct:0,feedback:'O plano Base é o mais acessível, com preços desde 45€/ano.'},
-{category:'💶 Preços',question:'Qual o preço mínimo anual ("desde") do plano Mais?',options:['45€','50€','55€','100€'],correct:1,feedback:'O plano Mais tem preços desde 50€/ano.'},
-{category:'💶 Preços',question:'Qual o preço mínimo anual ("desde") do plano XL?',options:['50€','55€','60€','100€'],correct:1,feedback:'O plano XL tem preços desde 55€/ano.'},
-{category:'💶 Preços',question:'Qual o preço mínimo anual ("desde") do plano Top?',options:['45€','55€','60€','100€'],correct:2,feedback:'O plano Top tem preços desde 60€/ano.'},
-{category:'💶 Preços',question:'Qual o preço mínimo anual ("desde") do plano Premium?',options:['60€','80€','100€','120€'],correct:2,feedback:'O Premium é o plano de topo, com preços desde 100€/ano.'},
-{category:'🏷️ Planos',question:'Qual destas é a frase que descreve o plano Base?',options:['A opção certa para casa e recheio valiosos','Proteção dos riscos mais comuns','Mais descanso para casa e recheio','Mais proteção em mais situações'],correct:1,feedback:'O Base oferece "Proteção dos riscos mais comuns".'},
-{category:'🏷️ Planos',question:'Qual destas é a frase que descreve o plano Mais?',options:['Proteção reforçada para bens mais caros','Proteção dos riscos mais comuns','A opção certa para casa e recheio valiosos','Mais proteção em mais situações'],correct:0,feedback:'O Mais oferece "Proteção reforçada para bens mais caros".'},
-{category:'🏷️ Planos',question:'Qual destas é a frase que descreve o plano XL?',options:['Proteção dos riscos mais comuns','Proteção reforçada para bens mais caros','Mais proteção em mais situações','Mais descanso para casa e recheio'],correct:2,feedback:'O XL oferece "Mais proteção em mais situações".'},
-{category:'🏷️ Planos',question:'Qual destas é a frase que descreve o plano Top?',options:['Mais descanso para casa e recheio','Proteção dos riscos mais comuns','A opção certa para casa e recheio valiosos','Proteção reforçada para bens mais caros'],correct:0,feedback:'O Top oferece "Mais descanso para casa e recheio".'},
-{category:'🏷️ Planos',question:'Qual destas é a frase que descreve o plano Premium?',options:['Mais proteção em mais situações','Proteção dos riscos mais comuns','A opção certa para casa e recheio valiosos','Proteção reforçada para bens mais caros'],correct:2,feedback:'O Premium é "A opção certa para casa e recheio valiosos".'},
-{category:'⚡ Riscos Elétricos',question:'Qual o capital de Riscos Elétricos no Imóvel no plano Base?',options:['1.000€','3.000€','6.000€','10.000€'],correct:0,feedback:'No plano Base, Riscos Elétricos no Imóvel garante 1.000€.'},
-{category:'⚡ Riscos Elétricos',question:'Qual o capital de Riscos Elétricos no Imóvel no plano Mais?',options:['1.000€','3.000€','6.000€','10.000€'],correct:1,feedback:'No plano Mais, Riscos Elétricos no Imóvel garante 3.000€.'},
-{category:'⚡ Riscos Elétricos',question:'Qual o capital de Riscos Elétricos no Imóvel no plano XL?',options:['1.000€','3.000€','6.000€','10.000€'],correct:2,feedback:'No plano XL, Riscos Elétricos no Imóvel garante 6.000€.'},
-{category:'⚡ Riscos Elétricos',question:'Qual o capital de Riscos Elétricos no Imóvel no plano Top?',options:['3.000€','6.000€','10.000€','15.000€'],correct:2,feedback:'No plano Top, Riscos Elétricos no Imóvel garante 10.000€.'},
-{category:'⚡ Riscos Elétricos',question:'No plano Premium, o capital de Riscos Elétricos no Imóvel é igual ao de que outro plano?',options:['Base','Mais','XL','Top'],correct:3,feedback:'No Premium, Riscos Elétricos no Imóvel garante 10.000€ — o mesmo valor do plano Top.'},
-{category:'🌳 Reconstituição de Jardins',question:'Qual o capital de Reconstituição de Jardins no plano Base?',options:['1.000€','1.500€','3.000€','6.000€'],correct:1,feedback:'No plano Base, Reconstituição de Jardins garante 1.500€.'},
-{category:'🌳 Reconstituição de Jardins',question:'Qual o capital de Reconstituição de Jardins no plano Mais?',options:['1.500€','3.000€','6.000€','10.000€'],correct:1,feedback:'No plano Mais, Reconstituição de Jardins garante 3.000€.'},
-{category:'🌳 Reconstituição de Jardins',question:'Qual o capital de Reconstituição de Jardins no plano XL?',options:['1.500€','3.000€','6.000€','10.000€'],correct:2,feedback:'No plano XL, Reconstituição de Jardins garante 6.000€.'},
-{category:'🌳 Reconstituição de Jardins',question:'Qual o capital de Reconstituição de Jardins no plano Top?',options:['3.000€','6.000€','10.000€','15.000€'],correct:2,feedback:'No plano Top, Reconstituição de Jardins garante 10.000€.'},
-{category:'🌳 Reconstituição de Jardins',question:'No plano Premium, qual o capital de Reconstituição de Jardins?',options:['6.000€','10.000€','15.000€','Não existe no Premium'],correct:1,feedback:'No Premium, Reconstituição de Jardins garante 10.000€ — igual ao Top.'},
-{category:'🔧 Avaria de Eletrodomésticos',question:'Qual o limite anual de Avaria de Eletrodomésticos no plano Base?',options:['Até 200€/anuidade','Até 300€/anuidade','Sem limite','Não está incluída'],correct:0,feedback:'Nos planos Base e Mais, o limite é até 200€ por anuidade.'},
-{category:'🔧 Avaria de Eletrodomésticos',question:'Qual o limite anual de Avaria de Eletrodomésticos no plano Mais?',options:['Até 200€/anuidade','Até 300€/anuidade','Sem limite','Não está incluída'],correct:0,feedback:'Nos planos Base e Mais, o limite é até 200€ por anuidade.'},
-{category:'🔧 Avaria de Eletrodomésticos',question:'Qual o limite anual de Avaria de Eletrodomésticos no plano XL?',options:['Até 200€/anuidade','Até 300€/anuidade','Sem limite','Não está incluída'],correct:1,feedback:'Nos planos XL, Top e Premium, o limite sobe para até 300€ por anuidade.'},
-{category:'🔧 Avaria de Eletrodomésticos',question:'Qual o limite anual de Avaria de Eletrodomésticos no plano Top?',options:['Até 200€/anuidade','Até 300€/anuidade','Sem limite','Não está incluída'],correct:1,feedback:'Nos planos XL, Top e Premium, o limite sobe para até 300€ por anuidade.'},
-{category:'🔧 Avaria de Eletrodomésticos',question:'Qual o limite anual de Avaria de Eletrodomésticos no plano Premium?',options:['Até 200€/anuidade','Até 300€/anuidade','Sem limite','Não está incluída'],correct:1,feedback:'No Premium, tal como no XL e Top, o limite é até 300€ por anuidade.'},
-{category:'📦 Capital do Recheio',question:'No plano Base, qual é o capital comum a Incêndio, Danos por Água, Furto/Roubo e Inundações no Recheio?',options:['1.500€','15.000€','30.000€','50.000€'],correct:1,feedback:'No Base, estas quatro coberturas do recheio partilham o capital de 15.000€.'},
-{category:'📦 Capital do Recheio',question:'No plano Mais, qual é o capital comum a Incêndio, Danos por Água, Furto/Roubo e Inundações no Recheio?',options:['15.000€','30.000€','60.000€','100.000€'],correct:1,feedback:'No Mais, este capital comum sobe para 30.000€.'},
-{category:'📦 Capital do Recheio',question:'No plano XL, qual é o capital comum a Incêndio, Danos por Água, Furto/Roubo e Inundações no Recheio?',options:['30.000€','60.000€','100.000€','15.000€'],correct:1,feedback:'No XL, este capital comum é de 60.000€.'},
-{category:'📦 Capital do Recheio',question:'No plano Top, qual é o capital comum a Incêndio, Danos por Água, Furto/Roubo e Inundações no Recheio?',options:['30.000€','60.000€','100.000€','150.000€'],correct:2,feedback:'No Top, este capital comum chega a 100.000€.'},
-{category:'📦 Capital do Recheio',question:'No plano Premium, como funciona o capital de Incêndio, Danos por Água, Furto/Roubo e Inundações no Recheio?',options:['É sempre 15.000€','É um valor fixo de 200.000€','Acompanha o Capital Recheio escolhido pelo cliente','É sempre 100.000€'],correct:2,feedback:'No Premium, estes capitais acompanham o Capital Recheio definido pelo cliente.'},
-{category:'🔌 Riscos Elétricos (Recheio)',question:'Qual o capital de Riscos Elétricos no Recheio no plano Base?',options:['1.000€','3.000€','6.000€','10.000€'],correct:0,feedback:'No Base, Riscos Elétricos no Recheio garante 1.000€.'},
-{category:'🔌 Riscos Elétricos (Recheio)',question:'Qual o capital de Riscos Elétricos no Recheio no plano Mais?',options:['1.000€','3.000€','6.000€','10.000€'],correct:1,feedback:'No Mais, Riscos Elétricos no Recheio garante 3.000€.'},
-{category:'🔌 Riscos Elétricos (Recheio)',question:'Qual o capital de Riscos Elétricos no Recheio no plano XL?',options:['1.000€','3.000€','6.000€','10.000€'],correct:2,feedback:'No XL, Riscos Elétricos no Recheio garante 6.000€.'},
-{category:'🔌 Riscos Elétricos (Recheio)',question:'Qual o capital de Riscos Elétricos no Recheio no plano Top?',options:['3.000€','6.000€','10.000€','15.000€'],correct:2,feedback:'No Top, Riscos Elétricos no Recheio garante 10.000€.'},
-{category:'🔌 Riscos Elétricos (Recheio)',question:'No plano Base, o capital de Riscos Elétricos é igual no Imóvel e no Recheio?',options:['Não, são sempre diferentes','Sim, em ambos é 1.000€','Só é igual no Imóvel','Só é igual no Recheio'],correct:1,feedback:'No plano Base, tanto no Imóvel como no Recheio, o capital de Riscos Elétricos é de 1.000€.'},
-{category:'💻 Equipamento Eletrónico Móvel',question:'Qual o capital para Equipamento Eletrónico Móvel no plano Base?',options:['750€','1.500€','3.000€','5.000€'],correct:0,feedback:'No Base, esta cobertura facultativa garante 750€.'},
-{category:'💻 Equipamento Eletrónico Móvel',question:'Qual o capital para Equipamento Eletrónico Móvel no plano Mais?',options:['750€','1.500€','3.000€','5.000€'],correct:1,feedback:'No Mais, esta cobertura garante 1.500€.'},
-{category:'💻 Equipamento Eletrónico Móvel',question:'Qual o capital para Equipamento Eletrónico Móvel no plano XL?',options:['750€','1.500€','3.000€','5.000€'],correct:2,feedback:'No XL, esta cobertura garante 3.000€.'},
-{category:'💻 Equipamento Eletrónico Móvel',question:'Qual o capital para Equipamento Eletrónico Móvel no plano Top?',options:['1.500€','3.000€','5.000€','10.000€'],correct:2,feedback:'No Top, esta cobertura garante 5.000€.'},
-{category:'💻 Equipamento Eletrónico Móvel',question:'Quantos dos 5 planos partilham o mesmo capital de 5.000€ para Equipamento Eletrónico Móvel?',options:['Nenhum','Só 1 (Top)','2 (Top e Premium)','Todos os 5 planos'],correct:2,feedback:'Top e Premium partilham o mesmo capital de 5.000€ para Equipamento Eletrónico Móvel.'},
-{category:'🛡️ Coberturas',question:'Quais coberturas estão sempre incluídas em todos os planos do Imóvel?',options:['Apenas Incêndio','Incêndio, Danos por Água, Riscos Elétricos, RC, Inundações/Tempestades e Avaria de Eletrodomésticos','Só Fenómenos Sísmicos','Apenas furto ou roubo'],correct:1,feedback:'Estas sete coberturas do Imóvel são obrigatórias em todos os planos, do Base ao Premium.'},
-{category:'🛡️ Coberturas',question:'Quais as duas coberturas facultativas no Imóvel?',options:['Incêndio e RC','Reconstituição de Jardins e Fenómenos Sísmicos','Danos por água e furto','Assistência ao lar e RC'],correct:1,feedback:'No Imóvel, só Reconstituição de Jardins e Fenómenos Sísmicos são facultativas.'},
-{category:'🛡️ Coberturas',question:'Quantas coberturas facultativas existem no Recheio?',options:['Nenhuma','Duas','Três: RC Cães e Gatos, Equipamento Eletrónico Móvel e Organização de Viatura para Mudanças','Cinco'],correct:2,feedback:'No Recheio há três coberturas facultativas: RC Cães e Gatos, Equipamento Eletrónico Móvel e Organização de Viatura para Mudanças.'},
-{category:'🛡️ Coberturas',question:'O capital de Responsabilidade Civil (250.000€) varia entre os 5 planos?',options:['Sim, varia muito','Não, é igual em todos os planos','Só varia no Premium','Só está incluído no Top e Premium'],correct:1,feedback:'A Responsabilidade Civil garante sempre 250.000€, seja qual for o plano.'},
-{category:'🛡️ Coberturas',question:'O que significa o regime Capital Seguro nas coberturas de Incêndio e Danos por Água do Imóvel?',options:['É sempre 250.000€','O capital acompanha o valor do imóvel definido na apólice','É sempre 15.000€','Só se aplica ao plano Premium'],correct:1,feedback:'Capital Seguro significa que o valor garantido acompanha o valor do imóvel indicado na apólice.'},
-{category:'🛡️ Coberturas',question:'A cobertura de RC Cães e Gatos (50.000€) está disponível em quantos planos?',options:['Só no Premium','Em todos os planos, como opção facultativa','Só no Top e Premium','Não existe'],correct:1,feedback:'A RC Cães e Gatos está disponível como opção facultativa em todos os planos, com 50.000€ de capital.'},
-{category:'🛡️ Coberturas',question:'Um cliente pode escolher segurar só a casa, só o recheio, ou ambos?',options:['Não, é sempre casa + recheio','Sim, escolhe livremente','Só pode segurar o recheio se for inquilino','Só é possível através de agente presencial'],correct:1,feedback:'O cliente escolhe proteger só a casa, só o recheio, ou os dois — útil sobretudo para quem arrenda.'},
-{category:'🛡️ Coberturas',question:'Qual a diferença entre o preço mínimo anual do plano Base e do plano Top?',options:['5€','10€','15€','25€'],correct:2,feedback:'A diferença é de 15€/ano: 45€ (Base) para 60€ (Top).'},
-{category:'🛡️ Coberturas',question:'Que plano introduz capitais de recheio personalizados (Capital Recheio) em vez de valores fixos?',options:['Base','Mais','XL','Premium'],correct:3,feedback:'O Premium é o único plano em que vários capitais do recheio acompanham o Capital Recheio escolhido pelo cliente.'},
-{category:'🛡️ Coberturas',question:'Avaria de Eletrodomésticos é uma cobertura obrigatória ou facultativa?',options:['Facultativa em todos os planos','Obrigatória, incluída em todos os planos (com limite anual)','Só obrigatória no Premium','Não existe'],correct:1,feedback:'A Avaria de Eletrodomésticos é obrigatória em todos os planos, com limite anual que varia entre 200€ e 300€.'},
-{category:'🛡️ Coberturas',question:'A Organização de Viatura para Mudanças, no Recheio, vem incluída em todos os planos?',options:['Não, é sempre opcional','Sim, apesar de ser facultativa, vem sempre incluída','Só está incluída no Premium','Não existe'],correct:1,feedback:'Apesar de ser facultativa, a Organização de Viatura para Mudanças vem sempre incluída em todos os planos.'},
-{category:'🛡️ Coberturas',question:'O plano XL situa-se onde na hierarquia dos 5 planos?',options:['Entre o Base e o Mais','Entre o Mais e o Top','Entre o Top e o Premium','É o mais básico'],correct:1,feedback:'A ordem é: Base, Mais, XL, Top e Premium — o XL fica entre o Mais e o Top.'},
-{category:'🛡️ Coberturas',question:'Quantos planos distintos tem o Seguro Casa da Generali Tranquilidade?',options:['3','4','5','6'],correct:2,feedback:'O Seguro Casa tem 5 planos: Base, Mais, XL, Top e Premium.'},
-{category:'🏠 Situações reais',question:'Uma inundação obriga a família a sair de casa temporariamente. Que despesas a Assistência ao Lar cobre?',options:['Nenhuma','Alojamento, alimentação e lavandaria','Só transporte','Só alimentação'],correct:1,feedback:'A Assistência ao Lar cobre despesas de alojamento, alimentação e lavandaria enquanto a casa está inabitável.'},
-{category:'🏠 Situações reais',question:'A máquina de lavar avariou e o cliente não consegue lavar roupa em casa. O que pode pedir?',options:['Nada','Reembolso das despesas em lavandaria, até ao montante definido','Substituição gratuita','Só é coberto se for inundação'],correct:1,feedback:'A Assistência reembolsa despesas em lavandaria quando o cliente não consegue usar a máquina.'},
-{category:'🏠 Situações reais',question:'A casa fica inabitável após um sinistro coberto. O que garante o seguro quanto à mudança da mobília?',options:['Nada','O aluguer da viatura de transporte e a guarda dos bens não transferidos','Apenas o transporte, sem guarda','Só nos planos Top e Premium'],correct:1,feedback:'A Assistência cobre o aluguer da viatura de mudança e a guarda dos bens que não sejam transferidos.'},
-{category:'🏠 Situações reais',question:'A fechadura ficou danificada e a casa fica acessível do exterior. O seguro ajuda?',options:['Não, fechaduras nunca são cobertas','Sim, a Assistência ao Lar atua nestas situações','Só se houver participação à polícia','Só no Premium'],correct:1,feedback:'A Assistência ao Lar cobre situações em que a fechadura fica inutilizada ou a casa fica acessível.'},
-{category:'🏠 Situações reais',question:'A partir de que plano o capital de Furto ou Roubo no recheio atinge 100.000€?',options:['Base','Mais','XL','Top'],correct:3,feedback:'O capital de furto/roubo no recheio chega a 100.000€ a partir do plano Top.'},
-{category:'🏠 Situações reais',question:'Uma rotura de canalização provoca infiltração em casa. O que garante a Assistência?',options:['Nada','O envio de um profissional para avaliar os danos','Só uma indemnização em dinheiro','Apenas aconselhamento por telefone'],correct:1,feedback:'A Assistência garante o envio de profissionais para avaliar os danos provocados por rotura ou infiltração.'},
-{category:'🏠 Situações reais',question:'Se o cliente tiver de se ausentar de casa devido a obras, o que o seguro pode cobrir?',options:['Nada','As despesas de alojamento enquanto durarem as obras necessárias','Só o custo das obras','Apenas se as obras forem de emergência'],correct:1,feedback:'O seguro pode cobrir as despesas de alojamento quando o cliente tem de se ausentar devido a obras.'},
-{category:'🏠 Situações reais',question:'Além de reparações, que outros serviços a Assistência ao Lar e Família disponibiliza?',options:['Apenas reparações','Mudanças, limpezas, médico ao domicílio e babysitting','Só seguros de viagem','Apoio jurídico em tribunal'],correct:1,feedback:'A Assistência ao Lar e Família inclui também mudanças, limpezas, médico ao domicílio e babysitting.'},
-{category:'🏠 Situações reais',question:'Para ser reembolsado de despesas de lavandaria ou alojamento, o que deve o cliente sempre pedir?',options:['Um orçamento prévio','Fatura com o número de contribuinte do titular','Apenas um recibo verbal','Nada, basta o pedido por telefone'],correct:1,feedback:'O cliente deve sempre pedir fatura com o NIF do titular da apólice para garantir o reembolso.'},
-{category:'🏠 Situações reais',question:'O seguro pode cobrir, como benefícios extra, assistência a animais e arranjo de eletrodomésticos?',options:['Não, nunca','Sim, são exemplos de benefícios adicionais disponíveis','Só em apólices empresariais','Só com seguro separado'],correct:1,feedback:'Assistência a animais, arranjo de eletrodomésticos e assistência médico-sanitária são benefícios extra do Seguro Casa.'},
-{category:'🏠 Situações reais',question:'Quando a casa fica inabitável, quem suporta os custos de guarda dos bens não transferidos?',options:['O cliente','A seguradora, ao abrigo da Assistência','O condomínio','Não há cobertura para isso'],correct:1,feedback:'A Assistência cobre os custos de guarda dos bens que não sejam transferidos para a habitação provisória.'},
-{category:'🏠 Situações reais',question:'Um cliente quer participar um sinistro de furto. Pode fazê-lo online?',options:['Não, só presencialmente','Sim, através da participação de sinistro online','Só por carta registada','Só se o valor for superior a 1.000€'],correct:1,feedback:'O cliente pode participar sinistros, incluindo furto, diretamente online no site da Generali Tranquilidade.'},
-{category:'🏠 Situações reais',question:'A partir de que plano o capital de Furto ou Roubo no recheio atinge 60.000€?',options:['Base','Mais','XL','Top'],correct:2,feedback:'O capital de furto/roubo no recheio chega a 60.000€ no plano XL.'},
-{category:'🏠 Situações reais',question:'A partir de que plano o capital de Furto ou Roubo no recheio atinge 30.000€?',options:['Base','Mais','XL','Top'],correct:1,feedback:'O capital de furto/roubo no recheio chega a 30.000€ no plano Mais.'},
-{category:'🏠 Situações reais',question:'Além de participar um sinistro online, o que mais pode o cliente consultar no site?',options:['Nada mais','O estado do sinistro que participou','Só o valor da indemnização por telefone','Só através do mediador'],correct:1,feedback:'O cliente pode consultar online o estado de um sinistro já participado.'},
-{category:'💰 Valor e serviços',question:'Quanto pode poupar um cliente que junte o Seguro Casa a outro seguro Generali, através dos Pacotes T?',options:['5%','Até 10%','Até 15%','30%'],correct:2,feedback:'Os Pacotes T oferecem desconto até 15% sobre o prémio comercial.'},
-{category:'💰 Valor e serviços',question:'Qual o número de telefone da Linha de Assistência ao Lar e Família?',options:['211 520 310','217 252 328','808 200 300','217 000 000'],correct:1,feedback:'A Linha de Assistência ao Lar e Família atende pelo 217 252 328.'},
-{category:'💰 Valor e serviços',question:'Durante quantas horas por dia está disponível a Linha de Assistência ao Lar e Família?',options:['8h às 20h','Dias úteis, 9h às 19h','24 horas','Só fins de semana'],correct:2,feedback:'A Linha de Assistência ao Lar e Família está disponível 24 horas por dia.'},
-{category:'💰 Valor e serviços',question:'Em que sistemas está disponível a App Generali Tranquilidade?',options:['Só iOS','iOS, Android e Huawei','Só Android','Só em computador'],correct:1,feedback:'A App Generali Tranquilidade está disponível em iOS, Android e Huawei.'},
-{category:'💰 Valor e serviços',question:'Como pode o cliente pedir uma reparação sem precisar de telefonar?',options:['Não é possível','Através do pedido de Assistência ao Lar Digital, online','Só presencialmente','Só por carta'],correct:1,feedback:'O cliente pode pedir Assistência ao Lar Digital online, sem telefonar.'},
-{category:'💰 Valor e serviços',question:'Qual destes é um cross-sell natural a propor depois do Seguro Casa?',options:['Seguro de Embarcações de Recreio','Seguro Empregados Domésticos','Seguro de Golfe','Seguro de Instrumentos Musicais'],correct:1,feedback:'O Seguro Empregados Domésticos é um cross-sell natural para clientes com apoio doméstico em casa.'},
-{category:'💰 Valor e serviços',question:'Qual o seguro indicado para um cliente que arrenda a sua casa e quer proteção contra falta de pagamento de renda?',options:['Seguro Automóvel','Proteção de Rendas','Seguro de Viagem','RC Caça'],correct:1,feedback:'O Seguro Proteção de Rendas protege quem arrenda a sua casa.'},
-{category:'💰 Valor e serviços',question:'Onde pode o cliente consultar as suas apólices e atualizar dados pessoais?',options:['Só por telefone','Na Área de Cliente, online','Só presencialmente','Não é possível consultar online'],correct:1,feedback:'A Área de Cliente permite consultar apólices, sinistros e atualizar dados pessoais, online.'},
-{category:'💰 Valor e serviços',question:'O que é a Vídeo-peritagem?',options:['Uma reunião presencial obrigatória','Avaliação de danos à distância, por videochamada','Um curso de formação','Um seguro adicional para vídeo-vigilância'],correct:1,feedback:'A Vídeo-peritagem permite avaliar danos à distância, por videochamada, sem visita presencial.'},
-{category:'💰 Valor e serviços',question:'O Seguro Casa permite ao cliente ajustar as franquias ao seu orçamento?',options:['Não, a franquia é sempre fixa','Sim, o cliente pode escolher diferentes franquias, ajustando ao seu orçamento','Só é possível no Premium','As franquias só existem no Recheio'],correct:1,feedback:'O cliente pode escolher diferentes franquias em cada cobertura, ajustando o nível de risco ao orçamento.'},
-{category:'🏢 Casa vs. Condomínio',question:'Se o prédio já tem Multirriscos Condomínio, a casa do cliente está totalmente protegida?',options:['Sim, está sempre tudo incluído','Não, o Multirriscos Condomínio normalmente não cobre o recheio da casa','Sim, mas só para inquilinos','Não, nenhuma cobertura se aplica ao prédio'],correct:1,feedback:'O Multirriscos Condomínio protege o edifício e partes comuns, mas normalmente não inclui o recheio.'},
-{category:'🏢 Casa vs. Condomínio',question:'O Seguro Casa garante automaticamente o recheio?',options:['Sim, sempre','Não, o cliente escolhe proteger a casa, o recheio, ou ambos','Só se pagar um suplemento obrigatório','Só nos planos Top e Premium'],correct:1,feedback:'É um erro comum pensar que o Seguro Casa cobre sempre o recheio por defeito — o cliente escolhe.'},
-{category:'🏢 Casa vs. Condomínio',question:'O que são "partes comuns" de um condomínio, para efeitos de seguro?',options:['Só as garagens','Telhado, instalações gerais de água/eletricidade/gás, e garagens ou espaços de estacionamento','Só os apartamentos individuais','Só o elevador'],correct:1,feedback:'Partes comuns incluem telhado, instalações gerais de água, eletricidade, gás, comunicações e garagens.'},
-{category:'🏢 Casa vs. Condomínio',question:'Quando pode um cliente com casa própria optar por manter só o seguro do recheio?',options:['Nunca','Quando o condomínio já cobre o edifício mas não cobre o recheio','Só se tiver crédito habitação','Só se viver no último andar'],correct:1,feedback:'Se o condomínio já cobre o edifício, o cliente pode manter o Seguro Casa apenas para o recheio, evitando duplicação.'},
-{category:'🏢 Casa vs. Condomínio',question:'Que desconto é oferecido no Multirriscos Condomínio para seguros feitos por empresas de gestão de condomínios?',options:['5%','10%','15%','20%'],correct:1,feedback:'É oferecido um desconto de 10% para seguros feitos por empresas de gestão de condomínios.'},
-{category:'🏢 Institucional',question:'A Generali Tranquilidade resulta da fusão de que duas marcas?',options:['Tranquilidade e Açoreana','Generali e Tranquilidade','Generali e Fidelidade','Tranquilidade e Allianz'],correct:1,feedback:'A Generali Tranquilidade resulta da fusão entre as marcas Generali e Tranquilidade.'},
-{category:'🏢 Institucional',question:'Onde fica a sede da Generali Tranquilidade?',options:['Porto, Avenida dos Aliados','Lisboa, Avenida da Liberdade, 242','Coimbra, Praça do Comércio','Faro, Avenida da República'],correct:1,feedback:'A sede da Generali Tranquilidade está na Avenida da Liberdade, 242, em Lisboa.'},
-{category:'🏢 Institucional',question:'Com que número está a Generali Tranquilidade registada na ASF?',options:['1197','2025','500','310'],correct:0,feedback:'A Generali Tranquilidade está registada na ASF com o número 1197.'},
-{category:'🏢 Institucional',question:'Em quantos passos pode o cliente fazer a simulação online do Seguro Casa?',options:['2','4','6','8'],correct:1,feedback:'A simulação online do Seguro Casa pode ser feita em apenas 4 passos.'},
-{category:'🏢 Institucional',question:'Que título a Generali Tranquilidade recebeu em estudos recentes da DECO PROteste?',options:['Seguradora mais barata','Melhor Seguradora','Seguradora com mais clientes','Seguradora mais antiga'],correct:1,feedback:'A Generali Tranquilidade foi distinguida como Melhor Seguradora pela DECO PROteste.'},
-{category:'🏢 Institucional',question:'Que documentos deve o cliente sempre consultar antes de subscrever o Seguro Casa?',options:['Apenas o preço','O Documento de Informação e as Condições Gerais da apólice','Só a proposta comercial','Nenhum, basta a palavra do comercial'],correct:1,feedback:'O Documento de Informação e as Condições Gerais são documentos que o cliente deve sempre consultar.'},
-{category:'💰 Valor e serviços',question:'Que serviço permite ao cliente continuar uma simulação online que tinha começado mas não terminou?',options:['Não é possível, tem de recomeçar','Recuperar Simulação, disponível online','Só ligando para a linha de apoio','Só através de agente presencial'],correct:1,feedback:'O site da Generali Tranquilidade tem uma opção de "Recuperar Simulação" para continuar onde ficou.'}
+{category:'💚 Plano e Enquadramento',question:'Quantas opções principais tem o Seguro de Saúde Individual?',options:['2','3','4','5'],correct:1,feedback:'O Seguro de Saúde Individual tem 3 opções principais — Base, Mais e Top — além da opção Extra.'},
+{category:'💚 Plano e Enquadramento',question:'De que 3 formas pode ser contratada a opção Extra?',options:['Só isoladamente','Opcional em Base/Mais, isoladamente como seguro de 1º risco, ou como reforço de outro seguro','Só com o plano Top','Só para empresas'],correct:1,feedback:'A Extra pode ser opcional nas opções Base e Mais, contratada isoladamente como seguro de "1º risco", ou como reforço de qualquer outro seguro que o cliente tenha, na Companhia ou numa congénere.'},
+{category:'💚 Plano e Enquadramento',question:'Qual foi o volume de prémios do mercado de Seguros de Saúde em Portugal (Observatório APS, 2022)?',options:['500 milhões €','800 milhões €','1.196 milhões €','2.000 milhões €'],correct:2,feedback:'O mercado de Seguros de Saúde registou 1.196 milhões € de prémios em 2022.'},
+{category:'💚 Plano e Enquadramento',question:'Qual o prémio médio de mercado dos Seguros de Saúde (Observatório APS, 2022)?',options:['150€','225€','323€','450€'],correct:2,feedback:'O prémio médio de mercado é de 323€.'},
+{category:'💚 Plano e Enquadramento',question:'Qual foi o crescimento do segmento individual da Tranquilidade em Dez23, face ao mercado (+14,7%)?',options:['+10,5%','+14,7%, igual ao mercado','+21,7%','+30%'],correct:2,feedback:'O individual da Tranquilidade cresceu +21,7%, acima do crescimento do mercado (+14,7%).'},
+{category:'💚 Plano e Enquadramento',question:'Que grande vantagem distingue a Generali Tranquilidade no mercado de Seguros de Saúde?',options:['É a seguradora mais barata','Parceria exclusiva com o Centro Clínico Champalimaud para prevenção e reforço oncológico','Não tem concorrência','Só vende a empresas'],correct:1,feedback:'A parceria exclusiva com o Centro Clínico Champalimaud é uma vantagem distintiva, com vertente de prevenção e reforço de capital oncológico.'},
+{category:'💚 Plano e Enquadramento',question:'A partir de que opção está incluída a cobertura de Saúde Mental?',options:['Só na Top','Desde a opção Base','Só com a opção Extra','Só a partir da Mais'],correct:1,feedback:'A Saúde Mental está incluída desde a opção Base de Hospitalização — uma vantagem competitiva.'},
+{category:'💚 Plano e Enquadramento',question:'Qual o desconto de Venda Cruzada disponível?',options:['Até 5%','Até 10%','Até 15%','Até 25%'],correct:2,feedback:'Os descontos de Venda Cruzada vão até 15%.'},
+{category:'📋 Capitais e Coberturas',question:'Qual o capital de Hospitalização na opção Base?',options:['5.000€','15.000€','75.000€','150.000€'],correct:1,feedback:'A opção Base garante 15.000€ de capital de Hospitalização.'},
+{category:'📋 Capitais e Coberturas',question:'Qual o capital de Hospitalização na opção Mais?',options:['15.000€','50.000€','75.000€','500.000€'],correct:2,feedback:'A opção Mais garante 75.000€ de capital de Hospitalização.'},
+{category:'📋 Capitais e Coberturas',question:'Qual o capital de Hospitalização na opção Top?',options:['75.000€','150.000€','300.000€','500.000€'],correct:3,feedback:'A opção Top garante 500.000€ de capital de Hospitalização.'},
+{category:'📋 Capitais e Coberturas',question:'Qual o capital de Hospitalização na opção Extra?',options:['75.000€','100.000€','150.000€','200.000€'],correct:2,feedback:'A opção Extra garante 150.000€ de capital de Hospitalização.'},
+{category:'📋 Capitais e Coberturas',question:'O Parto está incluído na Hospitalização em que opções?',options:['Em todas','Só na Base','Nas opções Mais e Top','Só na Extra'],correct:2,feedback:'O Parto (incluído no capital de Hospitalização) só está disponível nas opções Mais e Top.'},
+{category:'📋 Capitais e Coberturas',question:'Qual o capital de Ambulatório na opção Top?',options:['1.000€','2.500€','5.000€','10.000€'],correct:2,feedback:'A opção Top garante 5.000€ de capital de Ambulatório.'},
+{category:'📋 Capitais e Coberturas',question:'A partir de que sub-opção o Ambulatório passa a ter capital de 2.500€?',options:['Base XXL','Mais (todas as sub-opções)','Só no Top','Nunca chega a 2.500€ fora do Top'],correct:1,feedback:'Todas as sub-opções da Mais (Mais, Mais XL, Mais XXL) garantem 2.500€ de Ambulatório.'},
+{category:'📋 Capitais e Coberturas',question:'A cobertura de Medicamentos está disponível em que opção?',options:['Em todas','Só na Base','Só na Top','Só na Extra'],correct:2,feedback:'A cobertura de reembolso de Medicamentos só está disponível na opção Top, com 1.000€.'},
+{category:'📋 Capitais e Coberturas',question:'A cobertura de Ortóteses Oculares (óculos e lentes de contacto) está disponível a partir de quando?',options:['Desde a Base','Só na Mais XXL (250€) e Top (500€)','Só na Extra','Nunca está incluída'],correct:1,feedback:'As Ortóteses Oculares só estão disponíveis na Mais XXL (250€) e na Top (500€).'},
+{category:'📋 Capitais e Coberturas',question:'A partir de que capital de Próteses e Ortóteses beneficia a opção Top?',options:['1.000€','1.500€','2.000€','2.500€'],correct:3,feedback:'A opção Top garante 2.500€ de capital para Próteses e Ortóteses.'},
+{category:'📋 Capitais e Coberturas',question:'A Hospitalização inclui despesas com cirurgias realizadas em regime ambulatório?',options:['Não, nunca','Sim, ficam garantidas em Hospitalização até ao limite de capital','Só se forem urgentes','Só na opção Top'],correct:1,feedback:'A cirurgia ambulatória fica garantida na cobertura de Hospitalização até ao limite de capital.'},
+{category:'📋 Capitais e Coberturas',question:'As despesas com tratamentos oncológicos ficam garantidas em que cobertura, mesmo quando administradas em ambulatório?',options:['Ambulatório','Hospitalização, até ao limite de capital','Só Doenças Graves','Não são cobertas'],correct:1,feedback:'Quimioterapia, radioterapia e medicamentos oncológicos ficam garantidos em Hospitalização, mesmo administrados em ambulatório.'},
+{category:'📋 Capitais e Coberturas',question:'A Fisioterapia e a Cinesioterapia têm necessidade de pré-autorização?',options:['Sim, sempre','Não, são garantidas em rede sem pré-autorização','Só acima de 10 sessões','Só fora da rede'],correct:1,feedback:'A Fisioterapia e a Cinesioterapia são garantidas em rede sem necessidade de pré-autorização.'},
+{category:'📋 Capitais e Coberturas',question:'Qual é o limite de sessões de Fisioterapia comparticipadas?',options:['6 sessões','10 sessões','20 sessões','Sem limite de sessões'],correct:3,feedback:'Não há limite de sessões de Fisioterapia — é uma das grandes vantagens face à concorrência.'},
+{category:'📋 Capitais e Coberturas',question:'A Estomatologia está disponível na opção Base?',options:['Sim, em todas as sub-opções','Não, em nenhuma sub-opção','Só na Base XXL','Só com a Extra'],correct:1,feedback:'A Estomatologia não está disponível em nenhuma sub-opção da Base — só a partir da Mais XL.'},
+{category:'💳 Copagamentos',question:'Qual o copagamento de Hospitalização em rede (Rede Global AdvanceCare) nas opções Base e Mais?',options:['0€','10%, mínimo 250€ e máximo 500€','20%','50€ fixos'],correct:1,feedback:'Nas opções Base e Mais, o copagamento na Rede Global AdvanceCare é de 10%, entre 250€ e 500€.'},
+{category:'💳 Copagamentos',question:'Qual o copagamento de Hospitalização em rede, nas Unidades Luz Saúde e CUF, nas opções Base e Mais?',options:['10% / 250€ / 500€','10% / 400€ / 500€','20% / 500€ / 1.000€','0€'],correct:1,feedback:'Nas Unidades Luz Saúde e CUF, o copagamento é ligeiramente mais elevado: 10%, entre 400€ e 500€.'},
+{category:'💳 Copagamentos',question:'Qual o copagamento de Hospitalização em rede na opção Top?',options:['10%','5%','0€, em qualquer rede','30%'],correct:2,feedback:'Na opção Top, a Hospitalização em rede não tem copagamento (0€), seja na Rede Global AdvanceCare ou nas Unidades Luz Saúde/CUF.'},
+{category:'💳 Copagamentos',question:'Qual o copagamento (fora da rede) de Hospitalização na opção Top?',options:['0%','10%','30%','50%'],correct:2,feedback:'Fora da rede, o copagamento na opção Top é de 30% (ou seja, 70% de reembolso).'},
+{category:'💳 Copagamentos',question:'Qual o copagamento de uma consulta na Rede Global AdvanceCare?',options:['15€','18,5€','21€','25€'],correct:1,feedback:'Uma consulta na Rede Global AdvanceCare tem copagamento de 18,5€.'},
+{category:'💳 Copagamentos',question:'Qual o copagamento de uma consulta nas Unidades Luz Saúde e CUF?',options:['15€','18,5€','21€','25€'],correct:2,feedback:'Uma consulta nas Unidades Luz Saúde e CUF tem copagamento de 21€.'},
+{category:'💳 Copagamentos',question:'Qual o copagamento de uma consulta de urgência?',options:['15€','25€','35€','45€'],correct:3,feedback:'O copagamento de uma consulta de urgência é de 45€, independentemente do nº de especialistas consultados.'},
+{category:'💳 Copagamentos',question:'Qual o copagamento de uma consulta ao domicílio de médico?',options:['0€','15€','25€','45€'],correct:1,feedback:'O médico ao domicílio tem copagamento de 15€.'},
+{category:'💳 Copagamentos',question:'Qual o copagamento de uma consulta de Psiquiatria, Psicologia ou Psicoterapia em Ambulatório (rede)?',options:['15€','18,5€','25€','45€'],correct:2,feedback:'A consulta em Ambulatório (Psiquiatria/Psicologia/Psicoterapia) na rede tem copagamento de 25€.'},
+{category:'💳 Copagamentos',question:'Qual o copagamento de uma consulta de Psiquiatria, Psicologia ou Psicoterapia no Médico Online?',options:['0€','15€','25€','45€'],correct:1,feedback:'No Médico Online, estas consultas têm copagamento de 15€ — mais baixo que em Ambulatório.'},
+{category:'💳 Copagamentos',question:'Estas consultas de Psiquiatria/Psicologia/Psicoterapia por Médico Online têm limite de utilização?',options:['Sim, 10 por ano','Sim, 20 por ano','Não, são sem limite de utilização','Só 1 por mês'],correct:2,feedback:'No Médico Online, estas consultas não têm limite de utilização — outra vantagem face à concorrência.'},
+{category:'💳 Copagamentos',question:'Qual o copagamento de um TAC na Rede Global AdvanceCare?',options:['15€','30€','55€','70€'],correct:1,feedback:'Um TAC na Rede Global AdvanceCare tem copagamento de 30€.'},
+{category:'💳 Copagamentos',question:'Qual o copagamento de uma Ressonância Magnética (RMN) nas Unidades Luz Saúde e CUF?',options:['30€','55€','70€','100€'],correct:3,feedback:'Uma RMN nas Unidades Luz Saúde e CUF tem copagamento de 100€.'},
+{category:'💳 Copagamentos',question:'Quantas consultas gratuitas por ano tem o cliente no Médico Online (Medicina Geral, Interna, Pediatria, Consulta do Viajante)?',options:['0','1','2','Ilimitadas'],correct:2,feedback:'As 2 primeiras consultas da anuidade são gratuitas; as seguintes têm copagamento de 15€.'},
+{category:'💳 Copagamentos',question:'Qual o copagamento do check-up anual em prestador convencionado?',options:['15€','30€','60€','90€'],correct:2,feedback:'O check-up anual tem copagamento de 60€.'},
+{category:'💳 Copagamentos',question:'Qual a percentagem de comparticipação fora da rede, na Ambulatório, nas opções Base e Mais?',options:['30%','50%','70%','90%'],correct:1,feedback:'Fora da rede, nas opções Base e Mais, o cliente paga 50% (com máximo de 35€ nas consultas).'},
+{category:'🎗️ Opção Extra',question:'A opção Extra, contratada isoladamente, tem que franquia anual em Hospitalização?',options:['5.000€','7.500€','10.000€','15.000€'],correct:2,feedback:'A Extra isolada tem franquia anual de 10.000€ em Hospitalização.'},
+{category:'🎗️ Opção Extra',question:'A franquia de 10.000€ da opção Extra aplica-se sempre?',options:['Sim, em qualquer circunstância','Não se aplica quando a Extra é opcional numa apólice Base ou Mais','Só se aplica a menores de idade','Só se aplica no estrangeiro'],correct:1,feedback:'Quando a Extra é contratada como opcional na mesma apólice de Base ou Mais, não há franquia — aplica-se antes um copagamento de 10% (mín. 250€, máx. 500€).'},
+{category:'🎗️ Opção Extra',question:'A franquia da opção Extra pode ser paga por outro seguro de saúde que o cliente já tenha?',options:['Não, nunca','Sim, seja da Generali Tranquilidade ou da concorrência','Só se for da Generali','Só se for de uma seguradora estrangeira'],correct:1,feedback:'A franquia pode ser paga por um seguro de saúde que o cliente já tenha, seja da Generali Tranquilidade ou da concorrência.'},
+{category:'🎗️ Opção Extra',question:'Que capital adicional a opção Extra garante para tratamentos oncológicos na Fundação Champalimaud?',options:['50.000€','100.000€','150.000€','200.000€'],correct:2,feedback:'A Extra garante um capital adicional de 150.000€ para tratamentos oncológicos na Champalimaud.'},
+{category:'🎗️ Opção Extra',question:'Quando o cliente já usou outro seguro (ex: Médis, Multicare) e depois ativa o reembolso pela Extra, a que percentagem é reembolsado?',options:['A 50%, sempre','Na percentagem estabelecida em Rede','A 100%, sempre','Não pode ser reembolsado'],correct:1,feedback:'A despesa é reembolsada pela Extra na percentagem estabelecida em Rede, mesmo que já tenha sido usada outra seguradora.'},
+{category:'🎗️ Onco-risco e Champalimaud',question:'O Programa Onco-risco distingue-se em quantos momentos?',options:['2','3','4','5'],correct:1,feedback:'O Programa Onco-risco tem 3 momentos: inquérito/consultas, prescrição de exames, e entrega de relatório.'},
+{category:'🎗️ Onco-risco e Champalimaud',question:'Qual a idade mínima de utilização do Programa Onco-risco?',options:['Não tem idade mínima','15 anos','18 anos','21 anos'],correct:2,feedback:'O Onco-risco aplica-se a partir dos 18 anos.'},
+{category:'🎗️ Onco-risco e Champalimaud',question:'Em que opção o Programa Onco-risco vem incluído sem custo adicional?',options:['Só na Base','Só na Mais','Top (e Extra)','Em nenhuma, é sempre opcional'],correct:2,feedback:'O Programa Onco-risco vem incluído na opção Top e na opção Extra.'},
+{category:'🎗️ Onco-risco e Champalimaud',question:'Quando fica disponível o capital de Hospitalização e Tratamentos Oncológicos na Fundação Champalimaud?',options:['Desde o primeiro dia da apólice','Apenas após esgotado o capital de Hospitalização normal','Só depois de 5 anos de apólice','Nunca, é sempre um capital autónomo'],correct:1,feedback:'Este capital só fica disponível depois de esgotado o capital de Hospitalização normal.'},
+{category:'🎗️ Onco-risco e Champalimaud',question:'Segundo o contexto oncológico de 2020 em Portugal, quantas mortes é possível evitar por cada 100.000 habitantes, com tratamento atempado e prevenção?',options:['58 mortes','98 mortes','138 mortes','200 mortes'],correct:2,feedback:'É possível evitar 138 mortes por cada 100.000 habitantes, quando se asseguram tratamentos atempados e se aposta na prevenção.'},
+{category:'🎗️ Onco-risco e Champalimaud',question:'Que percentagem das despesas de saúde em Portugal é atualmente dedicada à prevenção?',options:['2%','10%','20%','30%'],correct:0,feedback:'Apenas 2% das despesas de saúde em Portugal são atualmente para prevenção.'},
+{category:'🩺 Doenças Graves',question:'Qual o limite anual da cobertura de Doenças Graves?',options:['500.000€','750.000€','1.000.000€','1.500.000€'],correct:2,feedback:'A cobertura de Doenças Graves tem um limite anual de 1.000.000€.'},
+{category:'🩺 Doenças Graves',question:'A cobertura de Doenças Graves cobre despesas realizadas em Portugal?',options:['Sim, sempre','Não, cobre despesas realizadas no estrangeiro','Só em hospitais privados','Só se o cliente pedir'],correct:1,feedback:'A Doenças Graves cobre despesas realizadas no estrangeiro para tratamento da doença grave.'},
+{category:'🩺 Doenças Graves',question:'A cobertura de tratamento de cancro em Doenças Graves exclui que tipo de cancro da pele?',options:['Todos os cancros de pele','Todos, exceto melanoma maligno e cancro papilar da bexiga','Só o carcinoma basocelular','Nenhum é excluído'],correct:1,feedback:'Ficam excluídos os cancros de pele, com exceção do melanoma maligno e do cancro papilar da bexiga.'},
+{category:'🩺 Doenças Graves',question:'Para a cirurgia "by-pass" das artérias coronárias ser coberta, quantas artérias têm de estar envolvidas na revascularização?',options:['Pelo menos 1','Pelo menos 2','Pelo menos 3','Todas'],correct:1,feedback:'É necessária revascularização miocárdica de, pelo menos, 2 artérias coronárias.'},
+{category:'🩺 Doenças Graves',question:'Qual o sublimite para despesas de alojamento (por noite) em Doenças Graves?',options:['100€/noite','150€/noite','200€/noite','300€/noite'],correct:2,feedback:'O sublimite de despesas de alojamento é de 200€ por noite (com um sublimite total de 4.000€).'},
+{category:'🩺 Doenças Graves',question:'Qual o sublimite para despesas com medicamentos em Portugal, dentro da cobertura de Doenças Graves?',options:['10.000€','25.000€','50.000€','100.000€'],correct:2,feedback:'O sublimite para despesas com medicamentos em Portugal é de 50.000€.'},
+{category:'🧠 Saúde Mental',question:'Portugal é, na União Europeia, o país com...',options:['Menor incidência de sintomas psicológicos','Maior incidência de sintomas de problemas psicológicos','A menor taxa de burnout','A menor procura de consultas de psicologia'],correct:1,feedback:'Portugal é o país da UE com maior incidência de sintomas de problemas psicológicos.'},
+{category:'🧠 Saúde Mental',question:'Em quanto podem a depressão e o stresse aumentar o risco de AVC?',options:['10%','25%','39%','50%'],correct:2,feedback:'A depressão, o stresse e a insatisfação com a vida parecem aumentar em 39% o risco de AVC.'},
+{category:'🧠 Saúde Mental',question:'Que percentagem dos trabalhadores é afetada por stresse, burnout, depressão e ansiedade?',options:['5%','10%','20%','35%'],correct:2,feedback:'Estima-se que 20% dos trabalhadores sejam afetados por stresse, burnout, depressão e ansiedade.'},
+{category:'🧠 Saúde Mental',question:'Qual o custo estimado, para as empresas portuguesas, das perdas de produtividade ligadas à saúde mental?',options:['1 mil milhões €','2,5 mil milhões €','5,3 mil milhões €','10 mil milhões €'],correct:2,feedback:'Estima-se um custo de 5,3 mil milhões € para as empresas portuguesas por perdas de produtividade.'},
+{category:'🧠 Saúde Mental',question:'A cobertura de Saúde Mental (internamento) inclui internamentos psiquiátricos?',options:['Não, nunca são cobertos','Sim, incluídos na cobertura de Hospitalização','Só em situações de urgência','Só na opção Top'],correct:1,feedback:'Os internamentos psiquiátricos ficam incluídos na cobertura de Hospitalização.'},
+{category:'🧠 Saúde Mental',question:'Qual o limite de dias de internamento motivado por doença do foro psíquico, por anuidade?',options:['15 dias','30 dias','60 dias','90 dias'],correct:1,feedback:'O limite é de 30 dias por anuidade.'},
+{category:'🧠 Saúde Mental',question:'Face à concorrência (Médis, Multicare), qual é a grande vantagem da Generali em Saúde Mental?',options:['É a única com esta cobertura','Inclui Hospitalização e Médico Online desde a opção Base, sem exigir capital de Ambulatório','Tem sempre copagamento mais alto','Não tem diferença nenhuma'],correct:1,feedback:'A Generali inclui Hospitalização e Médico Online de Saúde Mental desde a opção Base; a concorrência só oferece com a inclusão de capital de Ambulatório.'},
+{category:'📱 Serviços Digitais',question:'Quantos prestadores tem a Rede Médica AdvanceCare, aproximadamente?',options:['+10.000','+20.000','+30.000','+50.000'],correct:2,feedback:'A Rede Médica AdvanceCare tem mais de 30.000 prestadores, incluindo o Grupo Luz Saúde, Grupo José de Mello Saúde/CUF e Grupo Lusíadas Saúde.'},
+{category:'📱 Serviços Digitais',question:'Os preços convencionados da rede AdvanceCare são, em geral, quanto mais baixos do que os preços ao público?',options:['Entre 5% e 10%','Entre 15% e 40%','Entre 50% e 60%','Sempre iguais'],correct:1,feedback:'Os preços convencionados são entre 15% e 40% mais baixos que os praticados ao público em geral, mesmo excedendo capitais e durante carências.'},
+{category:'📱 Serviços Digitais',question:'Quantos serviços estão disponíveis na Rede Bem-estar?',options:['+500','+1.500','+3.500','+10.000'],correct:2,feedback:'A Rede Bem-estar disponibiliza mais de 3.500 serviços, com descontos até 50%.'},
+{category:'📱 Serviços Digitais',question:'O que é o serviço "Welcome Home"?',options:['Um seguro de viagem','Acompanhamento telefónico por um profissional de enfermagem após uma cirurgia','Uma app de marcação de consultas','Um desconto na primeira mensalidade'],correct:1,feedback:'O Welcome Home é um serviço de acompanhamento telefónico feito por um profissional de enfermagem após uma cirurgia.'},
+{category:'📱 Serviços Digitais',question:'A cobertura Internacional pode ser adicionada em que opções?',options:['Só na Top','Em todas as opções','Só na Extra','Não existe esta possibilidade'],correct:1,feedback:'É possível aderir à cobertura Internacional em todas as opções.'},
+{category:'📱 Serviços Digitais',question:'Em quanto tempo é feito o reembolso de uma despesa submetida via App myAdvanceCare?',options:['24h úteis','48h úteis','72h úteis','5 dias úteis'],correct:2,feedback:'O reembolso é feito em 72h úteis após o envio da despesa.'},
+{category:'📱 Serviços Digitais',question:'Que serviço da App/Portal myAdvanceCare permite ao cliente conhecer antecipadamente o valor de uma consulta ou intervenção?',options:['Avaliador de sintomas','Simulador de despesas médicas','Cartão virtual','Pesquisa de médico'],correct:1,feedback:'O Simulador de despesas médicas permite ao cliente conhecer antecipadamente os valores.'},
+{category:'📱 Serviços Digitais',question:'A Segunda Opinião Médica tem custos para o cliente?',options:['Sim, sempre','Não, é sem custos','Só nas opções Base e Mais','Só se for usada mais de uma vez'],correct:1,feedback:'A Segunda Opinião Médica é disponibilizada sem custos para o cliente.'},
+{category:'🏠 Assistência às Pessoas',question:'A cobertura de Assistência Oncológica está disponível em que opções?',options:['Em todas','Só na Base e Mais','Só no Top (e Extra)','Só na Extra'],correct:2,feedback:'A Assistência Oncológica só está disponível para quem tem a opção Top (ou Extra).'},
+{category:'🏠 Assistência às Pessoas',question:'No serviço de Assistência Oncológica, quantas consultas de apoio psicológico por vídeo são gratuitas?',options:['Nenhuma','A 1ª consulta','As primeiras 3 consultas','Todas'],correct:1,feedback:'A 1ª consulta é gratuita; as 5 seguintes têm copagamento de 15€.'},
+{category:'🏠 Assistência às Pessoas',question:'Qual o limite de horas por mês do serviço de Baby Sitting da Assistência Oncológica, e até que idade?',options:['4h/mês até 14 anos','6h/mês até 16 anos','10h/mês até 18 anos','Sem limite'],correct:1,feedback:'O Baby Sitting tem limite de 6h/mês, até aos 16 anos.'},
+{category:'🏠 Assistência às Pessoas',question:'Quantos serviços de entrega de refeições por mês estão incluídos na Assistência Oncológica?',options:['1','2','4','Ilimitados'],correct:1,feedback:'O limite é de 2 serviços de entrega de refeições por mês.'},
+{category:'🏠 Assistência às Pessoas',question:'O que é necessário para pedir o reembolso de uma despesa fora da rede?',options:['Ligar apenas por telefone','Fotografar o documento e enviá-lo pelo Portal ou App myAdvanceCare','Enviar por carta registada','Ir a um balcão'],correct:1,feedback:'Basta fotografar o documento e submetê-lo através do Portal de Clientes ou App myAdvanceCare.'},
+{category:'👶 Subscrição e Carências',question:'Qual a idade máxima de subscrição do Seguro de Saúde Individual?',options:['55 anos','60 anos','65 anos','70 anos'],correct:2,feedback:'A idade máxima de subscrição é 65 anos.'},
+{category:'👶 Subscrição e Carências',question:'Até que idade pode o cliente manter a apólice (permanência)?',options:['65 anos','70 anos','75 anos','80 anos'],correct:2,feedback:'A permanência é possível até aos 75 anos.'},
+{category:'👶 Subscrição e Carências',question:'A partir de que idade de subscrição a permanência deixa de ter limite?',options:['45 anos','50 anos','55 anos','60 anos'],correct:2,feedback:'Se o cliente subscrever o seguro até aos 55 anos, a permanência passa a não ter limite.'},
+{category:'👶 Subscrição e Carências',question:'A transferência interna de apólices exige sempre avaliação clínica?',options:['Sim, sempre','Não; só é obrigatória se houver aumento de capital de Hospitalização ou inclusão de Doenças Graves','Nunca é necessária','Só para maiores de 65 anos'],correct:1,feedback:'Em transferências internas, a avaliação clínica só é obrigatória se houver aumento de capital de Hospitalização e/ou inclusão da cobertura de Doenças Graves.'},
+{category:'👶 Subscrição e Carências',question:'Qual o período de carência geral para Hospitalização?',options:['30 dias','60 dias','90 dias','180 dias'],correct:2,feedback:'A carência geral para Hospitalização é de 90 dias.'},
+{category:'👶 Subscrição e Carências',question:'Qual o período de carência geral para Ambulatório, Estomatologia, Próteses e Medicamentos?',options:['30 dias','60 dias','90 dias','120 dias'],correct:1,feedback:'A carência geral para estas coberturas é de 60 dias.'},
+{category:'👶 Subscrição e Carências',question:'Qual o período de carência para despesas de gravidez, interrupção involuntária e parto?',options:['90 dias','180 dias','270 dias','365 dias'],correct:3,feedback:'Estas despesas têm uma carência de 365 dias.'},
+{category:'👶 Subscrição e Carências',question:'Qual o período de carência para a cobertura de Doenças Graves?',options:['90 dias','120 dias','180 dias','365 dias'],correct:2,feedback:'A carência para Doenças Graves é de 180 dias, incluindo para recém-nascidos.'},
+{category:'👶 Subscrição e Carências',question:'Em que condição ficam os recém-nascidos automaticamente cobertos, sem período de carência?',options:['Nunca ficam cobertos automaticamente','Se pelo menos um dos pais estiver no seguro há mais de um ano, e forem incluídos até 30 dias após o nascimento','Só se pagarem prémio adicional','Só a partir de 1 ano de idade'],correct:1,feedback:'É preciso que um dos pais esteja no seguro há mais de um ano, e a inclusão deve ocorrer nos 30 dias após o nascimento.'},
+{category:'👶 Subscrição e Carências',question:'Que situação, entre outras, tem uma carência específica de 365 dias?',options:['Consulta de rotina de clínica geral','Intervenção cirúrgica a hérnias','Vacinação','Consulta de nutrição'],correct:1,feedback:'A intervenção cirúrgica a hérnias tem uma carência específica de 365 dias, tal como varizes, colecistectomia e cirurgia oftalmológica, entre outras.'},
+{category:'👶 Subscrição e Carências',question:'Existe idade mínima geral de subscrição do Seguro de Saúde Individual?',options:['Sim, 18 anos','Sim, 15 anos','Não, exceto na cobertura de Doenças Graves','Sim, 25 anos'],correct:2,feedback:'Não existe idade mínima geral, exceto para a cobertura de Doenças Graves.'},
+{category:'💰 Descontos e Poupança',question:'Qual o desconto aplicado para 4 pessoas seguras na mesma apólice individual?',options:['5%','7,5%','10%','15%'],correct:2,feedback:'Para 4 pessoas seguras, o desconto é de 10%.'},
+{category:'💰 Descontos e Poupança',question:'Qual o desconto máximo por número de pessoas seguras, no segmento individual (5 ou mais)?',options:['10%','12,5%','15%','20%'],correct:2,feedback:'O desconto máximo por número de pessoas, no individual, é de 15%.'},
+{category:'💰 Descontos e Poupança',question:'Qual o desconto no prémio se o cliente pagar anualmente?',options:['2%','4%','6%','10%'],correct:1,feedback:'O pagamento anual tem um desconto de 4% no prémio.'},
+{category:'💰 Descontos e Poupança',question:'Qual o custo da apólice (incluindo imposto de selo e INEM)?',options:['3,00€','5,38€','8,00€','10,00€'],correct:1,feedback:'O custo da apólice é de 5,38€ (5,00€ + imposto de selo + INEM); é gratuito para Cliente Verde.'},
+{category:'💰 Descontos e Poupança',question:'A comparticipação entre 90% e 100% na rede refere-se a quê?',options:['Reembolso fora da rede','Comparticipação de despesas dentro da rede de prestadores','Desconto no prémio','Desconto por fracionamento'],correct:1,feedback:'É a comparticipação típica de despesas realizadas dentro da rede de prestadores.'},
+{category:'🏢 Argumentário de Venda',question:'Para que tipo de cliente é indicada a opção Base?',options:['Quem quer capitais muito elevados','Quem quer salvaguardar cirurgias/internamento com uma solução mais económica','Casais que planeiam ter filhos','Quem já tem outro seguro de saúde'],correct:1,feedback:'A opção Base é indicada para quem procura uma solução mais económica, com proteção em cirurgias e internamento, podendo depois adicionar opcionais.'},
+{category:'🏢 Argumentário de Venda',question:'Para que tipo de cliente é indicada a opção Mais?',options:['Quem só quer hospitalização','Quem pretende um capital de Ambulatório mais elevado e coberturas mais abrangentes como Parto, Dentária e Próteses','Só maiores de 65 anos','Só quem já tem seguro pela empresa'],correct:1,feedback:'A Mais é ideal para quem quer capital de Ambulatório mais elevado e coberturas mais abrangentes.'},
+{category:'🏢 Argumentário de Venda',question:'Para que tipo de cliente é indicada a opção Top?',options:['Quem quer o seguro mais básico possível','Quem pretende cobertura mais abrangente, com capitais muito elevados','Só famílias sem filhos','Só menores de idade'],correct:1,feedback:'A Top é indicada para quem quer a cobertura mais abrangente, com capitais muito elevados.'},
+{category:'🏢 Argumentário de Venda',question:'Para que tipo de cliente é indicada a opção Extra?',options:['Só quem nunca teve seguro de saúde','Quem quer garantir internamentos muito graves ou de longo-prazo, ou já tem outro seguro e quer um complemento','Só famílias numerosas','Só menores de 18 anos'],correct:1,feedback:'A Extra é indicada para reforçar internamentos graves ou complementar um seguro de saúde já existente, com acesso à Champalimaud.'},
+{category:'🏢 Argumentário de Venda',question:'Qual é o canal de distribuição definido para o Seguro de Saúde Individual?',options:['Venda direta ao balcão','Rede de mediação e corretagem','Só através da App','Só através do call center'],correct:1,feedback:'O canal de distribuição definido é a rede de mediação e corretagem.'},
+{category:'🏢 Argumentário de Venda',question:'Face à concorrência, em que se destaca a cobertura de Ambulatório da Generali (Fisioterapia, por exemplo)?',options:['É mais cara que a concorrência','Sem pré-autorização e sem limite de sessões','Só disponível na opção Top','Não existe diferença face à concorrência'],correct:1,feedback:'A Fisioterapia da Generali não exige pré-autorização nem tem limite de sessões — uma vantagem competitiva relevante.'}
 ];
 
 /* ==================== QUIZ — lógica diária ==================== */
@@ -520,9 +541,9 @@ function todayStr(){return new Date().toISOString().slice(0,10);}
 function buildStartScreen(container){
 container.innerHTML=`
 <div class="quiz-hero">
-<div class="quiz-label">Formação · Multirriscos Habitação</div>
+<div class="quiz-label">Formação · Seguro Saúde</div>
 <h2>Quiz do Dia</h2>
-<p>3 perguntas rápidas sobre o Seguro Casa Generali Tranquilidade. As perguntas mudam todos os dias e não se repetem ao longo do mês. Cada resposta certa vale 1 ponto no ranking.</p>
+<p>3 perguntas rápidas sobre o Seguro Saúde Generali Tranquilidade. As perguntas mudam todos os dias e não se repetem ao longo do mês. Cada resposta certa vale 1 ponto no ranking.</p>
 </div>
 <div class="field" style="margin-top:18px;">
 <label>O teu nome</label>
@@ -548,9 +569,18 @@ function init(){
 if(new Date().getMonth()+1!==CAMPAIGN_MONTH){
 container.innerHTML=`
 <div class="quiz-hero">
-<div class="quiz-label">Formação · Multirriscos Habitação</div>
+<div class="quiz-label">Formação · Seguro Saúde</div>
 <h2>Quiz do Dia</h2>
-<p>Este quiz é específico da campanha de Julho (Multirriscos Habitação) e só está disponível durante esse mês.<br><br>Fora de Julho, esta secção fica em pausa.</p>
+<p>Este quiz é específico da campanha de Agosto (Saúde) e só está disponível durante esse mês.<br><br>Fora de Agosto, esta secção fica em pausa.</p>
+</div>`;
+return;
+}
+if(allQuestions.length===0){
+container.innerHTML=`
+<div class="quiz-hero">
+<div class="quiz-label">Formação · Seguro Saúde</div>
+<h2>Quiz do Dia</h2>
+<p>🩺 O banco de perguntas do Seguro Saúde está em preparação. Volta em breve!</p>
 </div>`;
 return;
 }
@@ -561,7 +591,6 @@ const lojaInput=document.getElementById('qdLoja').value;
 const note=document.getElementById('qdNote');
 if(!nomeInput){note.textContent='Escreve o teu nome para começar.';note.style.color='var(--bad)';return;}
 
-// Check if already answered today via Sheets
 note.textContent='A verificar…'; note.style.color='var(--muted)';
 const data=await sheetsRead();
 const quiz=data.quiz||[];
@@ -624,7 +653,7 @@ setTimeout(refreshRanking,1500);
 
 let title,msg;
 const pct=score/total;
-if(pct===1){title='🏅 Perfeito!';msg='Respondeste corretamente a tudo. Estás pronto para vender o Multirriscos Habitação com confiança.';}
+if(pct===1){title='🏅 Perfeito!';msg='Respondeste corretamente a tudo. Estás pronto para vender o Seguro Saúde com confiança.';}
 else if(pct>=0.67){title='🎯 Muito bom resultado!';msg='Tens um sólido conhecimento do produto. Revê a pergunta em que erraste para ficares ainda mais preparado.';}
 else{title='💡 Hora de estudar!';msg='Fica a conhecer melhor o produto — quanto mais souberes, mais fácil fica a conversa com o cliente.';}
 
